@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 2: Complex Numbers | Mathematical Methods in the Physical Sciences</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEnvironments: true,
+        tags: 'ams',
+        macros: {
+          pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+          dv: ['{\\frac{d #1}{d #2}}', 2],
+          abs: ['{\\left|#1\\right|}', 1],
+          norm: ['{\\left\\|#1\\right\\|}', 1],
+          curl: '{\\operatorname{curl}}',
+          div: '{\\operatorname{div}}',
+          grad: '{\\operatorname{grad}}',
+          sech: '{\\operatorname{sech}}',
+          csch: '{\\operatorname{csch}}',
+          coth: '{\\operatorname{coth}}',
+          circnum: ['{\\boxed{#1}}', 1],
+          vb: ['{\\mathbf{#1}}', 1],
+          eval: ['{\\left.#1\\right|}', 1],
+          dd: '{\\,d}'
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark">M</span>
+    <span>Mathematical Methods in the Physical Sciences</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="../../index.html">Home</a>
+    <a href="../../toc.html">Contents</a>
+  </nav>
+</header>
+<main class="layout">
+  <aside class="sidebar">
+  <div class="sidebar-inner">
+    <p class="sidebar-kicker">Chapter 2</p>
+    <h2>Complex Numbers</h2>
+    <nav class="chapter-toc" aria-label="Chapter contents">
+      <a class="toc-level-2" href="#sec-2-introduction-to-complex-numbers">Introduction to Complex Numbers</a>
+<a class="toc-level-2" href="#sec-2-motivation">Motivation</a>
+<a class="toc-level-3" href="#sec-2-special-cases">Special Cases</a>
+<a class="toc-level-3" href="#sec-2-motivation-from-algebra">Motivation from Algebra</a>
+<a class="toc-level-3" href="#sec-2-the-complex-plane">The Complex Plane</a>
+<a class="toc-level-3" href="#sec-2-diagram-of-the-complex-plane">Diagram of the Complex Plane</a>
+<a class="toc-level-3" href="#sec-2-radians-vs-degrees">Radians vs Degrees</a>
+<a class="toc-level-3" href="#sec-2-worked-examples">Worked Examples</a>
+<a class="toc-level-3" href="#sec-2-terminology-and-notation">Terminology and Notation</a>
+<a class="toc-level-3" href="#sec-2-complex-conjugate">Complex Conjugate</a>
+<a class="toc-level-3" href="#sec-2-basic-identities">Basic Identities</a>
+<a class="toc-level-3" href="#sec-2-worked-examples-12">Worked Examples</a>
+<a class="toc-level-3" href="#sec-2-quick-facts">Quick Facts</a>
+<a class="toc-level-2" href="#sec-2-complex-algebra">Complex Algebra</a>
+<a class="toc-level-3" href="#sec-2-simplifying-to-x-iy-or-re-i">Simplifying to x+iy or re^i</a>
+<a class="toc-level-3" href="#sec-2-conjugates-of-expressions">Conjugates of Expressions</a>
+<a class="toc-level-3" href="#sec-2-absolute-value-modulus">Absolute Value (Modulus)</a>
+<a class="toc-level-3" href="#sec-2-complex-equations">Complex Equations</a>
+<a class="toc-level-3" href="#sec-2-graphs-geometry-in-the-complex-plane">Graphs (Geometry in the Complex Plane)</a>
+<a class="toc-level-2" href="#sec-2-complex-infinite-series">Complex Infinite Series</a>
+<a class="toc-level-3" href="#sec-2-worked-examples-21">Worked Examples</a>
+<a class="toc-level-3" href="#sec-2-quick-facts-22">Quick Facts</a>
+<a class="toc-level-2" href="#sec-2-complex-power-series-disk-of-convergence">Complex Power Series: Disk of Convergence</a>
+<a class="toc-level-3" href="#sec-2-radius-and-disk-of-convergence">Radius and Disk of Convergence</a>
+<a class="toc-level-2" href="#sec-2-euler-s-formula">Euler&#x27;s Formula</a>
+<a class="toc-level-3" href="#sec-2-proof-using-power-series">Proof Using Power Series</a>
+<a class="toc-level-3" href="#sec-2-geometric-meaning">Geometric Meaning</a>
+<a class="toc-level-3" href="#sec-2-applications-of-euler-s-formula">Applications of Euler&#x27;s Formula</a>
+<a class="toc-level-2" href="#sec-2-elementary-functions-of-complex-numbers">Elementary Functions of Complex Numbers</a>
+<a class="toc-level-3" href="#sec-2-polynomials-and-rational-functions">Polynomials and Rational Functions</a>
+<a class="toc-level-2" href="#sec-2-the-exponential-function">The Exponential Function</a>
+<a class="toc-level-2" href="#sec-2-powers-and-roots-of-complex-numbers">Powers and Roots of Complex Numbers</a>
+<a class="toc-level-2" href="#sec-2-trigonometric-functions-of-a-complex-variable">Trigonometric Functions of a Complex Variable</a>
+<a class="toc-level-2" href="#sec-2-hyperbolic-functions">Hyperbolic Functions</a>
+<a class="toc-level-3" href="#sec-2-relation-with-imaginary-arguments">Relation with Imaginary Arguments</a>
+<a class="toc-level-2" href="#sec-2-logarithms-of-complex-numbers">Logarithms of Complex Numbers</a>
+<a class="toc-level-3" href="#sec-2-logarithm-of-a-product">Logarithm of a Product</a>
+<a class="toc-level-2" href="#sec-2-complex-roots-and-powers">Complex Roots and Powers</a>
+<a class="toc-level-2" href="#sec-2-inverse-trigonometric-functions">Inverse trigonometric functions</a>
+    </nav>
+  </div>
+</aside>
+
+  <article class="content">
+    <header class="chapter-hero">
+      <p>Chapter 2</p>
+      <h1>Complex Numbers</h1>
+    </header>
+    <h2 id="sec-2-introduction-to-complex-numbers">Introduction to Complex Numbers</h2>
+<h2 id="sec-2-motivation">Motivation</h2>
+<p>In algebra, the quadratic formula</p>
+<div class="math-block">\[
+	z = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+	\]</div>
+<p>provides the general solution of a quadratic equation</p>
+<div class="math-block">\[
+	a z^2 + b z + c = 0.
+	\]</div>
+<p>When the discriminant</p>
+<div class="math-block">\[
+	d = b^2 - 4ac
+	\]</div>
+<p>is negative, the square root involves a negative number. To extend the number system so that such roots exist, we introduce a new quantity:</p>
+<div class="math-block">\[
+	i = \sqrt{-1}, \quad i^2 = -1.
+	\]</div>
+<section class="callout definition"><header>Definition - Complex Numbers</header><p>A <strong>complex number</strong> is any number of the form</p>
+<div class="math-block">\[
+	z = x + i y,
+	\]</div>
+<p>where <span class="math-inline">\(x, y \in \mathbb{R}\)</span> and <span class="math-inline">\(i\)</span> is the imaginary unit defined by <span class="math-inline">\(i^2 = -1\)</span>.</p>
+<ul><li><p><span class="math-inline">\(x\)</span> is the <strong>real part</strong> of <span class="math-inline">\(z\)</span>: <span class="math-inline">\(\Re(z) = x\)</span>.</p></li><li><p><span class="math-inline">\(y\)</span> is the <strong>imaginary part</strong> of <span class="math-inline">\(z\)</span>: <span class="math-inline">\(\Im(z) = y\)</span>.</p></li></ul>
+<p>Both <span class="math-inline">\(x\)</span> and <span class="math-inline">\(y\)</span> may be positive, negative, or zero.</p></section>
+<h3 id="sec-2-special-cases">Special Cases</h3>
+<ul><li><p>If <span class="math-inline">\(y = 0\)</span>, then <span class="math-inline">\(z\)</span> is purely real: <span class="math-inline">\(z = x\)</span>.</p></li><li><p>If <span class="math-inline">\(x = 0\)</span> and <span class="math-inline">\(y \neq 0\)</span>, then <span class="math-inline">\(z\)</span> is <strong>purely imaginary</strong>: <span class="math-inline">\(z = i y\)</span>.</p></li></ul>
+<section class="callout example"><header>Example</header><ol><li><p><span class="math-inline">\(z = 4 + 3i\)</span>: <span class="math-inline">\(\Re(z) = 4\)</span>, <span class="math-inline">\(\Im(z) = 3\)</span>.</p></li><li><p><span class="math-inline">\(z = -5i\)</span>: <span class="math-inline">\(\Re(z) = 0\)</span>, <span class="math-inline">\(\Im(z) = -5\)</span> (pure imaginary).</p></li><li><p><span class="math-inline">\(z = 7\)</span>: <span class="math-inline">\(\Re(z) = 7\)</span>, <span class="math-inline">\(\Im(z) = 0\)</span> (pure real).</p></li><li><p><span class="math-inline">\(z = -2 + i\sqrt{5}\)</span>: <span class="math-inline">\(\Re(z) = -2\)</span>, <span class="math-inline">\(\Im(z) = \sqrt{5}\)</span>.</p></li></ol></section>
+<section class="callout example"><header>Example</header><p>Express <span class="math-inline">\(\sqrt{-50}\)</span> in the form <span class="math-inline">\(x + iy\)</span>.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\sqrt{-50} = \sqrt{-1 \cdot 25 \cdot 2}
+	= \sqrt{-1} \cdot \sqrt{25} \cdot \sqrt{2}
+	= i \cdot 5 \sqrt{2} = 5\sqrt{2}\, i.
+	\]</div></section>
+<h3 id="sec-2-motivation-from-algebra">Motivation from Algebra</h3>
+<p>Consider</p>
+<div class="math-block">\[
+z^2 - 2z + 2 = 0.
+\]</div>
+<p>Applying the quadratic formula:</p>
+<div class="math-block">\[
+z = \frac{2 \pm \sqrt{4 - 8}}{2} = \frac{2 \pm \sqrt{-4}}{2}
+= \frac{2 \pm 2i}{2} = 1 \pm i.
+\]</div>
+<p>The solutions <span class="math-inline">\(1 \pm i\)</span> are complex numbers with both real and imaginary parts nonzero.</p>
+<section class="callout example"><header>Example</header><p>Solve <span class="math-inline">\(z^2 + z + 1 = 0\)</span>.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	z = \frac{-1 \pm \sqrt{1 - 4}}{2}
+	= \frac{-1 \pm \sqrt{-3}}{2}
+	= \frac{-1 \pm i\sqrt{3}}{2}.
+	\]</div>
+<p>Thus, the solutions are</p>
+<div class="math-block">\[
+	z = -\frac12 + i\frac{\sqrt{3}}{2}
+	\quad \text{and} \quad
+	z = -\frac12 - i\frac{\sqrt{3}}{2}.
+	\]</div></section>
+<h3 id="sec-2-the-complex-plane">The Complex Plane</h3>
+<section class="callout definition"><header>Definition - Geometric Interpretation of Complex Numbers</header><p>A complex number <span class="math-inline">\(z = x + iy\)</span> can be represented as a point <span class="math-inline">\((x, y)\)</span> in a two-dimensional coordinate plane, called the <strong>complex plane</strong> or <strong>Argand diagram</strong>.</p>
+<ul><li><p>The horizontal axis represents the <strong>real part</strong> <span class="math-inline">\(x = \Re(z)\)</span>.</p></li><li><p>The vertical axis represents the <strong>imaginary part</strong> <span class="math-inline">\(y = \Im(z)\)</span>.</p></li></ul></section>
+<section class="callout remark"><header>Remark - Rectangular Form</header><p>When we write <span class="math-inline">\(z = x + iy\)</span>, we say <span class="math-inline">\(z\)</span> is in <strong>rectangular form</strong>, because <span class="math-inline">\((x, y)\)</span> are the rectangular coordinates of the point representing <span class="math-inline">\(z\)</span>.</p></section>
+<section class="callout remark"><header>Remark - Polar Form</header><p>We can also locate a point using polar coordinates <span class="math-inline">\((r, \theta)\)</span>:</p>
+<div class="math-block">\[
+x = r \cos \theta, \quad y = r \sin \theta.
+\]</div>
+<p>Then</p>
+<div class="math-block">\[
+z = x + iy = r (\cos\theta + i \sin\theta).
+\]</div>
+<p>Later we will see that <span class="math-inline">\(\cos\theta + i \sin\theta = e^{i\theta}\)</span>, giving the compact form</p>
+<div class="math-block">\[
+z = r e^{i\theta}.
+\]</div></section>
+<h3 id="sec-2-diagram-of-the-complex-plane">Diagram of the Complex Plane</h3>
+<figure id="chapter-02-fig-1" class="figure"><img src="assets/img/tikz-01.svg" alt="A geometric representation of the complex number $z = x + iy$ in the complex plane, showing its real and imaginary components, magnitude $r$, and argument $\theta$." loading="lazy"><figcaption>A geometric representation of the complex number <span class="math-inline">\(z = x + iy\)</span> in the complex plane, showing its real and imaginary components, magnitude <span class="math-inline">\(r\)</span>, and argument <span class="math-inline">\(\theta\)</span>.</figcaption></figure>
+<h3 id="sec-2-radians-vs-degrees">Radians vs Degrees</h3>
+<p>In calculus and advanced mathematics, <strong>radians</strong> are the standard measure for angles.</p>
+<ul><li><p>Many formulas, such as <span class="math-inline">\(\frac{d}{dx} \sin x = \cos x\)</span>, are valid only if <span class="math-inline">\(x\)</span> is in radians.</p></li><li><p>For computation, degrees can be used if the context allows, but be careful when substituting into formulas derived with radians.</p></li></ul>
+<h3 id="sec-2-worked-examples">Worked Examples</h3>
+<section class="callout example"><header>Example</header><p>Represent <span class="math-inline">\(1 + i\sqrt{3}\)</span> in polar form.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	r = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = 2,
+	\]</div>
+<div class="math-block">\[
+	\theta = \arctan\left(\frac{\sqrt{3}}{1}\right) = \frac{\pi}{3}.
+	\]</div>
+<p>Thus:</p>
+<div class="math-block">\[
+	1 + i\sqrt{3} = 2 \left(\cos \frac{\pi}{3} + i \sin \frac{\pi}{3} \right) = 2 e^{i\pi/3}.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Convert <span class="math-inline">\(3 e^{-i\pi/2}\)</span> to rectangular form.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\cos\left(-\frac{\pi}{2}\right) = 0, \quad \sin\left(-\frac{\pi}{2}\right) = -1.
+	\]</div>
+<p>So:</p>
+<div class="math-block">\[
+	3 e^{-i\pi/2} = 3\left(0 - i\right) = -3i.
+	\]</div></section>
+<h3 id="sec-2-terminology-and-notation">Terminology and Notation</h3>
+<section class="callout definition"><header>Definition - Standard Notation for Complex Numbers</header><p>For a complex number</p>
+<div class="math-block">\[
+	z = x + iy = r(\cos\theta + i\sin\theta) = r e^{i\theta},
+	\]</div>
+<p>we write:</p>
+<div class="math-block">\[
+	\Re(z) = x, \qquad \Im(z) = y, \qquad |z| = r = \sqrt{x^2 + y^2}, \qquad \arg(z) = \theta.
+	\]</div>
+<p>The <strong>principal argument</strong>, denoted <span class="math-inline">\(\arg(z)\)</span>, is the unique angle</p>
+<div class="math-block">\[
+	\Theta \in (-\pi, \pi] \quad \text{such that} \quad z = |z| e^{i\Theta}.
+	\]</div></section>
+<section class="callout remark"><header>Remark</header><p>Always identify the correct quadrant when finding <span class="math-inline">\(\theta=\arg(z)\)</span>; formulas like <span class="math-inline">\(\theta=\arctan(y/x)\)</span> must be adjusted to land in the correct quadrant.</p></section>
+<h3 id="sec-2-complex-conjugate">Complex Conjugate</h3>
+<section class="callout definition"><header>Definition - Complex Conjugate</header><p>The <strong>complex conjugate</strong> of a complex number <span class="math-inline">\(z = x + iy\)</span> is defined by</p>
+<div class="math-block">\[
+	\overline{z} = x - iy.
+	\]</div>
+<p>Geometrically, <span class="math-inline">\(\overline{z}\)</span> is the reflection of the point <span class="math-inline">\(z\)</span> across the real axis in the complex plane.</p></section>
+<figure id="chapter-02-fig-2" class="figure"><img src="assets/img/tikz-02.svg" alt="Complex number $z = x + iy$ and its conjugate $\overline{z} = x - iy$ shown as reflections across the real axis in the complex plane." loading="lazy"><figcaption>Complex number <span class="math-inline">\(z = x + iy\)</span> and its conjugate <span class="math-inline">\(\overline{z} = x - iy\)</span> shown as reflections across the real axis in the complex plane.</figcaption></figure>
+<h3 id="sec-2-basic-identities">Basic Identities</h3>
+<p>For all <span class="math-inline">\(z,w\in\mathbb{C}\)</span>:</p>
+<div class="math-block">\[
+z\overline{z}=|z|^2,\qquad \overline{z+w}=\overline{z}+\overline{w},\qquad \overline{zw}=\overline{z}\,\overline{w},\qquad
+\overline{\left(\frac{z}{w}\right)}=\frac{\overline{z}}{\overline{w}}\ (w\neq 0).
+\]</div>
+<p>Useful reconstructions:</p>
+<div class="math-block">\[
+\Re(z)=\frac{z+\overline{z}}{2},\qquad \Im(z)=\frac{z-\overline{z}}{2i}.
+\]</div>
+<h3 id="sec-2-worked-examples-12">Worked Examples</h3>
+<section class="callout example"><header>Example - Polar data from rectangular</header><p>Write <span class="math-inline">\(z=-1-i\)</span> in polar form.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	|z|=\sqrt{(-1)^2+(-1)^2}=\sqrt{2},\qquad \theta=\arg(z)=-\frac{3\pi}{4}\ \ (\text{III quadrant}).
+	\]</div>
+<p>Hence</p>
+<div class="math-block">\[
+	z=\sqrt{2}\,e^{-3\pi i/4}=\sqrt{2}\big(\cos(-3\pi/4)+i\sin(-3\pi/4)\big).
+	\]</div></section>
+<section class="callout example"><header>Example - Extracting real/imag via conjugates</header><p>Let <span class="math-inline">\( z=\dfrac{2-3i}{1+i} \)</span>. Compute <span class="math-inline">\( |z| \)</span>, <span class="math-inline">\( \Re(z) \)</span>, and <span class="math-inline">\( \Im(z) \)</span>.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	z=\frac{(2-3i)(1-i)}{(1+i)(1-i)}=\frac{2-2i-3i+3i^2}{1- i^2}
+	=\frac{2-5i-3}{2}=\frac{-1-5i}{2}.
+	\]</div>
+<p>Thus <span class="math-inline">\( \Re(z)=-\tfrac{1}{2},\ \Im(z)=-\tfrac{5}{2} \)</span>, and</p>
+<div class="math-block">\[
+	|z|=\sqrt{\Big(-\frac{1}{2}\Big)^2+\Big(-\frac{5}{2}\Big)^2}
+	=\frac{1}{2}\sqrt{1+25}=\frac{\sqrt{26}}{2}.
+	\]</div>
+<p>(Alternatively, <span class="math-inline">\( |z|=\sqrt{z\overline{z}} \)</span>.)</p></section>
+<h3 id="sec-2-quick-facts">Quick Facts</h3>
+<ul><li><p>Multiplication/division in polar form:</p>
+<div class="math-block">\[
+	(r_1e^{i\theta_1})(r_2e^{i\theta_2})=(r_1r_2)e^{i(\theta_1+\theta_2)},\quad
+	\frac{r_1e^{i\theta_1}}{r_2e^{i\theta_2}}=\left(\frac{r_1}{r_2}\right)e^{i(\theta_1-\theta_2)}.
+	\]</div></li><li><p>Conjugation in polar form: <span class="math-inline">\( \overline{re^{i\theta}}=re^{-i\theta} \)</span>.</p></li><li><p>Equality: <span class="math-inline">\( z_1=z_2 \iff \Re(z_1)=\Re(z_2)\ \text{and}\ \Im(z_1)=\Im(z_2) \)</span>.</p></li></ul>
+<h2 id="sec-2-complex-algebra">Complex Algebra</h2>
+<p>In this section, we develop the algebraic techniques needed to manipulate complex numbers in both rectangular form <span class="math-inline">\(x + iy\)</span> and polar form <span class="math-inline">\(re^{i\theta}\)</span>. The key operations include:</p>
+<ul><li><p>addition and subtraction,</p></li><li><p>multiplication and division,</p></li><li><p>complex conjugation and absolute value,</p></li><li><p>converting between <span class="math-inline">\(x+iy\)</span> and <span class="math-inline">\(re^{i\theta}\)</span>,</p></li><li><p>solving equations involving complex numbers,</p></li><li><p>interpreting algebraic relationships geometrically in the complex plane.</p></li></ul>
+<p>These tools allow us to treat complex numbers as a natural extension of real numbers while benefiting from their geometric interpretation.</p>
+<h3 id="sec-2-simplifying-to-x-iy-or-re-i">Simplifying to <span class="math-inline">\(x+iy\)</span> or <span class="math-inline">\(re^{i\theta}\)</span></h3>
+<p>For <span class="math-inline">\(z_1=x_1+iy_1\)</span> and <span class="math-inline">\(z_2=x_2+iy_2\)</span>:</p>
+<div class="math-block">\[
+z_1\pm z_2=(x_1\pm x_2)+i(y_1\pm y_2),\qquad
+z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1).
+\]</div>
+<p>To divide, multiply numerator and denominator by the conjugate of the denominator:</p>
+<div class="math-block">\[
+\frac{z_1}{z_2}=\frac{z_1\overline{z_2}}{|z_2|^2},\quad z_2\neq 0.
+\]</div>
+<section class="callout example"><header>Example - Power and product</header><div class="math-block">\[
+	(1+i)^2 = 1+2i+i^2 = 2i,\qquad
+	(2+i)(3-i) = 6-2i+3i - i^2 = 7+i.
+	\]</div></section>
+<section class="callout example"><header>Example - Division to <span class="math-inline">\(x+iy\)</span></header><p><span class="math-inline">\(
+	\dfrac{2+i}{3-i}
+	= \dfrac{(2+i)(3+i)}{(3-i)(3+i)}
+	= \dfrac{6+5i+i^2}{3^2-(-1)}
+	= \dfrac{5+5i}{10}
+	= \frac12+\frac12 i.
+	\)</span></p></section>
+<h3 id="sec-2-conjugates-of-expressions">Conjugates of Expressions</h3>
+<p>The conjugate distributes over sums/products/quotients:</p>
+<div class="math-block">\[
+\overline{z_1\pm z_2}=\overline{z_1}\pm \overline{z_2},\quad
+\overline{z_1 z_2}=\overline{z_1}\,\overline{z_2},\quad
+\overline{\Big(\frac{z_1}{z_2}\Big)}=\frac{\overline{z_1}}{\overline{z_2}}\ (z_2\neq 0).
+\]</div>
+<h3 id="sec-2-absolute-value-modulus">Absolute Value (Modulus)</h3>
+<div class="math-block">\[
+|z|=\sqrt{x^2+y^2}=\sqrt{z\,\overline{z}},\qquad |zw|=|z|\,|w|,\qquad \Big|\frac{z}{w}\Big|=\frac{|z|}{|w|}.
+\]</div>
+<section class="callout example"><header>Example</header><p><span class="math-inline">\(
+	\displaystyle
+	\left|\frac{\sqrt{5}+3i}{\,1-i\,}\right|
+	=\frac{\sqrt{(\sqrt{5})^2+3^2}}{\sqrt{1^2+(-1)^2}}
+	=\frac{\sqrt{14}}{\sqrt{2}}=\sqrt{7}.
+	\)</span></p></section>
+<h3 id="sec-2-complex-equations">Complex Equations</h3>
+<p>Two complex numbers are equal iff their real parts are equal and their imaginary parts are equal. Often, write <span class="math-inline">\(z=x+iy\)</span> and split into real/imaginary equations.</p>
+<section class="callout example"><header>Example</header><p>Solve <span class="math-inline">\((x+iy)^2=2i\)</span> for real <span class="math-inline">\(x,y\)</span>.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	(x+iy)^2=(x^2-y^2)+i(2xy)=0+2i
+	\]</div>
+<p>Equate real and imaginary parts:</p>
+<div class="math-block">\[
+	\begin{cases}
+		x^2-y^2=0,\\[2pt]
+		2xy=2.
+	\end{cases}
+	\]</div>
+<p>From <span class="math-inline">\(x^2-y^2=(x-y)(x+y)=0\)</span> we have <span class="math-inline">\(y=x\)</span> or <span class="math-inline">\(y=-x\)</span>.</p>
+<p><strong>Case 1:</strong> <span class="math-inline">\(y=x\)</span>. Then <span class="math-inline">\(2xy=2\Rightarrow 2x^2=2\Rightarrow x^2=1\)</span>. Hence <span class="math-inline">\(x=\pm 1\)</span> and <span class="math-inline">\(y=x\)</span>. This gives <span class="math-inline">\(1+i\)</span> and <span class="math-inline">\(-1-i\)</span>.</p>
+<p><strong>Case 2:</strong> <span class="math-inline">\(y=-x\)</span>. Then <span class="math-inline">\(2xy=2\Rightarrow 2x(-x)=2\Rightarrow -2x^2=2\Rightarrow x^2=-1\)</span>, which is impossible for real <span class="math-inline">\(x\)</span>. So no solutions from this branch.</p>
+<p>Therefore the solutions are</p>
+<div class="math-block">\[
+	(x,y)=(1,1)\quad\text{and}\quad(x,y)=(-1,-1),
+	\]</div>
+<p>i.e. <span class="math-inline">\(z=1+i\)</span> and <span class="math-inline">\(z=-1-i\)</span>.</p>
+<p><em>Check.</em>  <span class="math-inline">\((1+i)^2=1+2i-1=2i\)</span> and <span class="math-inline">\((-1-i)^2=1+2i-1=2i\)</span>.</p>
+<p><em>(Alternative via polar form.)</em>  <span class="math-inline">\(2i=2e^{i\pi/2}\)</span>. Square roots have modulus <span class="math-inline">\(\sqrt{2}\)</span> and arguments <span class="math-inline">\(\frac{\pi}{4}\)</span> and <span class="math-inline">\(\frac{\pi}{4}+\pi\)</span>, giving <span class="math-inline">\(\sqrt{2}e^{i\pi/4}=1+i\)</span> and <span class="math-inline">\(\sqrt{2}e^{i5\pi/4}=-1-i\)</span>.</p></section>
+<h3 id="sec-2-graphs-geometry-in-the-complex-plane">Graphs (Geometry in the Complex Plane)</h3>
+<p>Identify loci via <span class="math-inline">\(z=x+iy\)</span>, <span class="math-inline">\(|z|=\sqrt{x^2+y^2}\)</span>, and distances:</p>
+<div class="math-block">\[
+|z-a|=R \ \text{is a circle of radius }R\text{ centered at }a\in\mathbb{C}.
+\]</div>
+<div class="math-block">\[
+\Re z = c \ \text{is the vertical line } x=c;\quad
+\Im z = c \ \text{is the horizontal line } y=c.
+\]</div>
+<section class="callout example"><header>Example</header><p><span class="math-inline">\( |z-1|=2 \)</span> is the circle <span class="math-inline">\((x-1)^2+y^2=4\)</span>.  <span class="math-inline">\( \angle z = \pi/4 \)</span> is the ray <span class="math-inline">\(y=x\)</span> with <span class="math-inline">\(x&gt;0\)</span>.</p></section>
+<h2 id="sec-2-complex-infinite-series">Complex Infinite Series</h2>
+<section class="callout definition"><header>Definition - Complex Series</header><p>A <strong>complex series</strong> is an expression of the form</p>
+<div class="math-block">\[
+	\sum_{n=0}^{\infty} z_n, \qquad z_n \in \mathbb{C}.
+	\]</div>
+<p>Let</p>
+<div class="math-block">\[
+	S_N = \sum_{n=0}^{N} z_n
+	\]</div>
+<p>be the sequence of partial sums. If the limit</p>
+<div class="math-block">\[
+	\lim_{N \to \infty} S_N = S
+	\]</div>
+<p>exists and is a finite complex number <span class="math-inline">\(S\)</span>, then the series <strong>converges</strong>, and we write</p>
+<div class="math-block">\[
+	\sum_{n=0}^{\infty} z_n = S.
+	\]</div>
+<p>If the limit does not exist or is not finite, the series <strong>diverges</strong>.</p></section>
+<section class="callout theorem"><header>Theorem - Convergence of Complex Series</header><p>Let <span class="math-inline">\(z_n = a_n + i b_n\)</span> with <span class="math-inline">\(a_n, b_n \in \mathbb{R}\)</span>. Then</p>
+<div class="math-block">\[
+	\sum_{n=0}^\infty z_n \ \text{converges}
+	\quad \Longleftrightarrow \quad
+	\sum_{n=0}^\infty a_n \ \text{and} \ \sum_{n=0}^\infty b_n \ \text{both converge}.
+	\]</div>
+<p>In that case, the sum satisfies</p>
+<div class="math-block">\[
+	\sum_{n=0}^\infty z_n
+	=
+	\sum_{n=0}^\infty a_n
+	+ i \sum_{n=0}^\infty b_n.
+	\]</div></section>
+<section class="callout remark"><header>Remark</header><p>In practice, check convergence of the real and imaginary parts separately, or use <strong>absolute convergence</strong> to simplify the test.</p></section>
+<section class="callout theorem"><header>Theorem - Absolute Convergence in <span class="math-inline">\(\mathbb{C}\)</span></header><p>A complex series <span class="math-inline">\(\displaystyle \sum z_n\)</span> is said to be <strong>absolutely convergent</strong> if the series</p>
+<div class="math-block">\[
+	\sum_{n=0}^{\infty} |z_n|
+	\]</div>
+<p>converges, where</p>
+<div class="math-block">\[
+	|z_n| = \sqrt{(\Re z_n)^2 + (\Im z_n)^2}.
+	\]</div>
+<p>If <span class="math-inline">\(\sum |z_n|\)</span> converges, then the complex series <span class="math-inline">\(\sum z_n\)</span> also converges. In other words,</p>
+<div class="math-block">\[
+	\text{absolute convergence} \ \Longrightarrow \ \text{convergence}.
+	\]</div>
+<p>Moreover, any standard convergence test for real, non-negative series may be applied to the series <span class="math-inline">\(\sum |z_n|\)</span>.</p></section>
+<h3 id="sec-2-worked-examples-21">Worked Examples</h3>
+<section class="callout example"><header>Example - Ratio Test</header><p> Test</p>
+<div class="math-block">\[
+	\sum_{n=0}^\infty \frac{(1+i)^n}{2^n}.
+	\]</div>
+<p>Here</p>
+<div class="math-block">\[
+	\rho = \lim_{n\to\infty} \left|\frac{(1+i)^{n+1}/2^{n+1}}{(1+i)^n/2^n}\right|
+	= \left|\frac{1+i}{2}\right| = \frac{\sqrt{2}}{2} &lt; 1.
+	\]</div>
+<p>Thus the series converges absolutely (and hence converges).</p></section>
+<section class="callout example"><header>Example - Alternating parts</header><p> Test</p>
+<div class="math-block">\[
+	\sum_{n=1}^\infty \frac{i^n}{\sqrt{n}}.
+	\]</div>
+<p>The terms cycle through <span class="math-inline">\(i,-1,-i,1,\dots\)</span>. Real part: <span class="math-inline">\(\sum \frac{\pm 1}{\sqrt{n}}\)</span> alternating — converges by the alternating series test. Imaginary part: <span class="math-inline">\(\sum \frac{\pm 1}{\sqrt{n}}\)</span> alternating — also converges. Hence the series converges (conditionally, not absolutely).</p></section>
+<section class="callout example"><header>Example - Geometric Series</header><div class="math-block">\[
+	\sum_{n=0}^\infty (re^{i\theta})^n
+	\]</div>
+<p>converges iff <span class="math-inline">\(|r|&lt;1\)</span>, in which case</p>
+<div class="math-block">\[
+	\sum_{n=0}^\infty (re^{i\theta})^n = \frac{1}{1-re^{i\theta}}.
+	\]</div></section>
+<h3 id="sec-2-quick-facts-22">Quick Facts</h3>
+<p>For the ratio test applied to <span class="math-inline">\(\sum z_n\)</span>:</p>
+<ul><li><p>If <span class="math-inline">\(\rho &lt; 1\)</span>, the series converges <strong>absolutely</strong>.</p></li><li><p>If <span class="math-inline">\(\rho &gt; 1\)</span>, the series <strong>diverges</strong>.</p></li><li><p>If <span class="math-inline">\(\rho = 1\)</span>, the test is <strong>inconclusive</strong> — real and imaginary parts must be checked separately.</p></li></ul>
+<h2 id="sec-2-complex-power-series-disk-of-convergence">Complex Power Series: Disk of Convergence</h2>
+<section class="callout definition"><header>Definition - Complex Power Series</header><p>A <strong>complex power series</strong> centered at <span class="math-inline">\(z_0\)</span> has the form</p>
+<div class="math-block">\[
+	\sum_{n=0}^{\infty} c_n (z - z_0)^n,
+	\qquad c_n \in \mathbb{C}.
+	\]</div>
+<p>It converges for all <span class="math-inline">\(z\)</span> within some disk centered at <span class="math-inline">\(z_0\)</span>, and diverges for all <span class="math-inline">\(z\)</span> outside that disk.</p></section>
+<h3 id="sec-2-radius-and-disk-of-convergence">Radius and Disk of Convergence</h3>
+<section class="callout theorem"><header>Theorem - Radius of Convergence (Ratio Test)</header><p>If</p>
+<div class="math-block">\[
+	\rho = \lim_{n\to\infty} \left| \frac{c_{n+1}}{c_n} \right|
+	\quad \text{exists, then} \quad
+	R = \frac{1}{\rho},
+	\]</div>
+<p>with conventions:</p>
+<div class="math-block">\[
+	\rho = 0 \Rightarrow R = \infty, \qquad
+	\rho = \infty \Rightarrow R = 0.
+	\]</div></section>
+<p>A complex power series converges absolutely when</p>
+<div class="math-block">\[
+|z - z_0| &lt; R,
+\]</div>
+<p>and diverges when</p>
+<div class="math-block">\[
+|z - z_0| &gt; R.
+\]</div>
+<p>The set</p>
+<div class="math-block">\[
+\{\, z \in \mathbb{C} : |z - z_0| &lt; R \,\}
+\]</div>
+<p>is called the <strong>disk of convergence</strong>. On the boundary <span class="math-inline">\(|z-z_0| = R\)</span>, convergence must be tested separately.</p>
+<section class="callout example"><header>Example - Maclaurin Series for <span class="math-inline">\(\log(1+z)\)</span></header><div class="math-block">\[
+	\log(1+z) = \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} z^n.
+	\]</div>
+<p>Ratio test:</p>
+<div class="math-block">\[
+	\rho = \lim_{n\to\infty} \left|
+	\frac{(-1)^{n+2} z^{n+1} /(n+1)}{(-1)^{n+1} z^n/n}
+	\right|
+	= \lim_{n\to\infty} \frac{|z| \, n}{n+1}
+	= |z|.
+	\]</div>
+<p>Thus <span class="math-inline">\(R = 1\)</span>, so the disk of convergence is <span class="math-inline">\(|z|&lt;1\)</span>.</p></section>
+<section class="callout example"><header>Example - Shifted Center</header><div class="math-block">\[
+	\sum_{n=0}^{\infty} \frac{(z + 1 - i)^n}{3^n}.
+	\]</div>
+<p>Ratio test:</p>
+<div class="math-block">\[
+	\rho = \lim_{n\to\infty}
+	\left| \frac{(z+1-i)^{n+1}/3^{n+1}}{(z+1-i)^n / 3^n} \right|
+	= \frac{|z+1-i|}{3}.
+	\]</div>
+<p>Thus convergence requires <span class="math-inline">\(|z+1-i| &lt; 3\)</span>. The disk is centered at <span class="math-inline">\(z_0 = -1 + i\)</span> with radius <span class="math-inline">\(R = 3\)</span>.</p></section>
+<section class="callout remark"><header>Remark - Properties of the Disk of Convergence</header><ul><li><p>If <span class="math-inline">\(R = \infty\)</span>, the power series converges for all <span class="math-inline">\(z \in \mathbb{C}\)</span>. In this case, the function defined by the series is called <strong>entire</strong>.</p></li><li><p>If <span class="math-inline">\(R = 0\)</span>, the series converges only at the center <span class="math-inline">\(z = z_0\)</span>.</p></li><li><p>For all <span class="math-inline">\(z\)</span> with <span class="math-inline">\(|z - z_0| &lt; R\)</span>, convergence is uniform on compact subsets of the disk. Term-by-term differentiation and integration are therefore valid within this region (see Theorem in Section <span class="math-inline">\(\ref{sec:complex_power_series}\)</span>).</p></li></ul></section>
+<h2 id="sec-2-euler-s-formula">Euler's Formula</h2>
+<section class="callout theorem"><header>Theorem - Euler's Formula</header><p>For any real angle <span class="math-inline">\(\theta\)</span>,</p>
+<div class="math-block">\[
+	e^{i\theta} = \cos\theta + i\sin\theta.
+	\]</div>
+<p>This identity connects the complex exponential with the trigonometric functions and plays a central role in oscillations, waves, quantum mechanics, and electrical engineering.</p></section>
+<h3 id="sec-2-proof-using-power-series">Proof Using Power Series</h3>
+<section class="callout remark"><header>Remark - Strategy of the Proof</header><p>We will:</p>
+<ol><li><p>Start from the power series definition of <span class="math-inline">\(e^{x}\)</span> and substitute <span class="math-inline">\(x = i\theta\)</span>.</p></li><li><p>Expand <span class="math-inline">\((i\theta)^n\)</span> and separate the terms with even and odd powers of <span class="math-inline">\(n\)</span>.</p></li><li><p>Simplify powers of <span class="math-inline">\(i\)</span> and identify the real and imaginary parts with the known series for <span class="math-inline">\(\cos\theta\)</span> and <span class="math-inline">\(\sin\theta\)</span>.</p></li></ol></section>
+<p><strong>Step 1. Start from the series for <span class="math-inline">\(e^{x}\)</span>.</strong></p>
+<p>For any real (or complex) number <span class="math-inline">\(x\)</span>,</p>
+<div class="math-block">\[
+e^{x} = \sum_{n=0}^{\infty} \frac{x^n}{n!}.
+\]</div>
+<p>Substitute <span class="math-inline">\(x = i\theta\)</span> (with <span class="math-inline">\(\theta \in \mathbb{R}\)</span>):</p>
+<div class="math-block">\[
+e^{i\theta}
+= \sum_{n=0}^{\infty} \frac{(i\theta)^n}{n!}
+= \frac{(i\theta)^0}{0!}
++ \frac{(i\theta)^1}{1!}
++ \frac{(i\theta)^2}{2!}
++ \frac{(i\theta)^3}{3!}
++ \frac{(i\theta)^4}{4!}
++ \cdots.
+\]</div>
+<p><strong>Step 2. Write out the first few terms explicitly.</strong></p>
+<div class="math-block">\[
+\begin{aligned}
+	e^{i\theta}
+	&amp;= 1
+	+ i\theta
+	+ \frac{(i\theta)^2}{2!}
+	+ \frac{(i\theta)^3}{3!}
+	+ \frac{(i\theta)^4}{4!}
+	+ \frac{(i\theta)^5}{5!}
+	+ \cdots.
+\end{aligned}
+\]</div>
+<p>Now expand the powers of <span class="math-inline">\(i\)</span>:</p>
+<div class="math-block">\[
+i^0 = 1,\quad
+i^1 = i,\quad
+i^2 = -1,\quad
+i^3 = -i,\quad
+i^4 = 1,\quad
+i^5 = i,\ \dots
+\]</div>
+<p>So we obtain:</p>
+<div class="math-block">\[
+\begin{aligned}
+	e^{i\theta}
+	&amp;= 1
+	+ i\theta
+	+ \frac{i^2\theta^2}{2!}
+	+ \frac{i^3\theta^3}{3!}
+	+ \frac{i^4\theta^4}{4!}
+	+ \frac{i^5\theta^5}{5!}
+	+ \cdots \\[4pt]
+	&amp;= 1
+	+ i\theta
+	+ \frac{(-1)\theta^2}{2!}
+	+ \frac{(-i)\theta^3}{3!}
+	+ \frac{(1)\theta^4}{4!}
+	+ \frac{(i)\theta^5}{5!}
+	+ \cdots.
+\end{aligned}
+\]</div>
+<p><strong>Step 3. Group real and imaginary terms.</strong></p>
+<p>Group all the terms without <span class="math-inline">\(i\)</span> (real part) and all the terms with a factor <span class="math-inline">\(i\)</span> (imaginary part):</p>
+<div class="math-block">\[
+\begin{aligned}
+	e^{i\theta}
+	&amp;= \underbrace{\Biggl(1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \cdots\Biggr)}_{\text{real part}}
+	+ i\,\underbrace{\Biggl(\theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \cdots\Biggr)}_{\text{imaginary part}}.
+\end{aligned}
+\]</div>
+<p>Thus we can write</p>
+<div class="math-block">\[
+e^{i\theta}
+= A(\theta) + i\,B(\theta),
+\]</div>
+<p>where</p>
+<div class="math-block">\[
+A(\theta)
+= 1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \cdots,
+\]</div>
+<div class="math-block">\[
+B(\theta)
+= \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \cdots.
+\]</div>
+<p><strong>Step 4. Recall the power series for <span class="math-inline">\(\cos\theta\)</span> and <span class="math-inline">\(\sin\theta\)</span>.</strong></p>
+<p>From earlier results on Maclaurin series:</p>
+<div class="math-block">\[
+\cos\theta
+= \sum_{n=0}^{\infty} \frac{(-1)^n \theta^{2n}}{(2n)!}
+= 1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} - \frac{\theta^6}{6!} + \cdots,
+\]</div>
+<div class="math-block">\[
+\sin\theta
+= \sum_{n=0}^{\infty} \frac{(-1)^n \theta^{2n+1}}{(2n+1)!}
+= \theta - \frac{\theta^3}{3!} + \frac{\theta^5}{5!} - \frac{\theta^7}{7!} + \cdots.
+\]</div>
+<p>Comparing term by term, we see</p>
+<div class="math-block">\[
+A(\theta) = \cos\theta,
+\qquad
+B(\theta) = \sin\theta.
+\]</div>
+<p>Therefore,</p>
+<div class="math-block">\[
+e^{i\theta}
+= A(\theta) + i B(\theta)
+= \cos\theta + i\sin\theta,
+\]</div>
+<p>which completes the proof.</p>
+<h3 id="sec-2-geometric-meaning">Geometric Meaning</h3>
+<p>Euler’s formula shows that <span class="math-inline">\(e^{i\theta}\)</span> lies on the unit circle in the complex plane:</p>
+<div class="math-block">\[
+|e^{i\theta}| = 1,
+\qquad
+\arg(e^{i\theta}) = \theta.
+\]</div>
+<p>Thus multiplying by <span class="math-inline">\(e^{i\theta}\)</span> corresponds to a <strong>rotation by angle <span class="math-inline">\(\theta\)</span></strong> about the origin.</p>
+<figure id="chapter-02-fig-3" class="figure"><img src="assets/img/tikz-03.svg" alt="The complex number \(e^{i\theta}\) lies on the unit circle, at angle \(\theta\) from the positive real axis. Multiplying any complex number by \(e^{i\theta}\) rotates it by \(\theta\)." loading="lazy"><figcaption>The complex number <span class="math-inline">\(e^{i\theta}\)</span> lies on the unit circle, at angle <span class="math-inline">\(\theta\)</span> from the positive real axis. Multiplying any complex number by <span class="math-inline">\(e^{i\theta}\)</span> rotates it by <span class="math-inline">\(\theta\)</span>.</figcaption></figure>
+<h3 id="sec-2-applications-of-euler-s-formula">Applications of Euler's Formula</h3>
+<section class="callout remark"><header>Remark - Polar Form</header><p>Any nonzero complex number <span class="math-inline">\(z\)</span> can be written as</p>
+<div class="math-block">\[
+	z = r e^{i\theta}, \qquad r = |z|,\ \theta = \arg(z).
+	\]</div>
+<p>This is the <strong>polar form</strong> of <span class="math-inline">\(z\)</span>.</p></section>
+<section class="callout remark"><header>Remark - Multiplication and Division</header><p>If <span class="math-inline">\(z_1 = r_1 e^{i\theta_1}\)</span> and <span class="math-inline">\(z_2 = r_2 e^{i\theta_2}\)</span>, then</p>
+<div class="math-block">\[
+	z_1 z_2 = r_1 r_2 e^{i(\theta_1+\theta_2)},
+	\qquad
+	\frac{z_1}{z_2} = \frac{r_1}{r_2} e^{i(\theta_1-\theta_2)}.
+	\]</div>
+<p>Thus multiplication <em>adds</em> angles, and division <em>subtracts</em> angles.</p></section>
+<section class="callout remark"><header>Remark - Roots of Unity</header><p>The <span class="math-inline">\(n\)</span>-th roots of <span class="math-inline">\(1\)</span> are</p>
+<div class="math-block">\[
+	z_k = e^{i\frac{2\pi k}{n}}, \qquad k = 0,1,\dots,n-1,
+	\]</div>
+<p>which are equally spaced points on the unit circle.</p></section>
+<section class="callout example"><header>Example</header><p>Write <span class="math-inline">\(1+i\)</span> in polar form.</p>
+<p>We calculate:</p>
+<div class="math-block">\[
+	r = \sqrt{1^2 + 1^2} = \sqrt{2},
+	\qquad
+	\theta = \arctan\!\left(\frac{1}{1}\right) = \frac{\pi}{4}.
+	\]</div>
+<p>Thus:</p>
+<div class="math-block">\[
+	1+i = \sqrt{2}\, e^{i\pi/4}.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Compute <span class="math-inline">\((1+i)^8\)</span>.</p>
+<p>Using Example 9.1:</p>
+<div class="math-block">\[
+	(1+i)^8 = (\sqrt{2}\, e^{i\pi/4})^8 = (\sqrt{2})^8 e^{i 8\pi/4} = 16 e^{i 2\pi} = 16.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Find the cube roots of <span class="math-inline">\(8e^{i\pi}\)</span>.</p>
+<p>Here <span class="math-inline">\(r=8\)</span>, <span class="math-inline">\(\theta=\pi\)</span>. The cube roots are:</p>
+<div class="math-block">\[
+	z_k = 2 e^{i(\pi + 2\pi k)/3}, \quad k=0,1,2.
+	\]</div>
+<p>So the roots are:</p>
+<div class="math-block">\[
+	2e^{i\pi/3}, \quad 2e^{i\pi}, \quad 2e^{i5\pi/3}.
+	\]</div></section>
+<h2 id="sec-2-elementary-functions-of-complex-numbers">Elementary Functions of Complex Numbers</h2>
+<p>We extend familiar real-valued functions such as the exponential, logarithmic, and trigonometric functions to complex inputs <span class="math-inline">\(z \in \mathbb{C}\)</span>.</p>
+<p>These generalizations are most naturally defined using their power series expansions, since power series:</p>
+<ul><li><p>converge for complex numbers in the same region as for real numbers,</p></li><li><p>preserve key algebraic identities (e.g., <span class="math-inline">\(e^{z+w} = e^z e^w\)</span>),</p></li><li><p>allow term-by-term differentiation and integration inside their disks of convergence.</p></li></ul>
+<h3 id="sec-2-polynomials-and-rational-functions">Polynomials and Rational Functions</h3>
+<p>Polynomials and quotients of polynomials in <span class="math-inline">\(z\)</span> are handled by direct substitution and algebra.</p>
+<section class="callout example"><header>Example</header><p>Take for example <span class="math-inline">\( f(z)=\dfrac{z^2+1}{z-3} \)</span>. Find <span class="math-inline">\( f(i-2) \)</span>.</p>
+<div class="math-block">\[
+	f(i-2)=\frac{(i-2)^2+1}{(i-2)-3}
+	= \frac{-1-4i+4+1}{\,i-5\,}
+	= \frac{4-4i}{\,i-5\,}.
+	\]</div>
+<p>Multiply numerator and denominator by the conjugate <span class="math-inline">\(-i-5\)</span>:</p>
+<div class="math-block">\[
+	\frac{4-4i}{\,i-5\,}
+	\cdot\frac{-i-5}{-i-5}
+	=\frac{(4-4i)(-i-5)}{(i-5)(-i-5)}.
+	\]</div>
+<p>Expand the numerator and simplify:</p>
+<div class="math-block">\[
+	(4-4i)(-i-5)
+	=4(-i-5)-4i(-i-5)
+	=-4i-20+\underbrace{4i^2}_{-4}+20i
+	= (-24)+16i.
+	\]</div>
+<p>Denominator:</p>
+<div class="math-block">\[
+	(i-5)(-i-5) = -i^2-5i+5i+25=1+25=26.
+	\]</div>
+<p>Therefore</p>
+<div class="math-block">\[
+	f(i-2)=\frac{-24+16i}{26}=\boxed{\frac{8i-12}{13}}.
+	\]</div></section>
+<h2 id="sec-2-the-exponential-function">The Exponential Function</h2>
+<section class="callout definition"><header>Definition - Complex Exponential</header><p>The exponential function for <span class="math-inline">\(z \in \mathbb{C}\)</span> is defined by the power series</p>
+<div class="math-block">\[
+	e^{z} = \sum_{n=0}^{\infty} \frac{z^n}{n!}
+	= 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots.
+	\]</div>
+<p>This series converges for all complex numbers <span class="math-inline">\(z\)</span>.</p></section>
+<section class="callout theorem"><header>Theorem - Main Properties of <span class="math-inline">\(e^z\)</span></header><p>For all complex numbers <span class="math-inline">\(z, z_1, z_2 \in \mathbb{C}\)</span>,</p>
+<ol><li><p><span class="math-inline">\(e^{z_1+z_2} = e^{z_1}e^{z_2}\)</span>,</p></li><li><p><span class="math-inline">\(\dfrac{d}{dz}(e^{z}) = e^{z}\)</span>,</p></li><li><p>If <span class="math-inline">\(z = x + iy\)</span>, then <span class="math-inline">\(e^z = e^x(\cos y + i\sin y)\)</span>.</p></li></ol></section>
+<section class="callout proof"><header>Proof</header><p><strong>(a) Show that <span class="math-inline">\(e^{z_1+z_2} = e^{z_1}e^{z_2}\)</span>.</strong></p>
+<p>Expand each exponential:</p>
+<div class="math-block">\[
+	e^{z_1+z_2}
+	= 1 + (z_1+z_2) + \frac{(z_1+z_2)^2}{2!}
+	+ \frac{(z_1+z_2)^3}{3!} + \cdots.
+	\]</div>
+<p>Similarly,</p>
+<div class="math-block">\[
+	e^{z_1} e^{z_2}
+	=
+	\left(1 + z_1 + \frac{z_1^2}{2!} + \frac{z_1^3}{3!} + \cdots\right)
+	\left(1 + z_2 + \frac{z_2^2}{2!} + \frac{z_2^3}{3!} + \cdots\right).
+	\]</div>
+<p>Multiplying out gives:</p>
+<div class="math-block">\[
+	e^{z_1}e^{z_2}
+	= 1 + (z_1+z_2) + \frac{z_1^2 + 2z_1z_2 + z_2^2}{2!}
+	+ \cdots
+	\]</div>
+<p>Each coefficient matches <strong>term-by-term</strong> the expansion of <span class="math-inline">\(e^{z_1+z_2}\)</span>. Thus,</p>
+<div class="math-block">\[
+	\boxed{e^{z_1+z_2} = e^{z_1}e^{z_2}}.
+	\]</div>
+<p> <strong>(b) Show that <span class="math-inline">\(\dfrac{d}{dz}(e^{z}) = e^{z}\)</span>.</strong></p>
+<p>Differentiate term-by-term:</p>
+<div class="math-block">\[
+	\frac{d}{dz} e^{z}
+	= \frac{d}{dz}\left(
+	1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots
+	\right)
+	= 0 + 1 + \frac{2z}{2!} + \frac{3z^2}{3!} + \cdots.
+	\]</div>
+<p>Simplify:</p>
+<div class="math-block">\[
+	\frac{d}{dz} e^{z}
+	= 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots
+	= e^{z}.
+	\]</div>
+<div class="math-block">\[
+	\boxed{\dfrac{d}{dz}(e^{z}) = e^{z}}.
+	\]</div>
+<p> <strong>(c) Simplify <span class="math-inline">\(e^z\)</span> into real and imaginary parts.</strong></p>
+<p>Let <span class="math-inline">\(z = x + iy\)</span>. Then</p>
+<div class="math-block">\[
+	e^{z} = e^{x+iy} = e^{x}e^{iy}.
+	\]</div>
+<p>Using Euler’s formula:</p>
+<div class="math-block">\[
+	e^{iy} = \cos y + i\sin y.
+	\]</div>
+<p>So,</p>
+<div class="math-block">\[
+	\boxed{e^{x+iy} = e^x(\cos y + i\sin y)}.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Compute <span class="math-inline">\( e^{2+i}\,e^{-1+3i} \)</span> without expanding series.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	e^{2+i}\,e^{-1+3i}=e^{(2+i)+(-1+3i)}=e^{1+4i}
+	=e^{1}\big(\cos 4 + i\sin 4\big).
+	\]</div></section>
+<h2 id="sec-2-powers-and-roots-of-complex-numbers">Powers and Roots of Complex Numbers</h2>
+<p>Using the rules for multiplication and division of complex numbers in polar form, let</p>
+<div class="math-block">\[
+z = r e^{i\theta}, \qquad r = |z| \ge 0,\ \theta = \arg(z).
+\]</div>
+<section class="callout theorem"><header>Theorem - Powers of a Complex Number</header><p>For any integer <span class="math-inline">\(n\)</span>,</p>
+<div class="math-block">\begin{equation}
+		z^{\,n} = (r e^{i\theta})^{\,n} = r^{\,n} e^{\,i n \theta}.
+	\end{equation}</div>
+<p>In words: to take the <span class="math-inline">\(n\)</span>-th power of a complex number, raise the modulus to the <span class="math-inline">\(n\)</span>-th power and multiply the angle by <span class="math-inline">\(n\)</span>.</p></section>
+<p>When <span class="math-inline">\(r=1\)</span>, this becomes De Moivre’s formula:</p>
+<div class="math-block">\begin{equation}
+	\boxed{
+		(e^{i\theta})^{\,n}
+		= (\cos\theta + i\sin\theta)^{\,n}
+		= \cos(n\theta) + i\sin(n\theta).
+	}
+	\tag{10.2}
+\end{equation}</div>
+<section class="callout theorem"><header>Theorem - <span class="math-inline">\(n\)</span>-th Roots of a Complex Number</header><p>The <span class="math-inline">\(n\)</span>-th root of <span class="math-inline">\(z\)</span>, written <span class="math-inline">\(z^{1/n}\)</span>, is a complex number whose <span class="math-inline">\(n\)</span>-th power is <span class="math-inline">\(z\)</span>. From <span class="math-inline">\((10.1)\)</span>, the <span class="math-inline">\(n\)</span>-th roots of <span class="math-inline">\(z = r e^{i\theta}\)</span> are</p>
+<div class="math-block">\begin{equation}
+		\boxed{
+			z^{1/n}
+			= \bigl(r e^{i\theta} e^{i(2m\pi)}\bigr)^{1/n}
+			= r^{1/n} e^{\,i(\theta + 2m\pi)/n}
+			= \sqrt[n]{r}\!\left(
+			\cos\frac{\theta + 2m\pi}{n}
+			+ i\sin\frac{\theta + 2m\pi}{n}
+			\right),
+		}
+	\end{equation}</div>
+<p>where <span class="math-inline">\( m = 0,1,\dots,n-1 \)</span></p></section>
+<section class="callout example"><header>Example</header><p>Compute <span class="math-inline">\((1+i)^8\)</span>.</p>
+<p>Write</p>
+<div class="math-block">\[
+	1 + i = \sqrt{2}\,e^{i\pi/4}.
+	\]</div>
+<p>Then</p>
+<div class="math-block">\[
+	(1+i)^8 = (\sqrt{2})^8 e^{i\,8\pi/4}
+	= 16\,e^{i2\pi}
+	= 16.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Compute <span class="math-inline">\((-\sqrt{3}+i)^3\)</span>.</p>
+<p>Here</p>
+<div class="math-block">\[
+	r = \sqrt{(-\sqrt{3})^2 + 1^2} = 2,
+	\qquad
+	\theta = \arg(-\sqrt{3}+i) = \tfrac{5\pi}{6}.
+	\]</div>
+<p>Thus</p>
+<div class="math-block">\[
+	(-\sqrt{3}+i)^3
+	= 2^{3} e^{i\,3(5\pi/6)}
+	= 8\,e^{i\,5\pi/2}
+	= 8\,e^{i(\pi/2)}
+	= 8i.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Fourth roots of <span class="math-inline">\(-16\)</span>.</p>
+<p>We write</p>
+<div class="math-block">\[
+	-16 = 16\,e^{i\pi}.
+	\]</div>
+<p>With <span class="math-inline">\(n=4\)</span>, the roots are</p>
+<div class="math-block">\[
+	w_k
+	= 16^{1/4}\,e^{\,i(\pi+2\pi k)/4}
+	= 2\,e^{\,i(\pi/4+\pi k/2)},
+	\qquad k=0,1,2,3.
+	\]</div>
+<p>Explicitly:</p>
+<div class="math-block">\[
+	2e^{i\pi/4} = \sqrt{2}(1+i),\quad
+	2e^{i3\pi/4} = \sqrt{2}(-1+i),\quad
+	2e^{i5\pi/4} = \sqrt{2}(-1-i),\quad
+	2e^{i7\pi/4} = \sqrt{2}(1-i).
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Cube roots of <span class="math-inline">\(8e^{i\pi}\)</span>.</p>
+<p>Here <span class="math-inline">\(r = 8\)</span>, <span class="math-inline">\(\theta = \pi\)</span>, <span class="math-inline">\(n=3\)</span>. Thus</p>
+<div class="math-block">\[
+	w_k
+	= 2\,e^{\,i(\pi+2\pi k)/3},
+	\qquad k=0,1,2,
+	\]</div>
+<p>i.e.</p>
+<div class="math-block">\[
+	2e^{i\pi/3},\quad
+	2e^{i\pi},\quad
+	2e^{i5\pi/3}.
+	\]</div></section>
+<section class="callout example"><header>Example - 5</header><p>Solve <span class="math-inline">\(w^5=1\)</span> (the 5th roots of unity).</p>
+<p>We write</p>
+<div class="math-block">\[
+	1 = e^{i\cdot 0}.
+	\]</div>
+<p>Then the solutions are</p>
+<div class="math-block">\[
+	w_k
+	= e^{\,i(0+2\pi k)/5}
+	= e^{\,i\,2\pi k/5},
+	\qquad k=0,1,2,3,4.
+	\]</div>
+<p>These five points form a regular pentagon on the unit circle.</p></section>
+<h2 id="sec-2-trigonometric-functions-of-a-complex-variable">Trigonometric Functions of a Complex Variable</h2>
+<p>Recall that Euler’s formula gives</p>
+<div class="math-block">\[
+e^{i\theta} = \cos\theta + i\sin\theta,
+\qquad
+e^{-i\theta} = \cos\theta - i\sin\theta.
+\]</div>
+<p>Adding and subtracting these expressions,</p>
+<div class="math-block">\[
+\cos\theta = \frac{e^{i\theta} + e^{-i\theta}}{2},
+\qquad
+\sin\theta = \frac{e^{i\theta} - e^{-i\theta}}{2i}.
+\]</div>
+<section class="callout theorem"><header>Theorem - Complex Sine and Cosine</header><p>For any complex number <span class="math-inline">\(z = x + iy \in \mathbb{C}\)</span>,</p>
+<div class="math-block">\[
+	\boxed{
+		\sin z = \frac{e^{iz} - e^{-iz}}{2i},
+		\qquad
+		\cos z = \frac{e^{iz} + e^{-iz}}{2}.
+	}
+	\]</div></section>
+<section class="callout remark"><header>Remark - Extension to Complex Domain</header><p>These formulas extend the real trigonometric functions to complex arguments while preserving their power series definitions and their analytic properties.</p></section>
+<section class="callout example"><header>Example</header><ol><li><p><span class="math-inline">\(\displaystyle \cos(2i)=\frac{e^{i(2i)}+e^{-i(2i)}}{2}
+		=\frac{e^{-2}+e^{2}}{2}\equiv \cosh(2)=3.762\ldots\)</span></p></li><li><p><span class="math-inline">\(\displaystyle \sin\!\Big(\frac{\pi}{2}+i\ln(2)\Big)\)</span></p>
+<div class="math-block">\[
+		\begin{aligned}
+			\sin\!\Big(\tfrac{\pi}{2}+i\ln(2)\Big)
+			&amp;=\frac{e^{\,i(\pi/2+i\ln(2))}-e^{-\,i(\pi/2+i\ln(2))}}{2i}\\[2mm]
+			&amp;=\frac{e^{\,i\pi/2-\ln(2)}-e^{-\,i\pi/2+\ln(2)}}{2i}\\[2mm]
+			&amp;=\frac{i\,e^{-\ln|2|}+\,i\,e^{\ln(2)}}{2i}
+			\qquad(\text{since }e^{i\pi/2}=i,\ e^{-i\pi/2}=-i)\\[2mm]
+			&amp;=\frac{i\cdot\frac{1}{2}+2i}{2i}
+			=\Big(\frac{1}{2}+2\Big)\frac{1}{2}
+			=\frac{1}{4}+1=\boxed{\frac{5}{4}}.
+		\end{aligned}
+		\]</div></li></ol></section>
+<section class="callout example"><header>Example - Prove that</header><p><span class="math-inline">\(\sin^{2}(z)+\cos^{2}(z)=1\)</span>.</p>
+<div class="math-block">\[
+	\sin^{2}(z)=\Big(\frac{e^{iz}-e^{-iz}}{2i}\Big)^{2}
+	=\frac{e^{2iz}+e^{-2iz}-2}{-4},
+	\qquad
+	\cos^{2}(z)=\Big(\frac{e^{iz}+e^{-iz}}{2}\Big)^{2}
+	=\frac{e^{2iz}+e^{-2iz}+2}{4}.
+	\]</div>
+<div class="math-block">\[
+	\Rightarrow\quad
+	\sin^{2}(z)+\cos^{2}(z)=1.
+	\]</div></section>
+<section class="callout example"><header>Example - Show that</header><p><span class="math-inline">\(\dfrac{d}{dz}\cos(z)=-\sin(z)\)</span>.</p>
+<div class="math-block">\[
+	\frac{d}{dz}\Big(\frac{e^{iz}+e^{-iz}}{2}\Big)
+	=\frac{i\,e^{iz}-\,i\,e^{-iz}}{2}
+	= -\,\frac{e^{iz}-e^{-iz}}{2i}
+	= -\,\sin(z).
+	\]</div></section>
+<h2 id="sec-2-hyperbolic-functions">Hyperbolic Functions</h2>
+<p>Assume <span class="math-inline">\(z = iy\)</span> is purely imaginary. Recall the complex definitions:</p>
+<div class="math-block">\[
+\sin z = \frac{e^{iz} - e^{-iz}}{2i},
+\qquad
+\cos z = \frac{e^{iz} + e^{-iz}}{2}.
+\]</div>
+<h3 id="sec-2-relation-with-imaginary-arguments">Relation with Imaginary Arguments</h3>
+<p>Compute:</p>
+<div class="math-block">\[
+\sin(iy)
+= \frac{e^{i(iy)} - e^{-i(iy)}}{2i}
+= \frac{e^{-y} - e^{y}}{2i}
+= \frac{1}{i}\cdot \frac{e^{-y} - e^{y}}{2}
+= i\,\frac{e^{y} - e^{-y}}{2}
+\equiv i\sinh(y),
+\]</div>
+<p>and</p>
+<div class="math-block">\[
+\cos(iy)
+= \frac{e^{i(iy)} + e^{-i(iy)}}{2}
+= \frac{e^{-y} + e^{y}}{2}
+\equiv \cosh(y).
+\]</div>
+<section class="callout theorem"><header>Theorem - Relation Between Trigonometric and Hyperbolic Functions</header><p>For any real number <span class="math-inline">\(y\)</span>,</p>
+<div class="math-block">\[
+	\boxed{\sin(iy) = i\sinh(y)},
+	\qquad
+	\boxed{\cos(iy) = \cosh(y)}.
+	\]</div>
+<p>Equivalently,</p>
+<div class="math-block">\[
+	\boxed{\sinh(iy) = i\sin(y)},
+	\qquad
+	\boxed{\cosh(iy) = \cos(y)}.
+	\]</div></section>
+<section class="callout definition"><header>Definition - Hyperbolic Functions</header><p>For any complex number <span class="math-inline">\(z \in \mathbb{C}\)</span>, define</p>
+<div class="math-block">\[
+	\sinh(z) = \frac{e^{z} - e^{-z}}{2},
+	\qquad
+	\cosh(z) = \frac{e^{z} + e^{-z}}{2}.
+	\]</div>
+<p>From these:</p>
+<div class="math-block">\[
+	\tanh(z) = \frac{\sinh(z)}{\cosh(z)},
+	\qquad
+	\operatorname{coth}(z) = \frac{\cosh(z)}{\sinh(z)},
+	\]</div>
+<div class="math-block">\[
+	\operatorname{sech}(z) = \frac{1}{\cosh(z)},
+	\qquad
+	\operatorname{csch}(z) = \frac{1}{\sinh(z)}.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Show that <span class="math-inline">\(\cosh^2(z)-\sinh^2(z)=1\)</span></p>
+<div class="math-block">\[
+	\cosh^2(z)=\Big(\frac{e^{z}+e^{-z}}{2}\Big)^2
+	=\frac{e^{2z}+e^{-2z}+2}{4},
+	\]</div>
+<div class="math-block">\[
+	\sinh^2(z)=\Big(\frac{e^{z}-e^{-z}}{2}\Big)^2
+	=\frac{e^{2z}+e^{-2z}-2}{4}.
+	\]</div>
+<p>Hence</p>
+<div class="math-block">\[
+	\cosh^2(z)-\sinh^2(z)=1.
+	\]</div></section>
+<h2 id="sec-2-logarithms-of-complex-numbers">Logarithms of Complex Numbers</h2>
+<p>If <span class="math-inline">\(z = e^\omega\)</span>, then we define the complex logarithm by <span class="math-inline">\(\ln(z) = \omega\)</span>.</p>
+<h3 id="sec-2-logarithm-of-a-product">Logarithm of a Product</h3>
+<p>Let <span class="math-inline">\(z_1 = e^{\omega_1}\)</span> and <span class="math-inline">\(z_2 = e^{\omega_2}\)</span>. Then</p>
+<div class="math-block">\[
+z_1 z_2 = e^{\omega_1} e^{\omega_2} = e^{\omega_1 + \omega_2}
+\quad \Rightarrow \quad
+\ln(z_1 z_2) = \omega_1 + \omega_2 = \ln(z_1) + \ln(z_2).
+\]</div>
+<section class="callout definition"><header>Definition - Complex Logarithm</header><p>For a complex number <span class="math-inline">\(z = re^{i\theta}\)</span> with <span class="math-inline">\(r = |z| &gt; 0\)</span>,</p>
+<div class="math-block">\[
+	\ln(z)
+	= \ln\big(re^{i\theta}\big)
+	= \ln(r) + \ln\big(e^{i\theta}\big)
+	= \ln r + i\theta.
+	\]</div></section>
+<p>Because the angle <span class="math-inline">\(\theta\)</span> is not unique (adding <span class="math-inline">\(2\pi\)</span> leaves the same point), the logarithm is a multivalued function:</p>
+<div class="math-block">\[
+\ln(z) = \ln r + i(\theta + 2\pi k),
+\qquad k \in \mathbb{Z}.
+\]</div>
+<section class="callout remark"><header>Remark - Principal Value</header><p>We define the principal branch of the logarithm by restricting the argument:</p>
+<div class="math-block">\[
+	\boxed{
+		\mathrm{Ln}(z) = \ln r + i\Theta,
+		\quad \text{where } -\pi &lt; \Theta \le \pi.
+	}
+	\]</div>
+<p>Here <span class="math-inline">\(\Theta = \arg(z)\)</span> is the principal argument.</p></section>
+<section class="callout example"><header>Example</header><ol><li><div class="math-block">\[
+		\ln(-1)=\ln\!\big(e^{i(2n+1)\pi}\big)=i(2n+1)\pi,\qquad n=\pm1,\pm2,\ldots
+		\]</div>
+<p>Hence</p>
+<div class="math-block">\[
+		\ln(-1)=\pm i\pi,\ \pm i3\pi,\ \pm i5\pi,\ldots
+		\quad\text{and}\quad
+		\mathrm{Ln}(-1)=i\pi.
+		\]</div></li><li><div class="math-block">\[
+		\ln(1+i)=\ln(\sqrt{2})+\bigg(\frac{\pi}{4}+2n\pi\bigg)i,\qquad n\in\mathbb{Z}.
+		\]</div></li></ol></section>
+<h2 id="sec-2-complex-roots-and-powers">Complex Roots and Powers</h2>
+<p>Consider <span class="math-inline">\(\ln(a^{b})=b\ln(a)\Rightarrow a^{b}=e^{\,b\ln(a)}\)</span>.</p>
+<section class="callout example"><header>Example</header><ol><li><p>Find all the values of <span class="math-inline">\(i^{-2i}\)</span>:</p>
+<div class="math-block">\[
+		i^{-2i}=e^{-2i\ln(i)}
+		=e^{-2i\,[\,\ln(1)+(\tfrac{\pi}{2}+2\pi n)i\,]}
+		=e^{\,2(\tfrac{\pi}{2}+2\pi n)}
+		=e^{\,\pi+4\pi n},\qquad n\in\mathbb{Z}.
+		\]</div></li><li><p><span class="math-inline">\(i^{1/2}\)</span>:</p>
+<div class="math-block">\[
+		i^{1/2}=e^{(1/2)\ln(i)}
+		=e^{\frac{1}{2}\,[\,\ln(1)+(\tfrac{\pi}{2}+2\pi n)i\,]}
+		=e^{\,i(\tfrac{\pi}{4}+\pi n)}
+		=e^{\,i\pi/4}\,e^{\,i\pi n}
+		=\pm\,\frac{1+i}{\sqrt{2}}.
+		\]</div></li></ol></section>
+<h2 id="sec-2-inverse-trigonometric-functions">Inverse trigonometric functions</h2>
+<p>Let</p>
+<div class="math-block">\[
+w=\cos(z)=\frac{e^{iz}+e^{-iz}}{2}
+\quad\Rightarrow\quad
+z=\cos^{-1}(w).
+\]</div>
+<section class="callout example"><header>Example</header><p><span class="math-inline">\(z=\cos^{-1}(2)\)</span>.</p>
+<div class="math-block">\[
+	\frac{e^{iz}+e^{-iz}}{2}=2 \;\Rightarrow\; U+U^{-1}=4
+	\qquad (U=e^{iz}).
+	\]</div>
+<div class="math-block">\[
+	U+\frac{1}{U}=4 \;\Rightarrow\; U^{2}+1=4U.
+	\]</div>
+<div class="math-block">\[
+	U^{2}-4U+1=0 \;\Rightarrow\;
+	U=\frac{4\pm\sqrt{16-4(1)(1)}}{2}
+	=\frac{4\pm 2\sqrt{3}}{2}
+	=2\pm\sqrt{3}.
+	\]</div>
+<div class="math-block">\[
+	e^{iz}=1\pm\sqrt{3} \;\Rightarrow\; iz=\ln(2\pm\sqrt{3}).
+	\]</div>
+<div class="math-block">\[
+	\therefore\quad iz=\big(\ln(2\pm\sqrt{3})+2n\pi i\big).
+	\]</div>
+<div class="math-block">\[
+	z=\big[\,2n\pi - i\ln(2\pm\sqrt{3})\,\big].
+	\]</div>
+<div class="math-block">\[
+	\ln(2+\sqrt{3})=-\ln(2-\sqrt{3}).
+	\]</div>
+<div class="math-block">\[
+	\boxed{\,z=2n\pi \pm i\,\ln(2+\sqrt{3})\,}.
+	\]</div></section>
+<p> <strong>(b)</strong> <em>from the table of Integration we have</em></p>
+<div class="math-block">\[
+\int \frac{dx}{\sqrt{x^{2}+a^{2}}}
+=\sinh^{-1}\!\Big(\frac{x}{a}\Big)
+=\ln\!\Big(x+\sqrt{x^{2}+a^{2}}\Big).
+\]</div>
+<section class="callout example"><header>Example</header><p>Let <span class="math-inline">\(z=\sinh^{-1}\!\big(\frac{x}{a}\big)\)</span>. Then</p>
+<div class="math-block">\[
+	\frac{x}{a}=\sinh(z)=\frac{e^{z}-e^{-z}}{2}.
+	\]</div>
+<div class="math-block">\[
+	2\Big(\frac{x}{a}\Big)=U-\frac{1}{U}
+	\qquad (U=e^{z}).
+	\]</div>
+<div class="math-block">\[
+	U^{2}-2\Big(\frac{x}{a}\Big)U-1=0.
+	\]</div>
+<div class="math-block">\[
+	aU^{2}-2xU-a=0.
+	\]</div>
+<div class="math-block">\[
+	\Rightarrow\quad
+	U=\frac{2x\pm \sqrt{4x^{2}-4(a)(-a)}}{2a}
+	=\frac{2x\pm \sqrt{4x^{2}+4a^{2}}}{2a}
+	=\frac{x\pm\sqrt{x^{2}+a^{2}}}{a}.
+	\]</div>
+<div class="math-block">\[
+	e^{z}=\frac{x\pm\sqrt{x^{2}+a^{2}}}{a}
+	\;\Rightarrow\;
+	z=\ln\!\Big(\frac{x\pm\sqrt{x^{2}+a^{2}}}{a}\Big)
+	\quad\text{(for real integrals)}.
+	\]</div>
+<div class="math-block">\[
+	z=\ln\!\big(x+\sqrt{x^{2}+a^{2}}\big)-\ln(a)
+	\quad\text{(constant of integration).}
+	\]</div></section>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <a href="../chapter-01/index.html">Previous: Infinite Series and Power Series</a>
+      <a href="../../toc.html">Contents</a>
+      <a href="../chapter-03/index.html">Next: Linear Algebra</a>
+    </nav>
+  </article>
+</main>
+</body>
+</html>

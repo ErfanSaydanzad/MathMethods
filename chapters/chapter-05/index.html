@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 5: Multiple Integrals; Applications of Integration | Mathematical Methods in the Physical Sciences</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEnvironments: true,
+        tags: 'ams',
+        macros: {
+          pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+          dv: ['{\\frac{d #1}{d #2}}', 2],
+          abs: ['{\\left|#1\\right|}', 1],
+          norm: ['{\\left\\|#1\\right\\|}', 1],
+          curl: '{\\operatorname{curl}}',
+          div: '{\\operatorname{div}}',
+          grad: '{\\operatorname{grad}}',
+          sech: '{\\operatorname{sech}}',
+          csch: '{\\operatorname{csch}}',
+          coth: '{\\operatorname{coth}}',
+          circnum: ['{\\boxed{#1}}', 1],
+          vb: ['{\\mathbf{#1}}', 1],
+          eval: ['{\\left.#1\\right|}', 1],
+          dd: '{\\,d}'
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark">M</span>
+    <span>Mathematical Methods in the Physical Sciences</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="../../index.html">Home</a>
+    <a href="../../toc.html">Contents</a>
+  </nav>
+</header>
+<main class="layout">
+  <aside class="sidebar">
+  <div class="sidebar-inner">
+    <p class="sidebar-kicker">Chapter 5</p>
+    <h2>Multiple Integrals; Applications of Integration</h2>
+    <nav class="chapter-toc" aria-label="Chapter contents">
+      <a class="toc-level-2" href="#sec-5-single-integral">Single integral</a>
+<a class="toc-level-2" href="#sec-5-double-and-triple-integrals">Double and Triple Integrals</a>
+<a class="toc-level-2" href="#sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate y-First vs.~x-First</a>
+<a class="toc-level-3" href="#sec-5-type-i-regions-vertical-strips">Type I Regions (Vertical Strips)</a>
+<a class="toc-level-3" href="#sec-5-type-ii-regions-horizontal-strips">Type II Regions (Horizontal Strips)</a>
+<a class="toc-level-3" href="#sec-5-either-description-works">Either Description Works</a>
+<a class="toc-level-2" href="#sec-5-applications-of-integration">Applications of Integration</a>
+<a class="toc-level-3" href="#sec-5-center-of-mass">Center of mass</a>
+<a class="toc-level-2" href="#sec-5-change-of-variables-in-integrals">Change of Variables in Integrals</a>
+<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian  Cylindrical Coordinates</a>
+<a class="toc-level-3" href="#sec-5-1-definition-of-cylindrical-coordinates">1. Definition of Cylindrical Coordinates</a>
+<a class="toc-level-3" href="#sec-5-2-the-local-unit-vectors">2. The Local Unit Vectors</a>
+<a class="toc-level-3" href="#sec-5-3-differential-displacement-d-r">3. Differential Displacement dr</a>
+<a class="toc-level-3" href="#sec-5-4-small-surface-element-d-s">4. Small Surface Element ds</a>
+<a class="toc-level-3" href="#sec-5-5-small-volume-element-dv">5. Small Volume Element dV</a>
+<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian  Spherical Coordinates</a>
+<a class="toc-level-3" href="#sec-5-1-definition-of-spherical-coordinates">1. Definition of Spherical Coordinates</a>
+<a class="toc-level-3" href="#sec-5-2-the-local-unit-vectors-18">2. The Local Unit Vectors</a>
+<a class="toc-level-3" href="#sec-5-3-differential-displacement-d-r-19">3. Differential Displacement dr</a>
+<a class="toc-level-3" href="#sec-5-4-small-surface-element-d-s-20">4. Small Surface Element ds</a>
+<a class="toc-level-3" href="#sec-5-5-small-volume-element-dv-21">5. Small Volume Element dV</a>
+<a class="toc-level-2" href="#sec-5-connection-with-the-jacobian-matrix">Connection with the Jacobian Matrix</a>
+<a class="toc-level-3" href="#sec-5-verifying-the-jacobian-for-cylindrical-coordinates">Verifying the Jacobian for Cylindrical Coordinates</a>
+<a class="toc-level-3" href="#sec-5-verifying-the-jacobian-for-spherical-coordinates">Verifying the Jacobian for Spherical Coordinates</a>
+    </nav>
+  </div>
+</aside>
+
+  <article class="content">
+    <header class="chapter-hero">
+      <p>Chapter 5</p>
+      <h1>Multiple Integrals; Applications of Integration</h1>
+    </header>
+    <h2 id="sec-5-single-integral">Single integral</h2>
+<figure id="chapter-05-fig-1" class="figure"><img src="assets/img/Fig5_1.jpeg" alt="Illustration of the definite integral as the signed area under a curve." loading="lazy" style="--figure-width: 50%;"><figcaption>Illustration of the definite integral as the signed area under a curve.</figcaption></figure>
+<section class="callout definition"><header>Definition - Definite Integral as Signed Area</header><p>If <span class="math-inline">\(f(x)\)</span> is continuous on the closed interval <span class="math-inline">\([a,b]\)</span>, the definite integral</p>
+<div class="math-block">\[
+	\int_a^b f(x)\,dx
+	\]</div>
+<p>represents the <strong>accumulated signed area</strong> between the curve <span class="math-inline">\(y=f(x)\)</span> and the <span class="math-inline">\(x\)</span>-axis, from <span class="math-inline">\(x=a\)</span> to <span class="math-inline">\(x=b\)</span>.</p>
+<ul><li><p>Area <strong>above</strong> the <span class="math-inline">\(x\)</span>-axis contributes <strong>positive</strong> value.</p></li><li><p>Area <strong>below</strong> the <span class="math-inline">\(x\)</span>-axis contributes <strong>negative</strong> value.</p></li></ul></section>
+<h2 id="sec-5-double-and-triple-integrals">Double and Triple Integrals</h2>
+<p>In many physical problems, quantities depend on two or three spatial variables, e.g. temperature <span class="math-inline">\(T(x,y,z)\)</span>, mass density <span class="math-inline">\(\rho(x,y,z)\)</span>, or electric potential <span class="math-inline">\(\Phi(x,y,z)\)</span>. To <em>accumulate</em> such quantities over a region in the plane or in space, we use <strong>multiple integrals</strong>.</p>
+<section class="callout definition"><header>Definition - Double Integral</header><p>Let <span class="math-inline">\(f(x,y)\)</span> be a continuous function on a region <span class="math-inline">\(A \subset \mathbb{R}^2\)</span>. The double integral</p>
+<div class="math-block">\[
+	\iint_A f(x,y)\,dA
+	\]</div>
+<p>represents the accumulated value of <span class="math-inline">\(f\)</span> over the region <span class="math-inline">\(A\)</span>.</p>
+<ul><li><p>If <span class="math-inline">\(f(x,y) \ge 0\)</span>, it represents the <strong>volume</strong> under the surface <span class="math-inline">\(z=f(x,y)\)</span> above the region <span class="math-inline">\(A\)</span>.</p></li><li><p>If <span class="math-inline">\(f(x,y)\)</span> takes negative values, the integral <strong>subtracts</strong> the area under the graph where <span class="math-inline">\(f(x,y)&lt;0\)</span>. This keeps the sign information of the function.</p></li></ul>
+<p>In particular, if <span class="math-inline">\(f(x,y) \equiv 1\)</span>,</p>
+<div class="math-block">\[
+	\iint_A 1\,dA = \text{Area}(A).
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Find the volume of the solid below the plane <span class="math-inline">\(z = 1 + y\)</span>, bounded by the coordinate planes and the vertical plane <span class="math-inline">\(2x + y = 2\)</span>.</p></section>
+<figure id="chapter-05-fig-2" class="figure"><img src="assets/img/Fig5_2.jpeg" alt="Geometry of the solid bounded by the coordinate planes, the vertical plane \(2x + y = 2\), and the plane \(z = 1 + y\)." loading="lazy" style="--figure-width: 55%;"><figcaption>Geometry of the solid bounded by the coordinate planes, the vertical plane <span class="math-inline">\(2x + y = 2\)</span>, and the plane <span class="math-inline">\(z = 1 + y\)</span>.</figcaption></figure>
+<section class="callout solution"><header>Solution</header><p><em>Setup.</em>  The projection <span class="math-inline">\(A\)</span> of the solid onto the <span class="math-inline">\(xy\)</span>-plane is the triangle</p>
+<div class="math-block">\[
+	A=\{(x,y): x\ge0,\ y\ge0,\ 2x+y\le 2\}.
+	\]</div>
+<p>Since <span class="math-inline">\(z=1+y\)</span>, the volume is</p>
+<div class="math-block">\[
+	V=\iint_A z\,dA=\iint_A (1+y)\,dx\,dy.
+	\]</div>
+<p><em>Method 1: integrate w.r.t. <span class="math-inline">\(y\)</span> first.</em> For a fixed <span class="math-inline">\(x\)</span>, <span class="math-inline">\(y\)</span> runs from <span class="math-inline">\(0\)</span> to <span class="math-inline">\(2-2x\)</span> and <span class="math-inline">\(0\le x\le 1\)</span>. Thus</p>
+<div class="math-block">\[
+	\begin{aligned}
+		V
+		&amp;=\int_{x=0}^{1}\!\left(\int_{y=0}^{2-2x} (1+y)\,dy\right)dx
+		=\int_{0}^{1}\!\left[\,y+\frac{y^{2}}{2}\,\right]_{0}^{\,2-2x} dx \\
+		&amp;=\int_{0}^{1}\!\Big((2-2x)+\tfrac12(2-2x)^2\Big)\,dx
+		=\int_{0}^{1}\!\big(4-6x+2x^2\big)\,dx
+		=\frac{5}{3}.
+	\end{aligned}
+	\]</div>
+<figure class="figure figure-single" style="--figure-width: 30%;"><img src="assets/img/Fig5_3_a.jpeg" alt="Fig5 3 a" loading="lazy"></figure>
+<p><em>Method 2: integrate w.r.t. <span class="math-inline">\(x\)</span> first.</em> For a fixed <span class="math-inline">\(y\)</span>, <span class="math-inline">\(x\)</span> runs from <span class="math-inline">\(0\)</span> to <span class="math-inline">\(1-\tfrac{y}{2}\)</span> and <span class="math-inline">\(0\le y\le 2\)</span>. Hence</p>
+<div class="math-block">\[
+	\begin{aligned}
+		V
+		&amp;=\int_{y=0}^{2}\!\left(\int_{x=0}^{\,1-y/2} (1+y)\,dx\right)dy
+		=\int_{0}^{2} (1+y)\,\Big[x\Big]_{0}^{\,1-y/2}\,dy \\
+		&amp;=\int_{0}^{2}\!(1+y)\!\left(1-\frac{y}{2}\right)dy
+		=\int_{0}^{2}\!\left(1+\frac{y}{2}-\frac{y^{2}}{2}\right)dy
+		=\frac{5}{3}.
+	\end{aligned}
+	\]</div>
+<figure class="figure figure-single" style="--figure-width: 30%;"><img src="assets/img/Fig5_3_b.jpeg" alt="Fig5 3 b" loading="lazy"></figure></section>
+<h2 id="sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate <span class="math-inline">\(y\)</span>-First vs. <span class="math-inline">\(x\)</span>-First</h2>
+<p>In evaluating a double integral, the choice of integration order depends on which limits are simpler or which inner integral is easier to evaluate. We typically choose the order that makes the region description and computation more convenient.</p>
+<h3 id="sec-5-type-i-regions-vertical-strips">Type I Regions (Vertical Strips)</h3>
+<p>When the region <span class="math-inline">\(A\)</span> is bounded above and below by curves</p>
+<div class="math-block">\[
+y = y_2(x), \qquad y = y_1(x),
+\]</div>
+<p>and <span class="math-inline">\(x\)</span> varies between fixed limits <span class="math-inline">\(a\)</span> and <span class="math-inline">\(b\)</span>, we integrate with respect to <span class="math-inline">\(y\)</span> first:</p>
+<div class="math-block">\begin{equation}
+	\iint_A f(x,y)\,dx\,dy
+	= \int_{x=a}^{b} \!\! \left( \int_{y=y_1(x)}^{y_2(x)} f(x,y)\,dy \right) dx.
+	\label{eq:typeI}
+\end{equation}</div>
+<figure id="chapter-05-fig-3" class="figure"><img src="assets/img/Fig5_4.jpeg" alt="Type I region \(A\): vertical slices, integrating \(y\) first." loading="lazy" style="--figure-width: 75%;"><figcaption>Type I region <span class="math-inline">\(A\)</span>: vertical slices, integrating <span class="math-inline">\(y\)</span> first.</figcaption></figure>
+<h3 id="sec-5-type-ii-regions-horizontal-strips">Type II Regions (Horizontal Strips)</h3>
+<p>When the region <span class="math-inline">\(A\)</span> is bounded on the left and right by curves</p>
+<div class="math-block">\[
+x = x_1(y), \qquad x = x_2(y),
+\]</div>
+<p>and <span class="math-inline">\(y\)</span> varies between fixed limits <span class="math-inline">\(c\)</span> and <span class="math-inline">\(d\)</span>, we integrate with respect to <span class="math-inline">\(x\)</span> first:</p>
+<div class="math-block">\begin{equation}
+	\iint_A f(x,y)\,dx\,dy
+	= \int_{y=c}^{d} \!\! \left( \int_{x=x_1(y)}^{x_2(y)} f(x,y)\,dx \right) dy.
+	\label{eq:typeII}
+\end{equation}</div>
+<figure id="chapter-05-fig-4" class="figure"><img src="assets/img/Fig5_5.jpeg" alt="Type II region \(A\): horizontal slices, integrating \(x\) first." loading="lazy" style="--figure-width: 75%;"><figcaption>Type II region <span class="math-inline">\(A\)</span>: horizontal slices, integrating <span class="math-inline">\(x\)</span> first.</figcaption></figure>
+<h3 id="sec-5-either-description-works">Either Description Works</h3>
+<p>If the region <span class="math-inline">\(A\)</span> satisfies both descriptions, either order of integration yields the same result:</p>
+<div class="math-block">\begin{equation}
+	\iint_A f(x,y)\,dx\,dy
+	= \int_{x=a}^{b} \!\! \left( \int_{y=y_1(x)}^{y_2(x)} f(x,y)\,dy \right) dx
+	= \int_{y=c}^{d} \!\! \left( \int_{x=x_1(y)}^{x_2(y)} f(x,y)\,dx \right) dy.
+	\label{eq:eitherorder}
+\end{equation}</div>
+<figure id="chapter-05-fig-5" class="figure"><img src="assets/img/Fig5_6.jpeg" alt="Regions where either order is valid." loading="lazy" style="--figure-width: 75%;"><figcaption>Regions where either order is valid.</figcaption></figure>
+<section class="callout remark"><header>Remark - Product Integrands over Rectangular Regions</header><p>If the region <span class="math-inline">\(A = [a,b] \times [c,d]\)</span> is a rectangle and the integrand separates as <span class="math-inline">\(f(x,y) = g(x)\,h(y)\)</span>, then</p>
+<div class="math-block">\[
+	\iint_A f(x,y)\,dx\,dy
+	= \left( \int_a^b g(x)\,dx \right)
+	\left( \int_c^d h(y)\,dy \right).
+	\]</div>
+<p>This property can greatly simplify double-integral evaluations.</p></section>
+<section class="callout definition"><header>Definition - Triple integral</header><p>For a continuous <span class="math-inline">\(f\)</span> on a solid <span class="math-inline">\(R\subset\mathbb{R}^3\)</span>,</p>
+<div class="math-block">\[
+	\iiint_R f(x,y,z)\,dV
+	\]</div>
+<p>is the accumulated <em>signed total</em> of <span class="math-inline">\(f\)</span> throughout the solid <span class="math-inline">\(R\)</span>. (If <span class="math-inline">\(f\equiv 1\)</span>, it equals the <em>volume</em> of <span class="math-inline">\(R\)</span>; if <span class="math-inline">\(f=\rho\)</span> is mass density, it equals the <em>mass</em>.)</p></section>
+<section class="callout example"><header>Example</header><p>Find the volume of the solid bounded by the coordinate planes, the vertical plane <span class="math-inline">\(2x+y=2\)</span>, and the plane <span class="math-inline">\(z=1+y\)</span> via a triple integral</p></section>
+<section class="callout solution"><header>Solution</header><p> <strong>Region and bounds.</strong> Projecting onto the <span class="math-inline">\(xy\)</span>-plane gives the triangle</p>
+<div class="math-block">\[
+	A=\{(x,y):\ 0\le x\le 1,\ \ 0\le y\le 2-2x\}.
+	\]</div>
+<p>For each <span class="math-inline">\((x,y)\in A\)</span>, <span class="math-inline">\(z\)</span> ranges from the bottom <span class="math-inline">\(z=0\)</span> to the top <span class="math-inline">\(z=1+y\)</span>.</p>
+<p> <strong>Triple–integral setup.</strong></p>
+<div class="math-block">\[ dV = dx dy dz\]</div>
+<p>as a result:</p>
+<div class="math-block">\[
+	V=\iiint_{V} \,dV
+	=\int_{x=0}^{1}\int_{y=0}^{\,2-2x}\int_{z=0}^{\,1+y} \,dz\,dy\,dx.
+	\]</div>
+<p><strong>Evaluate (inner integral first).</strong></p>
+<div class="math-block">\[
+	\int_{z=0}^{\,1+y} 1\,dz = 1+y,
+	\qquad\Rightarrow\qquad
+	V=\int_{0}^{1}\int_{0}^{\,2-2x} (1+y)\,dy\,dx.
+	\]</div>
+<p>The remaining double integral is elementary:</p>
+<div class="math-block">\[
+	\int_{0}^{1}\!\left[\,y+\frac{y^{2}}{2}\,\right]_{0}^{\,2-2x}\!dx
+	=\int_{0}^{1} \big(4-6x+2x^{2}\big)\,dx
+	=\boxed{\ \dfrac{5}{3}\ }.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>On the same solid <span class="math-inline">\(V\)</span> as above, suppose the density (mass per unit volume) is <span class="math-inline">\(\rho(x,y,z)=x+z\)</span>. Find the total mass <span class="math-inline">\(M\)</span>.</p></section>
+<section class="callout solution"><header>Solution</header><p><strong>Triple–integral setup.</strong></p>
+<div class="math-block">\[ dM = \rho(x,y,z) dx dy dz\]</div>
+<p>as a result:</p>
+<div class="math-block">\[
+	M=\iiint_{V} \rho(x,y,z)\,dV
+	=\int_{x=0}^{1}\int_{y=0}^{\,2-2x}\int_{z=0}^{\,1+y} (x+z)\,dz\,dy\,dx.
+	\]</div>
+<p><strong>Step 1. Integrate in <span class="math-inline">\(z\)</span>.</strong></p>
+<div class="math-block">\[
+	\int_{0}^{\,1+y} (x+z)\,dz
+	=\Big[xz+\tfrac{z^{2}}{2}\Big]_{0}^{\,1+y}
+	=x(1+y)+\frac{(1+y)^{2}}{2}.
+	\]</div>
+<p><strong>Step 2. Integrate in <span class="math-inline">\(y\)</span>, then <span class="math-inline">\(x\)</span>.</strong></p>
+<div class="math-block">\[
+	M=\int_{0}^{1}\int_{0}^{\,2-2x}\!\!\left(x(1+y)+\frac{(1+y)^{2}}{2}\right)dy\,dx
+	=\int_{0}^{1}\!\left(\frac{2x^{3}}{3}-5x+\frac{13}{3}\right)\!dx
+	=\boxed{\ 2\ }.
+	\]</div></section>
+<h2 id="sec-5-applications-of-integration">Applications of Integration</h2>
+<h3 id="sec-5-center-of-mass">Center of mass</h3>
+<section class="callout definition"><header>Definition - Center of mass</header><p>For any mass distribution with mass element <span class="math-inline">\(dm\)</span> and position vector <span class="math-inline">\(\vec r = x\,\hat{\mathbf i}+y\,\hat{\mathbf j}+z\,\hat{\mathbf k}\)</span>, the center of mass is</p>
+<div class="math-block">\[
+	\boxed{\quad \vec r_{\mathrm{cm}}=\frac{1}{M}\int \vec r\,dm,
+		\qquad M=\int dm \quad }.
+	\]</div>
+<p> <strong>Specializations (same formula, different <span class="math-inline">\(dm\)</span>):</strong></p>
+<div class="math-block">\[
+	\begin{aligned}
+		&amp;\text{Surface (lamina):}\quad dm=\sigma(x,y)\,dA
+		\ \Rightarrow\
+		M=\iint \sigma\,dA,\quad
+		\vec r_{\mathrm{cm}}=\frac{1}{M}\iint \vec r\,\sigma\,dA.\\[4pt]
+		&amp;\text{Volume (solid):}\quad dm=\rho(x,y,z)\,dV
+		\ \Rightarrow\
+		M=\iiint \rho\,dV,\quad
+		\vec r_{\mathrm{cm}}=\frac{1}{M}\iiint \vec r\,\rho\,dV.
+	\end{aligned}
+	\]</div>
+<p> <strong>Components:</strong>  <span class="math-inline">\(x_{\mathrm{cm}}=\dfrac{1}{M}\int x\,dm,\
+	y_{\mathrm{cm}}=\dfrac{1}{M}\int y\,dm,\
+	z_{\mathrm{cm}}=\dfrac{1}{M}\int z\,dm.\)</span></p></section>
+<figure id="chapter-05-fig-6" class="figure"><img src="assets/img/tikz-01.svg" alt="Right triangular lamina with vertices \((0,0)\), \((L,0)\), \((0,H)\)." loading="lazy"><figcaption>Right triangular lamina with vertices <span class="math-inline">\((0,0)\)</span>, <span class="math-inline">\((L,0)\)</span>, <span class="math-inline">\((0,H)\)</span>.</figcaption></figure>
+<section class="callout example"><header>Example</header><p>Centroid of a Right Triangle (Uniform Density <span class="math-inline">\(\sigma_0\)</span>)</p></section>
+<section class="callout solution"><header>Solution</header><p>A convenient Type I description is</p>
+<div class="math-block">\[
+	R=\Big\{(x,y):\ 0\le x\le L,\quad 0\le y\le H\!\left(1-\frac{x}{L}\right)\Big\}.
+	\]</div>
+<p><strong>Step 2. Mass.</strong></p>
+<div class="math-block">\[
+	\begin{aligned}
+		M
+		&amp;=\iint_R \sigma_0\,dA
+		=\sigma_0\int_{0}^{L}\!\!\int_{0}^{\,H(1-x/L)} dy\,dx
+		=\sigma_0\int_{0}^{L}\!\left(H-\frac{H}{L}x\right)dx
+		=\sigma_0\,\frac{HL}{2}.
+	\end{aligned}
+	\]</div>
+<p><strong>Step 3. First moments.</strong></p>
+<div class="math-block">\[
+	\begin{aligned}
+		\iint_R x\,\sigma_0\,dA
+		&amp;=\sigma_0\int_{0}^{L}\!\!\int_{0}^{\,H(1-x/L)} x\,dy\,dx
+		=\sigma_0\int_{0}^{L} x\!\left(H-\frac{H}{L}x\right)dx
+		=\sigma_0\,\frac{HL^2}{6},\\[4pt]
+		\iint_R y\,\sigma_0\,dA
+		&amp;=\sigma_0\int_{0}^{L}\!\!\int_{0}^{\,H(1-x/L)} y\,dy\,dx
+		=\sigma_0\int_{0}^{L}\frac{1}{2}\!\left(H-\frac{H}{L}x\right)^{\!2}\,dx
+		=\sigma_0\,\frac{H^2L}{6}.
+	\end{aligned}
+	\]</div>
+<p><strong>Step 4. Coordinates of the center of mass.</strong></p>
+<div class="math-block">\[
+	x_{cm}=\frac{1}{M}\iint_R x\,\sigma_0\,dA
+	=\frac{\sigma_0(HL^2/6)}{\sigma_0(HL/2)}=\frac{L}{3},\qquad
+	y_{cm}=\frac{1}{M}\iint_R y\,\sigma_0\,dA
+	=\frac{\sigma_0(H^2L/6)}{\sigma_0(HL/2)}=\frac{H}{3}.
+	\]</div>
+<p><strong>Result.</strong> The centroid is</p>
+<div class="math-block">\[
+	\boxed{(x_{cm},y_{cm})=\left(\dfrac{L}{3},\,\dfrac{H}{3}\right)}.
+	\]</div></section>
+<h2 id="sec-5-change-of-variables-in-integrals">Change of Variables in Integrals</h2>
+<h2 id="sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian <span class="math-inline">\(\rightarrow\)</span> Cylindrical Coordinates</h2>
+<h3 id="sec-5-1-definition-of-cylindrical-coordinates">1. Definition of Cylindrical Coordinates</h3>
+<p>A point <span class="math-inline">\(P(x, y, z)\)</span> in space can be described using <em>cylindrical coordinates</em> <span class="math-inline">\((\rho, \phi, z)\)</span> defined as:</p>
+<div class="math-block">\[
+\begin{cases}
+	x = \rho \cos\phi, \\[4pt]
+	y = \rho \sin\phi, \\[4pt]
+	z = z.
+\end{cases}
+\]</div>
+<p>Here:</p>
+<ul><li><p><span class="math-inline">\(\rho\)</span> = radial distance from the <span class="math-inline">\(z\)</span>-axis,</p></li><li><p><span class="math-inline">\(\phi\)</span> = azimuthal angle (measured counterclockwise from the <span class="math-inline">\(x\)</span>-axis),</p></li><li><p><span class="math-inline">\(z\)</span> = same as the Cartesian <span class="math-inline">\(z\)</span>-coordinate.</p></li></ul>
+<p> The position vector of the point is</p>
+<div class="math-block">\[
+\vec{r} = x\,\hat{i} + y\,\hat{j} + z\,\hat{k}.
+\]</div>
+<p>Substituting the cylindrical coordinate relations:</p>
+<div class="math-block">\[
+\vec{r} = \rho(\cos\phi\,\hat{i} + \sin\phi\,\hat{j}) + z\,\hat{k}.
+\]</div>
+<p>Thus, we can write</p>
+<div class="math-block">\[
+\boxed{\vec{r} = \rho\,\hat{\rho} + z\,\hat{k}},
+\]</div>
+<p>where <span class="math-inline">\(\hat{\rho}\)</span> is the <strong>radial unit vector</strong> defined by</p>
+<div class="math-block">\[
+\boxed{
+	\hat{\rho} = \cos\phi\,\hat{i} + \sin\phi\,\hat{j}.
+}
+\]</div>
+<h3 id="sec-5-2-the-local-unit-vectors">2. The Local Unit Vectors</h3>
+<p>At each point, three mutually perpendicular unit vectors are defined:</p>
+<div class="math-block">\[
+\begin{aligned}
+	\hat{\rho} &amp;= \cos\phi\,\hat{i} + \sin\phi\,\hat{j}, \\[4pt]
+	\hat{\phi} &amp;= -\sin\phi\,\hat{i} + \cos\phi\,\hat{j}, \\[4pt]
+	\hat{k} &amp;= \hat{k}.
+\end{aligned}
+\]</div>
+<ul><li><p><span class="math-inline">\(\hat{\rho}\)</span>: points radially outward from the <span class="math-inline">\(z\)</span>-axis,</p></li><li><p><span class="math-inline">\(\hat{\phi}\)</span>: tangent to the circle of constant <span class="math-inline">\(\rho\)</span>, points in direction of increasing <span class="math-inline">\(\phi\)</span>,</p></li><li><p><span class="math-inline">\(\hat{k}\)</span>: points along the Cartesian <span class="math-inline">\(z\)</span>-axis.</p></li></ul>
+<p>These three vectors form a <strong>right-handed orthonormal basis</strong>:</p>
+<div class="math-block">\[
+\hat{\rho}\times\hat{\phi} = \hat{k},
+\qquad
+\hat{\phi}\times\hat{k} = \hat{\rho},
+\qquad
+\hat{k}\times\hat{\rho} = \hat{\phi}.
+\]</div>
+<h3 id="sec-5-3-differential-displacement-d-r">3. Differential Displacement <span class="math-inline">\(d\vec{r}\)</span></h3>
+<p>Starting from</p>
+<div class="math-block">\[
+\vec{r} = \rho\,\hat{\rho} + z\,\hat{k},
+\]</div>
+<p>we differentiate:</p>
+<div class="math-block">\[
+d\vec{r} = d\rho\,\hat{\rho} + \rho\,d\hat{\rho} + dz\,\hat{k}.
+\]</div>
+<p>Since <span class="math-inline">\(\hat{\rho}\)</span> depends only on <span class="math-inline">\(\phi\)</span>,</p>
+<div class="math-block">\[
+d\hat{\rho} = \frac{\partial \hat{\rho}}{\partial \phi}\,d\phi.
+\]</div>
+<p>Compute this derivative:</p>
+<div class="math-block">\[
+\frac{\partial \hat{\rho}}{\partial \phi} = -\sin\phi\,\hat{i} + \cos\phi\,\hat{j} = \hat{\phi}.
+\]</div>
+<p>Hence,</p>
+<div class="math-block">\[
+d\hat{\rho} = \hat{\phi}\,d\phi.
+\]</div>
+<p>Substitute into <span class="math-inline">\(d\vec{r}\)</span>:</p>
+<div class="math-block">\[
+\boxed{
+	d\vec{r} = \hat{\rho}\,d\rho + \rho\,\hat{\phi}\,d\phi + \hat{k}\,dz.
+}
+\]</div>
+<figure id="chapter-05-fig-7" class="figure"><img src="assets/img/Fig5_7.jpeg" alt="Differential volume element in cylindrical coordinates." loading="lazy" style="--figure-width: 55%;"><figcaption>Differential volume element in cylindrical coordinates.</figcaption></figure>
+<ul><li><p><span class="math-inline">\(d\rho\)</span>: small radial displacement,</p></li><li><p><span class="math-inline">\(\rho\,d\phi\)</span>: small arc length around the <span class="math-inline">\(z\)</span>-axis,</p></li><li><p><span class="math-inline">\(dz\)</span>: vertical displacement along the <span class="math-inline">\(z\)</span>-axis.</p></li></ul>
+<h3 id="sec-5-4-small-surface-element-d-s">4. Small Surface Element <span class="math-inline">\(d\vec{s}\)</span></h3>
+<p>Each coordinate surface has a small area element with magnitude and direction as follows:</p>
+<div class="math-block">\[
+\begin{aligned}
+	d\vec{s}_\rho &amp;= (\rho\, d\phi\, \hat{\phi}) \times (dz\, \hat{k})
+	= (\rho\, d\phi\, dz)\, \hat{\rho},
+	&amp;&amp; \text{(surface of a cylinder, constant \(\rho\))}, \\[6pt]
+	d\vec{s}_\phi &amp;= (dz\, \hat{k}) \times (d\rho\, \hat{\rho})
+	= (d\rho\, dz)\, \hat{\phi},
+	&amp;&amp; \text{(surface of a plane at constant \(\phi\))}, \\[6pt]
+	d\vec{s}_z &amp;= (d\rho\, \hat{\rho}) \times (\rho\, d\phi\, \hat{\phi})
+	= (\rho\, d\rho\, d\phi)\, \hat{k},
+	&amp;&amp; \text{(surface of a disk, constant \(z\))}.
+\end{aligned}
+\]</div>
+<div class="math-block">\[
+\boxed{
+	d\vec{s}_\rho = \rho\, d\phi\, dz\, \hat{\rho}, \qquad
+	d\vec{s}_\phi = d\rho\, dz\, \hat{\phi}, \qquad
+	d\vec{s}_z = \rho\, d\rho\, d\phi\, \hat{k}.
+}
+\]</div>
+<h3 id="sec-5-5-small-volume-element-dv">5. Small Volume Element <span class="math-inline">\(dV\)</span></h3>
+<p>The infinitesimal volume element is formed by the product of the three small lengths:</p>
+<div class="math-block">\[
+d\rho, \quad \rho\,d\phi, \quad dz.
+\]</div>
+<p>Thus,</p>
+<div class="math-block">\[
+\boxed{
+	dV = \rho\, d\rho\, d\phi\, dz.
+}
+\]</div>
+<figure id="tab-cylindrical-summary" class="table-figure"><div class="table-wrap"><table><tr><td><strong>Quantity</strong></td><td><strong>Expression</strong></td><td><strong>Description</strong></td></tr><tr><td><span class="math-inline">\(\vec{r}\)</span></td><td><span class="math-inline">\(\rho\,\hat{\rho} + z\,\hat{k}\)</span></td><td>Position vector</td></tr><tr><td><span class="math-inline">\(d\vec{r}\)</span></td><td><span class="math-inline">\(\hat{\rho}\,d\rho + \rho\,\hat{\phi}\,d\phi + \hat{k}\,dz\)</span></td><td>Differential displacement</td></tr><tr><td><span class="math-inline">\(d\vec{s}_\rho\)</span></td><td><span class="math-inline">\(\rho\,d\phi\,dz\,\hat{\rho}\)</span></td><td>Surface element on cylindrical wall</td></tr><tr><td><span class="math-inline">\(d\vec{s}_\phi\)</span></td><td><span class="math-inline">\(d\rho\,dz\,\hat{\phi}\)</span></td><td>Surface element on plane at constant <span class="math-inline">\(\phi\)</span></td></tr><tr><td><span class="math-inline">\(d\vec{s}_z\)</span></td><td><span class="math-inline">\(\rho\,d\rho\,d\phi\,\hat{k}\)</span></td><td>Surface element on disk (constant <span class="math-inline">\(z\)</span>)</td></tr><tr><td><span class="math-inline">\(dV\)</span></td><td><span class="math-inline">\(\rho\,d\rho\,d\phi\,dz\)</span></td><td>Volume element</td></tr></table></div><figcaption>Summary of differential elements in cylindrical coordinates</figcaption></figure>
+<h2 id="sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian <span class="math-inline">\(\rightarrow\)</span> Spherical Coordinates</h2>
+<h3 id="sec-5-1-definition-of-spherical-coordinates">1. Definition of Spherical Coordinates</h3>
+<p>A point <span class="math-inline">\(P(x,y,z)\)</span> in space can be described using <em>spherical coordinates</em> <span class="math-inline">\((r, \theta, \phi)\)</span> defined as:</p>
+<div class="math-block">\[
+\begin{cases}
+	x = r \sin\theta \cos\phi, \\[4pt]
+	y = r \sin\theta \sin\phi, \\[4pt]
+	z = r \cos\theta.
+\end{cases}
+\]</div>
+<p>Here:</p>
+<ul><li><p><span class="math-inline">\(r\)</span> = radial distance from the origin,</p></li><li><p><span class="math-inline">\(\theta\)</span> = polar angle (angle from the <span class="math-inline">\(z\)</span>-axis, <span class="math-inline">\(0 \le \theta \le \pi\)</span>),</p></li><li><p><span class="math-inline">\(\phi\)</span> = azimuthal angle (angle from the <span class="math-inline">\(x\)</span>-axis in the <span class="math-inline">\(xy\)</span>-plane, <span class="math-inline">\(0 \le \phi &lt; 2\pi\)</span>).</p></li></ul>
+<p> The position vector of the point is</p>
+<div class="math-block">\[
+\vec{r} = x\,\hat{i} + y\,\hat{j} + z\,\hat{k}.
+\]</div>
+<p>Substituting the spherical coordinate relations:</p>
+<div class="math-block">\[
+\vec{r} = r(\sin\theta\cos\phi\,\hat{i} + \sin\theta\sin\phi\,\hat{j} + \cos\theta\,\hat{k}).
+\]</div>
+<p>Thus, we can write</p>
+<div class="math-block">\[
+\boxed{\vec{r} = r\,\hat{r}},
+\]</div>
+<p>where <span class="math-inline">\(\hat{r}\)</span> is the <strong>radial unit vector</strong> defined by</p>
+<div class="math-block">\[
+\boxed{
+	\hat{r} = \sin\theta\cos\phi\,\hat{i} + \sin\theta\sin\phi\,\hat{j} + \cos\theta\,\hat{k}.
+}
+\]</div>
+<h3 id="sec-5-2-the-local-unit-vectors-18">2. The Local Unit Vectors</h3>
+<p>At each point, three mutually perpendicular unit vectors are defined:</p>
+<div class="math-block">\[
+\begin{aligned}
+	\hat{r} &amp;= \sin\theta\cos\phi\,\hat{i} + \sin\theta\sin\phi\,\hat{j} + \cos\theta\,\hat{k}, \\[4pt]
+	\hat{\theta} &amp;= \cos\theta\cos\phi\,\hat{i} + \cos\theta\sin\phi\,\hat{j} - \sin\theta\,\hat{k}, \\[4pt]
+	\hat{\phi} &amp;= -\sin\phi\,\hat{i} + \cos\phi\,\hat{j}.
+\end{aligned}
+\]</div>
+<ul><li><p><span class="math-inline">\(\hat{r}\)</span>: points radially outward from the origin,</p></li><li><p><span class="math-inline">\(\hat{\theta}\)</span>: tangent to the circle of constant <span class="math-inline">\(r\)</span> and <span class="math-inline">\(\phi\)</span>, points in the direction of increasing <span class="math-inline">\(\theta\)</span>,</p></li><li><p><span class="math-inline">\(\hat{\phi}\)</span>: tangent to the circle of constant <span class="math-inline">\(r\)</span> and <span class="math-inline">\(\theta\)</span>, points in the direction of increasing <span class="math-inline">\(\phi\)</span>.</p></li></ul>
+<p>These three vectors form a <strong>right-handed orthonormal basis</strong>:</p>
+<div class="math-block">\[
+\hat{r}\times\hat{\theta} = \hat{\phi},
+\qquad
+\hat{\theta}\times\hat{\phi} = \hat{r},
+\qquad
+\hat{\phi}\times\hat{r} = \hat{\theta}.
+\]</div>
+<h3 id="sec-5-3-differential-displacement-d-r-19">3. Differential Displacement <span class="math-inline">\(d\vec{r}\)</span></h3>
+<p>Differentiating the position vector</p>
+<div class="math-block">\[
+\vec{r} = r\,\hat{r},
+\]</div>
+<p>we obtain</p>
+<div class="math-block">\[
+d\vec{r} = dr\,\hat{r} + r\,d\hat{r}.
+\]</div>
+<p>To find <span class="math-inline">\(d\hat{r}\)</span>, note that <span class="math-inline">\(\hat{r}\)</span> depends on both <span class="math-inline">\(\theta\)</span> and <span class="math-inline">\(\phi\)</span>:</p>
+<div class="math-block">\[
+d\hat{r} = \frac{\partial \hat{r}}{\partial \theta} d\theta + \frac{\partial \hat{r}}{\partial \phi} d\phi.
+\]</div>
+<p>Compute these derivatives:</p>
+<div class="math-block">\[
+\frac{\partial \hat{r}}{\partial \theta} = \hat{\theta},
+\qquad
+\frac{\partial \hat{r}}{\partial \phi} = \sin\theta\,\hat{\phi}.
+\]</div>
+<p>Hence,</p>
+<div class="math-block">\[
+d\hat{r} = \hat{\theta}\,d\theta + \sin\theta\,\hat{\phi}\,d\phi.
+\]</div>
+<p>Substitute into <span class="math-inline">\(d\vec{r} = dr\,\hat{r} + r\,d\hat{r}\)</span>:</p>
+<div class="math-block">\[
+\boxed{
+	d\vec{r} = \hat{r}\,dr + r\,\hat{\theta}\,d\theta + r\sin\theta\,\hat{\phi}\,d\phi.
+}
+\]</div>
+<figure id="chapter-05-fig-8" class="figure"><img src="assets/img/Fig5_8.jpeg" alt="Differential displacement in spherical coordinates" loading="lazy" style="--figure-width: 55%;"><figcaption>Differential displacement in spherical coordinates</figcaption></figure>
+<ul><li><p><span class="math-inline">\(dr\)</span> — small change in radial distance,</p></li><li><p><span class="math-inline">\(r\,d\theta\)</span> — small arc length in the direction of increasing <span class="math-inline">\(\theta\)</span>,</p></li><li><p><span class="math-inline">\(r\sin\theta\,d\phi\)</span> — small arc length in the azimuthal direction.</p></li></ul>
+<h3 id="sec-5-4-small-surface-element-d-s-20">4. Small Surface Element <span class="math-inline">\(d\vec{s}\)</span></h3>
+<p>Each coordinate surface has a small area element with magnitude and direction as follows:</p>
+<div class="math-block">\[
+\begin{aligned}
+	d\vec{s}_r &amp;= (r\, d\theta\, \hat{\theta}) \times (r\sin\theta\, d\phi\, \hat{\phi})
+	= (r^2 \sin\theta\, d\theta\, d\phi)\, \hat{r},
+	&amp;&amp; \text{(surface of a sphere, constant \(r\))}, \\[6pt]
+	d\vec{s}_\theta &amp;= (r\sin\theta\, d\phi\, \hat{\phi}) \times (dr\, \hat{r})
+	= (r\sin\theta\, dr\, d\phi)\, \hat{\theta},
+	&amp;&amp; \text{(surface of a cone, constant \(\theta\))}, \\[6pt]
+	d\vec{s}_\phi &amp;= (dr\, \hat{r}) \times (r\, d\theta\, \hat{\theta})
+	= (r\, dr\, d\theta)\, \hat{\phi},
+	&amp;&amp; \text{(surface of a half-plane, constant \(\phi\))}.
+\end{aligned}
+\]</div>
+<div class="math-block">\[
+\boxed{
+	d\vec{s}_r = r^2 \sin\theta\, d\theta\, d\phi\, \hat{r}, \qquad
+	d\vec{s}_\theta = r \sin\theta\, dr\, d\phi\, \hat{\theta}, \qquad
+	d\vec{s}_\phi = r\, dr\, d\theta\, \hat{\phi}.
+}
+\]</div>
+<h3 id="sec-5-5-small-volume-element-dv-21">5. Small Volume Element <span class="math-inline">\(dV\)</span></h3>
+<p>The infinitesimal volume is formed by the product of the three differential lengths:</p>
+<div class="math-block">\[
+dr, \quad r\,d\theta, \quad r\sin\theta\,d\phi.
+\]</div>
+<p>Thus,</p>
+<div class="math-block">\[
+\boxed{
+	dV = r^2 \sin\theta\, dr\, d\theta\, d\phi.
+}
+\]</div>
+<figure id="tab-spherical-summary" class="table-figure"><div class="table-wrap"><table><tr><td><strong>Quantity</strong></td><td><strong>Expression</strong></td><td><strong>Description</strong></td></tr><tr><td><span class="math-inline">\(\vec{r}\)</span></td><td><span class="math-inline">\(r\,\hat{r}\)</span></td><td>Position vector</td></tr><tr><td><span class="math-inline">\(d\vec{r}\)</span></td><td><span class="math-inline">\(\hat{r}\,dr + r\,\hat{\theta}\,d\theta + r\sin\theta\,\hat{\phi}\,d\phi\)</span></td><td>Differential displacement</td></tr><tr><td><span class="math-inline">\(d\vec{s}_r\)</span></td><td><span class="math-inline">\(r^2\sin\theta\, d\theta\, d\phi\,\hat{r}\)</span></td><td>Surface element on sphere (<span class="math-inline">\(r=\text{const}\)</span>)</td></tr><tr><td><span class="math-inline">\(d\vec{s}_\theta\)</span></td><td><span class="math-inline">\(r\sin\theta\, dr\, d\phi\,\hat{\theta}\)</span></td><td>Surface element on cone (<span class="math-inline">\(\theta=\text{const}\)</span>)</td></tr><tr><td><span class="math-inline">\(d\vec{s}_\phi\)</span></td><td><span class="math-inline">\(r\,dr\, d\theta\,\hat{\phi}\)</span></td><td>Surface element on half-plane (<span class="math-inline">\(\phi=\text{const}\)</span>)</td></tr><tr><td><span class="math-inline">\(dV\)</span></td><td><span class="math-inline">\(r^2 \sin\theta\, dr\, d\theta\, d\phi\)</span></td><td>Volume element</td></tr></table></div><figcaption>Summary of differential elements in spherical coordinates</figcaption></figure>
+<h2 id="sec-5-connection-with-the-jacobian-matrix">Connection with the Jacobian Matrix</h2>
+<p>When transforming a multiple integral from one set of variables to another, the <strong>Jacobian determinant</strong> accounts for the change in scale between coordinate systems.</p>
+<section class="callout theorem"><header>Theorem - Change of Variables for Triple Integrals</header><p>Suppose we have a triple integral</p>
+<div class="math-block">\[
+	\iiint f(u,v,w)\,du\,dv\,dw
+	\]</div>
+<p>in some variables <span class="math-inline">\(u, v, w\)</span>. Let <span class="math-inline">\(r, s, t\)</span> be another set of variables related by</p>
+<div class="math-block">\[
+	u = u(r,s,t), \qquad v = v(r,s,t), \qquad w = w(r,s,t).
+	\]</div>
+<p>as a result:</p>
+<div class="math-block">\[
+	\begin{aligned}
+		du &amp;= \frac{\partial u}{\partial r}\,dr + \frac{\partial u}{\partial s}\,ds + \frac{\partial u}{\partial t}\,dt,\\[4pt]
+		dv &amp;= \frac{\partial v}{\partial r}\,dr + \frac{\partial v}{\partial s}\,ds + \frac{\partial v}{\partial t}\,dt,\\[4pt]
+		dw &amp;= \frac{\partial w}{\partial r}\,dr + \frac{\partial w}{\partial s}\,ds + \frac{\partial w}{\partial t}\,dt.
+	\end{aligned}
+	\]</div>
+<p>In matrix (differential) form,</p>
+<div class="math-block">\[
+	\begin{pmatrix} du\\ dv\\ dw \end{pmatrix}
+	=
+	\underbrace{
+		\begin{pmatrix}
+			\frac{\partial u}{\partial r} &amp; \frac{\partial u}{\partial s} &amp; \frac{\partial u}{\partial t}\\[4pt]
+			\frac{\partial v}{\partial r} &amp; \frac{\partial v}{\partial s} &amp; \frac{\partial v}{\partial t}\\[4pt]
+			\frac{\partial w}{\partial r} &amp; \frac{\partial w}{\partial s} &amp; \frac{\partial w}{\partial t}
+		\end{pmatrix}
+	}_{J(\frac{u,v,w}{r,s,t})}
+	\begin{pmatrix} dr\\ ds\\ dt \end{pmatrix}.
+	\]</div>
+<p>where <span class="math-inline">\(J\)</span> is the Jacobian of <span class="math-inline">\(u,v,w\)</span> with respect to <span class="math-inline">\(r,s,t\)</span>, then the triple integral in the new variables becomes</p>
+<div class="math-block">\[
+	\iiint f(u,v,w)\,du\,dv\,dw
+	=
+	\iiint f(r,s,t)\,\left|J\right|\,dr\,ds\,dt.
+	\]</div></section>
+<section class="callout remark"><header>Remark</header><p>The function <span class="math-inline">\(f\)</span> and the determinant <span class="math-inline">\(J\)</span> must both be expressed in the new variables, and the limits of integration must be adjusted to correspond to the transformed region.</p></section>
+<h3 id="sec-5-verifying-the-jacobian-for-cylindrical-coordinates">Verifying the Jacobian for Cylindrical Coordinates</h3>
+<p>For the transformation <span class="math-inline">\((\rho, \phi, z) \to (x, y, z)\)</span>,</p>
+<div class="math-block">\[
+\begin{cases}
+	x = \rho\cos\phi, \\[4pt]
+	y = \rho\sin\phi, \\[4pt]
+	z = z.
+\end{cases}
+\]</div>
+<p>The Jacobian matrix is</p>
+<div class="math-block">\[
+J\!\left(\frac{x,y,z}{\rho,\phi,z}\right) =
+\begin{pmatrix}
+	\frac{\partial x}{\partial \rho} &amp; \frac{\partial x}{\partial \phi} &amp; \frac{\partial x}{\partial z} \\[4pt]
+	\frac{\partial y}{\partial \rho} &amp; \frac{\partial y}{\partial \phi} &amp; \frac{\partial y}{\partial z} \\[4pt]
+	\frac{\partial z}{\partial \rho} &amp; \frac{\partial z}{\partial \phi} &amp; \frac{\partial z}{\partial z}
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\cos\phi &amp; -\rho\sin\phi &amp; 0 \\[4pt]
+	\sin\phi &amp; \ \rho\cos\phi &amp; 0 \\[4pt]
+	0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\]</div>
+<p>Compute its determinant:</p>
+<div class="math-block">\[
+\det(J) =
+\begin{vmatrix}
+	\cos\phi &amp; -\rho\sin\phi &amp; 0 \\[4pt]
+	\sin\phi &amp; \ \rho\cos\phi &amp; 0 \\[4pt]
+	0 &amp; 0 &amp; 1
+\end{vmatrix}
+= \rho.
+\]</div>
+<section class="callout remark"><header>Remark - Cylindrical Volume Element</header><div class="math-block">\[
+	dV = \left|J\right|\,d\rho\,d\phi\,dz \;=\; \rho\,d\rho\,d\phi\,dz.
+	\]</div></section>
+<h3 id="sec-5-verifying-the-jacobian-for-spherical-coordinates">Verifying the Jacobian for Spherical Coordinates</h3>
+<p>For the transformation <span class="math-inline">\((r, \theta, \phi) \to (x, y, z)\)</span>,</p>
+<div class="math-block">\[
+\begin{cases}
+	x = r\sin\theta\cos\phi, \\[4pt]
+	y = r\sin\theta\sin\phi, \\[4pt]
+	z = r\cos\theta.
+\end{cases}
+\]</div>
+<p>The Jacobian matrix is</p>
+<div class="math-block">\[
+J(\frac{x,y,z}{r,\theta,\phi}) =
+\begin{pmatrix}
+	\frac{\partial x}{\partial r} &amp; \frac{\partial x}{\partial \theta} &amp; \frac{\partial x}{\partial \phi} \\[4pt]
+	\frac{\partial y}{\partial r} &amp; \frac{\partial y}{\partial \theta} &amp; \frac{\partial y}{\partial \phi} \\[4pt]
+	\frac{\partial z}{\partial r} &amp; \frac{\partial z}{\partial \theta} &amp; \frac{\partial z}{\partial \phi}
+\end{pmatrix}.
+\]</div>
+<p>Compute each partial derivative:</p>
+<div class="math-block">\[
+\begin{aligned}
+	\frac{\partial x}{\partial r} &amp;= \sin\theta\cos\phi, &amp;
+	\frac{\partial x}{\partial \theta} &amp;= r\cos\theta\cos\phi, &amp;
+	\frac{\partial x}{\partial \phi} &amp;= -r\sin\theta\sin\phi, \\[4pt]
+	\frac{\partial y}{\partial r} &amp;= \sin\theta\sin\phi, &amp;
+	\frac{\partial y}{\partial \theta} &amp;= r\cos\theta\sin\phi, &amp;
+	\frac{\partial y}{\partial \phi} &amp;= r\sin\theta\cos\phi, \\[4pt]
+	\frac{\partial z}{\partial r} &amp;= \cos\theta, &amp;
+	\frac{\partial z}{\partial \theta} &amp;= -r\sin\theta, &amp;
+	\frac{\partial z}{\partial \phi} &amp;= 0.
+\end{aligned}
+\]</div>
+<p> Therefore,</p>
+<div class="math-block">\[
+det(J) =
+\begin{vmatrix}
+	\sin\theta\cos\phi &amp; r\cos\theta\cos\phi &amp; -r\sin\theta\sin\phi \\[4pt]
+	\sin\theta\sin\phi &amp; r\cos\theta\sin\phi &amp; r\sin\theta\cos\phi \\[4pt]
+	\cos\theta &amp; -r\sin\theta &amp; 0
+\end{vmatrix}.
+\]</div>
+<p>Expanding the determinant gives</p>
+<div class="math-block">\[
+|J| = r^2\sin\theta.
+\]</div>
+<section class="callout remark"><header>Remark - Spherical Volume Element</header><div class="math-block">\[
+	dV = \left|J\right|\,dr\,d\theta\,d\phi = r^2\sin\theta\,dr\,d\theta\,d\phi.
+	\]</div></section>
+<section class="callout example"><header>Example</header><p>Centroid and Moment of Inertia of a Uniform Solid Cone. Find the <span class="math-inline">\(z\)</span>-coordinate of the centroid <span class="math-inline">\(z_{cm}\)</span> of a uniform solid right circular cone (one nappe) whose height <span class="math-inline">\(h\)</span> equals the base radius <span class="math-inline">\(h\)</span> (i.e., semi-vertical angle <span class="math-inline">\(45^\circ\)</span>). Also find the moment of inertia <span class="math-inline">\(I_z\)</span> about its symmetry axis.</p></section>
+<figure class="figure figure-single" style="--figure-width: 40%;"><img src="assets/img/Fig5_9.jpeg" alt="Fig5 9" loading="lazy"></figure>
+<section class="callout solution"><header>Solution</header><p><strong>Geometry and coordinates.</strong> Place the apex at the origin and the axis along <span class="math-inline">\(+z\)</span>. Because <span class="math-inline">\( \text{radius at height } z \text{ equals } z\)</span>, the lateral surface is <span class="math-inline">\(\rho=z\)</span> (for <span class="math-inline">\(0\le z\le h\)</span>). Use cylindrical coordinates with <span class="math-inline">\(dV=\rho\,d\rho\,d\phi\,dz\)</span> and constant density <span class="math-inline">\(\sigma\)</span>.</p>
+<div class="math-block">\[
+	0\le \phi\le 2\pi,\qquad 0\le \rho\le z,\qquad 0\le z\le h.
+	\]</div>
+<p><strong>Step1: Mass.</strong></p>
+<div class="math-block">\[
+		\begin{aligned}
+			M&amp;=\iiint \sigma\,dV
+			= \sigma\int_{z=0}^{h}\int_{\rho=0}^{z}\int_{\phi=0}^{2\pi} \rho\,d\phi\,d\rho\,dz
+			= \sigma\cdot 2\pi\int_{0}^{h}\!\!\left[\frac{\rho^{2}}{2}\right]_{0}^{z}dz  \\
+			&amp;= \sigma\pi\int_{0}^{h} z^{2}\,dz
+			= \sigma\pi\left[\frac{z^{3}}{3}\right]_{0}^{h}
+			= \boxed{\;\dfrac{\sigma\pi h^{3}}{3}\; }.
+		\end{aligned}
+		\]</div>
+<p><strong>Step2: Centroid <span class="math-inline">\( z_{cm}\)</span>.</strong>  Use <span class="math-inline">\( z_{cm}=\dfrac{1}{M}\iiint z\,\sigma\,dV\)</span>.</p>
+<div class="math-block">\[
+		\begin{aligned}
+			\iiint z\,\sigma\,dV
+			&amp;= \sigma\int_{0}^{h}\int_{0}^{z}\int_{0}^{2\pi} z\,\rho\,d\phi\,d\rho\,dz
+			= \sigma\cdot 2\pi\int_{0}^{h} z\!\left[\frac{\rho^{2}}{2}\right]_{0}^{z}\!dz  \\
+			&amp;= \sigma\pi\int_{0}^{h} z^{3}\,dz
+			= \sigma\pi\left[\frac{z^{4}}{4}\right]_{0}^{h}
+			= \frac{\sigma\pi h^{4}}{4}.
+		\end{aligned}
+		\]</div>
+<p>Hence</p>
+<div class="math-block">\[
+		z_{cm}=\frac{\sigma\pi h^{4}/4}{\sigma\pi h^{3}/3}
+		=\boxed{\;\frac{3}{4}\,h\; }.
+		\]</div>
+<p><strong>Step3: Moment of inertia about the axis.</strong> <span class="math-inline">\(I_z=\iiint \rho^{2}\,dm=\sigma\iiint \rho^{2}\,dV\)</span>.</p>
+<div class="math-block">\[
+		\begin{aligned}
+			I_z
+			&amp;= \sigma\int_{0}^{h}\int_{0}^{z}\int_{0}^{2\pi} \rho^{2}\,(\rho\,d\phi\,d\rho\,dz)
+			= \sigma\cdot 2\pi\int_{0}^{h}\!\left[\frac{\rho^{4}}{4}\right]_{0}^{z}dz \\
+			&amp;= \frac{\sigma\pi}{2}\int_{0}^{h} z^{4}\,dz
+			= \frac{\sigma\pi}{2}\left[\frac{z^{5}}{5}\right]_{0}^{h}
+			= \boxed{\;\frac{\sigma\pi h^{5}}{10}\; }.
+		\end{aligned}
+		\]</div>
+<p>In terms of <span class="math-inline">\(M\)</span>,</p>
+<div class="math-block">\[
+		I_z=\frac{\sigma\pi h^{5}}{10}
+		=\frac{3}{10}\left(\frac{\sigma\pi h^{3}}{3}\right)h^{2}
+		=\boxed{\;\frac{3}{10}\,M\,h^{2}\; }.
+		\]</div></section>
+<section class="callout example"><header>Example</header><p>Evaluate</p>
+<div class="math-block">\[
+	\int_{y=0}^{1}\!\int_{x=0}^{\,1-y} \exp\!\left(\frac{x-y}{x+y}\right)\,dx\,dy
+	\]</div>
+<p>by the substitution <span class="math-inline">\(
+	u=x-y,\quad v=x+y.
+	\)</span></p></section>
+<section class="callout solution"><header>Solution</header><p><strong>Step 1. Map and Jacobian.</strong> The inverse relations are</p>
+<div class="math-block">\[
+	x=\frac{u+v}{2},\qquad y=\frac{v-u}{2}.
+	\]</div>
+<p>Hence</p>
+<div class="math-block">\[
+	J(\frac{x,y}{u,v})
+	=
+	\begin{vmatrix}
+		\frac{\partial x}{\partial u} &amp; \frac{\partial x}{\partial v}\\[4pt]
+		\frac{\partial y}{\partial u} &amp; \frac{\partial y}{\partial v}
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		\frac12 &amp; \frac12\\[4pt]
+		-\frac12 &amp; \frac12
+	\end{vmatrix}
+	=\frac12
+	\quad\Rightarrow\quad
+	dx\,dy=\frac12\,du\,dv.
+	\]</div>
+<p><strong>Step 2. Region in <span class="math-inline">\((u,v)\)</span>.</strong> The original region is <span class="math-inline">\(
+	R=\{(x,y): x\ge 0,\ y\ge 0,\ x+y\le 1\}.
+	\)</span> On <span class="math-inline">\(R\)</span>,</p>
+<div class="math-block">\[
+	v=x+y\in[0,1],\qquad
+	u=x-y\in[-v,\,v]
+	\]</div>
+<p>(because along <span class="math-inline">\(x=0\Rightarrow u=-v\)</span> and along <span class="math-inline">\(y=0\Rightarrow u=v\)</span>).</p>
+<p><strong>Step 3. Transform the integrand and limits.</strong></p>
+<div class="math-block">\[
+	\frac{x-y}{x+y}=\frac{u}{v},\qquad
+	\iint_R e^{(x-y)/(x+y)}\,dx\,dy
+	=\int_{v=0}^{1}\!\int_{u=-v}^{v} e^{u/v}\,\frac12\,du\,dv.
+	\]</div>
+<p><strong>Step 4. Integrate.</strong> For fixed <span class="math-inline">\(v&gt;0\)</span>,</p>
+<div class="math-block">\[
+	\int_{-v}^{v} e^{u/v}\,du
+	= v\,[e^{u/v}]_{-v}^{v}
+	= v\,(e- e^{-1})
+	= 2v\,\sinh(1).
+	\]</div>
+<p>Therefore</p>
+<div class="math-block">\[
+	\int_{0}^{1}\!\int_{-v}^{v} \frac12\,e^{u/v}\,du\,dv
+	=\frac12\int_{0}^{1} 2v\,\sinh(1)\,dv
+	=\sinh(1)\!\int_{0}^{1} v\,dv
+	=\frac12\,\sinh(1).
+	\]</div>
+<div class="math-block">\[
+	\boxed{\displaystyle
+		\int_{0}^{1}\!\int_{0}^{1-y} \exp\!\left(\frac{x-y}{x+y}\right)\,dx\,dy
+		= \frac12\,\sinh(1)}
+	\]</div></section>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <a href="../chapter-04/index.html">Previous: Partial Differentiation</a>
+      <a href="../../toc.html">Contents</a>
+      <a href="../chapter-06/index.html">Next: Vector Analysis</a>
+    </nav>
+  </article>
+</main>
+</body>
+</html>

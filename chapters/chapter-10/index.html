@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chapter 10: Partial Differential Equations (Chapter 13) | Mathematical Methods in the Physical Sciences</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEnvironments: true,
+        tags: 'ams',
+        macros: {
+          pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+          dv: ['{\\frac{d #1}{d #2}}', 2],
+          abs: ['{\\left|#1\\right|}', 1],
+          norm: ['{\\left\\|#1\\right\\|}', 1],
+          curl: '{\\operatorname{curl}}',
+          div: '{\\operatorname{div}}',
+          grad: '{\\operatorname{grad}}',
+          sech: '{\\operatorname{sech}}',
+          csch: '{\\operatorname{csch}}',
+          coth: '{\\operatorname{coth}}',
+          circnum: ['{\\boxed{#1}}', 1],
+          vb: ['{\\mathbf{#1}}', 1],
+          eval: ['{\\left.#1\\right|}', 1],
+          dd: '{\\,d}'
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="../../assets/js/main.js"></script>
+
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../../index.html">
+    <span class="brand-mark">M</span>
+    <span>Mathematical Methods in the Physical Sciences</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="../../index.html">Home</a>
+    <a href="../../toc.html">Contents</a>
+  </nav>
+</header>
+<main class="layout">
+  <aside class="sidebar">
+  <div class="sidebar-inner">
+    <p class="sidebar-kicker">Chapter 10</p>
+    <h2>Partial Differential Equations (Chapter 13)</h2>
+    <nav class="chapter-toc" aria-label="Chapter contents">
+      <a class="toc-level-2" href="#sec-10-introduction">Introduction</a>
+<a class="toc-level-2" href="#sec-10-separating-time-and-space">Separating Time and Space</a>
+<a class="toc-level-3" href="#sec-10-spatial-separation-ansatz-and-laplacians">Spatial Separation Ansatz and Laplacians</a>
+<a class="toc-level-2" href="#sec-10-laplace-s-equation-steady-state-temperature-in-a-semi-infinite-plate">Laplace’s Equation: Steady–State Temperature in a Semi–Infinite Plate</a>
+<a class="toc-level-3" href="#sec-10-1-governing-equation">1. Governing equation</a>
+<a class="toc-level-3" href="#sec-10-2-separation-of-variables">2. Separation of variables</a>
+<a class="toc-level-3" href="#sec-10-3-solving-the-x-equation">3. Solving the X-equation</a>
+<a class="toc-level-3" href="#sec-10-4-solving-the-y-equation">4. Solving the Y-equation</a>
+<a class="toc-level-3" href="#sec-10-5-superposition-and-the-base-condition">5. Superposition and the base condition</a>
+<a class="toc-level-3" href="#sec-10-6-final-temperature-distribution">6. Final temperature distribution</a>
+<a class="toc-level-2" href="#sec-10-helmholtz-equation-and-the-infinite-spherical-well">Helmholtz Equation and the Infinite Spherical Well</a>
+<a class="toc-level-3" href="#sec-10-from-schr-dinger-to-helmholtz">From Schrödinger to Helmholtz</a>
+<a class="toc-level-3" href="#sec-10-infinite-spherical-well">Infinite Spherical Well</a>
+<a class="toc-level-3" href="#sec-10-separation-in-spherical-coordinates-three-odes">Separation in Spherical Coordinates: Three ODEs</a>
+<a class="toc-level-3" href="#sec-10-angular-equations-and">Angular Equations: () and ()</a>
+<a class="toc-level-3" href="#sec-10-radial-equation-and-bessel-functions">Radial Equation and Bessel Functions</a>
+<a class="toc-level-3" href="#sec-10-boundary-condition-and-energy-quantization">Boundary Condition and Energy Quantization</a>
+<a class="toc-level-3" href="#sec-10-summary-of-the-separation">Summary of the separation:</a>
+    </nav>
+  </div>
+</aside>
+
+  <article class="content">
+    <header class="chapter-hero">
+      <p>Chapter 10</p>
+      <h1>Partial Differential Equations (Chapter 13)</h1>
+    </header>
+    <h2 id="sec-10-introduction">Introduction</h2>
+<p>Many important equations in physics are <strong>partial differential equations</strong> (PDEs). They describe how a physical quantity such as temperature, pressure, electromagnetic fields, or a quantum wave function varies in both space and time. Typical examples include:</p>
+<ul><li><p><strong>Laplace’s Equation</strong></p>
+<div class="math-block">\[
+	\nabla^{2}\Psi = 0,
+	\]</div>
+<p>which describes steady–state heat flow, electrostatics, and incompressible fluids.</p></li><li><p><strong>Schrödinger Equation (Quantum Mechanics)</strong></p>
+<div class="math-block">\[
+	-\frac{\hbar^{2}}{2m}\,\nabla^{2}\Psi + V(\mathbf{r})\,\Psi
+	= i\hbar\,\frac{\partial\Psi}{\partial t}.
+	\]</div></li><li><p><strong>Wave Equation</strong></p>
+<div class="math-block">\[
+	\nabla^{2}\Psi - \frac{1}{c^{2}}\frac{\partial^{2}\Psi}{\partial t^{2}} = 0.
+	\]</div></li></ul>
+<p>All of these equations contain the Laplacian operator <span class="math-inline">\(\nabla^{2}\)</span>, whose form depends on the coordinate system used.</p>
+<section class="callout remark"><header>Remark - Key idea</header><p>Separation of variables works only when the coordinate system reflects the symmetry of the physical system.</p></section>
+<h2 id="sec-10-separating-time-and-space">Separating Time and Space</h2>
+<p>For many linear PDEs, the first and most important step is to separate the <strong>time dependence</strong> from the <strong>spatial dependence</strong>. We assume a product form</p>
+<div class="math-block">\[
+\Psi(\mathbf{r},t) = \psi(\mathbf{r})\,f(t),
+\]</div>
+<p>where <span class="math-inline">\(\mathbf{r}\)</span> denotes the spatial coordinates (e.g. <span class="math-inline">\((x,y,z)\)</span> or <span class="math-inline">\((r,\theta,\phi)\)</span>).</p>
+<section class="callout example"><header>Example - Time–Dependent Schrödinger Equation</header><p>Consider the Schrödinger equation with a time-independent potential <span class="math-inline">\(V(\mathbf{r})\)</span>:</p>
+<div class="math-block">\[
+i\hbar\,\frac{\partial\Psi}{\partial t}
+=
+-\frac{\hbar^{2}}{2m}\,\nabla^{2}\Psi
++ V(\mathbf{r})\,\Psi.
+\]</div>
+<p>Insert the separation ansatz:</p>
+<div class="math-block">\[
+\Psi(\mathbf{r},t) = \psi(\mathbf{r})\,f(t).
+\]</div>
+<p>Substituting gives</p>
+<div class="math-block">\[
+i\hbar\,\psi(\mathbf{r})\,\frac{df}{dt}
+=
+-\frac{\hbar^{2}}{2m}\,f(t)\,\nabla^{2}\psi(\mathbf{r})
++ V(\mathbf{r})\,\psi(\mathbf{r})\,f(t).
+\]</div>
+<p>Divide by <span class="math-inline">\(\psi f\)</span>:</p>
+<div class="math-block">\[
+i\hbar\,\frac{1}{f}\frac{df}{dt}
+=
+-\frac{\hbar^{2}}{2m}\,\frac{\nabla^{2}\psi}{\psi}
++ V(\mathbf{r}).
+\]</div>
+<p>The left side depends only on time; the right side depends only on space. Therefore both sides must equal a constant, which we call the <strong>energy</strong> <span class="math-inline">\(E\)</span>:</p>
+<div class="math-block">\[
+i\hbar\,\frac{1}{f}\frac{df}{dt} = E,
+\qquad
+-\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi + V(\mathbf{r})\,\psi
+= E\,\psi.
+\]</div>
+<p>Thus we obtain:</p>
+<ul><li><p><strong>Spatial equation (time-independent Schrödinger equation):</strong></p>
+<div class="math-block">\[
+	\boxed{
+		-\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi(\mathbf{r})
+		+ V(\mathbf{r})\,\psi(\mathbf{r})
+		= E\,\psi(\mathbf{r}).
+	}
+	\]</div></li><li><p><strong>Time equation:</strong></p>
+<div class="math-block">\[
+	i\hbar\,\frac{df}{dt} = E f(t).
+	\]</div></li></ul>
+<p>Solving the time equation gives</p>
+<div class="math-block">\[
+f(t) = C\,e^{-iEt/\hbar}.
+\]</div>
+<p>Thus any separated solution has the universal time dependence</p>
+<div class="math-block">\[
+\Psi(\mathbf{r},t) = \psi(\mathbf{r})e^{-iEt/\hbar}.
+\]</div></section>
+<section class="callout remark"><header>Remark</header><p>Once time has been separated, all remaining work focuses on solving for <span class="math-inline">\(\psi(\mathbf{r})\)</span>, the time-independent spatial wave function.</p></section>
+<p>Separation of Variables and Coordinate Symmetry</p>
+<p>After separating time, the spatial part <span class="math-inline">\(\psi(\mathbf{r})\)</span> typically satisfies</p>
+<div class="math-block">\[
+\nabla^{2}\psi + \lambda \psi = 0
+\quad\text{(Helmholtz-type)},\qquad
+\text{or}\quad
+\nabla^{2}\psi = 0
+\quad\text{(Laplace-type)}.
+\]</div>
+<p>These equations must be solved using separation of variables in a coordinate system adapted to the geometry.</p>
+<div class="math-block">\[
+\boxed{\text{Rectangular} \quad\text{Cylindrical} \quad\text{Spherical}}
+\]</div>
+<p>Each choice leads to different families of orthogonal eigenfunctions:</p>
+<div class="math-block">\[
+\sin,\cos;\qquad
+J_{m}(\rho);\qquad
+P_{\ell}(\cos\theta),\;Y_{\ell m}(\theta,\phi).
+\]</div>
+<h3 id="sec-10-spatial-separation-ansatz-and-laplacians">Spatial Separation Ansatz and Laplacians</h3>
+<p>We write the spatial wave function as a product of single-variable functions:</p>
+<ul><li><p><strong>Rectangular coordinates</strong> <span class="math-inline">\((x,y,z)\)</span></p>
+<div class="math-block">\[
+	\psi(x,y,z) = X(x)\,Y(y)\,Z(z),
+	\]</div>
+<div class="math-block">\[
+	\nabla^{2}\psi
+	=
+	\frac{\partial^{2}\psi}{\partial x^{2}}
+	+
+	\frac{\partial^{2}\psi}{\partial y^{2}}
+	+
+	\frac{\partial^{2}\psi}{\partial z^{2}}.
+	\]</div></li><li><p><strong>Cylindrical coordinates</strong> <span class="math-inline">\((\rho,\phi,z)\)</span></p>
+<div class="math-block">\[
+	\psi(\rho,\phi,z) = R(\rho)\,\Phi(\phi)\,Z(z),
+	\]</div>
+<div class="math-block">\[
+	\nabla^{2}\psi
+	=
+	\frac{1}{\rho}\frac{\partial}{\partial \rho}
+	\left(\rho\,\frac{\partial\psi}{\partial\rho}\right)
+	+
+	\frac{1}{\rho^{2}}\frac{\partial^{2}\psi}{\partial\phi^{2}}
+	+
+	\frac{\partial^{2}\psi}{\partial z^{2}}.
+	\]</div></li><li><p><strong>Spherical coordinates</strong> <span class="math-inline">\((r,\theta,\phi)\)</span></p>
+<div class="math-block">\[
+	\psi(r,\theta,\phi) = R(r)\,\Theta(\theta)\,\Phi(\phi),
+	\]</div>
+<div class="math-block">\[
+	\nabla^{2}\psi
+	=
+	\frac{1}{r^{2}}\frac{\partial}{\partial r}
+	\left(r^{2}\frac{\partial\psi}{\partial r}\right)
+	+
+	\frac{1}{r^{2}\sin\theta}\frac{\partial}{\partial\theta}
+	\left(\sin\theta\,\frac{\partial\psi}{\partial\theta}\right)
+	+
+	\frac{1}{r^{2}\sin^{2}\theta}
+	\frac{\partial^{2}\psi}{\partial\phi^{2}}.
+	\]</div></li></ul>
+<h2 id="sec-10-laplace-s-equation-steady-state-temperature-in-a-semi-infinite-plate">Laplace’s Equation: Steady–State Temperature in a Semi–Infinite Plate</h2>
+<p>Consider a long metal plate occupying the region</p>
+<div class="math-block">\[
+0 &lt; x &lt; a, \qquad 0 &lt; y &lt; \infty,
+\]</div>
+<p>where <span class="math-inline">\(a\)</span> is the width of the plate in the <span class="math-inline">\(x\)</span>-direction.</p>
+<p>The two vertical sides and the upper boundary are maintained at <span class="math-inline">\(0^\circ\mathrm{C}\)</span>, while the base is held at a constant temperature <span class="math-inline">\(T_0\)</span>:</p>
+<div class="math-block">\[
+\begin{cases}
+	T(0,y)=0, &amp; y\ge 0,\\[4pt]
+	T(a,y)=0, &amp; y\ge 0,\\[4pt]
+	T(x,\infty)=0, &amp; 0 &lt; x &lt; a,\\[4pt]
+	T(x,0)=T_0, &amp; 0 &lt; x &lt; a.
+\end{cases}
+\]</div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 50%;"><img src="assets/img/Fig10_1.jpeg" alt="Fig10 1" loading="lazy"></figure></div>
+<p>Our goal is to determine the steady–state temperature distribution <span class="math-inline">\(T(x,y)\)</span> in the plate.</p>
+<h3 id="sec-10-1-governing-equation">1. Governing equation</h3>
+<p>In steady–state heat flow without internal heat sources, the temperature satisfies Laplace’s equation:</p>
+<div class="math-block">\[
+\nabla^2 T = 0
+\quad\Longrightarrow\quad
+\frac{\partial^2 T}{\partial x^{2}}
++
+\frac{\partial^2 T}{\partial y^{2}}
+= 0,
+\qquad 0&lt;x&lt;a,\; y&gt;0.
+\]</div>
+<h3 id="sec-10-2-separation-of-variables">2. Separation of variables</h3>
+<p>We seek solutions of the form</p>
+<div class="math-block">\[
+T(x,y) = X(x)\,Y(y).
+\]</div>
+<p>Substituting into Laplace’s equation gives</p>
+<div class="math-block">\[
+X&#x27;&#x27;(x)\,Y(y) + X(x)\,Y&#x27;&#x27;(y) = 0.
+\]</div>
+<p>Dividing by <span class="math-inline">\(X(x)Y(y)\neq 0\)</span> yields</p>
+<div class="math-block">\[
+\frac{X&#x27;&#x27;(x)}{X(x)} + \frac{Y&#x27;&#x27;(y)}{Y(y)} = 0.
+\]</div>
+<p>Each term depends on a different variable, so each must equal a constant. We choose</p>
+<div class="math-block">\[
+\frac{X&#x27;&#x27;}{X} = -k^{2},
+\qquad
+\frac{Y&#x27;&#x27;}{Y} = k^{2},
+\qquad k&gt;0,
+\]</div>
+<p>which leads to the ODEs</p>
+<div class="math-block">\[
+X&#x27;&#x27; + k^{2}X = 0,
+\qquad
+Y&#x27;&#x27; - k^{2}Y = 0.
+\]</div>
+<h3 id="sec-10-3-solving-the-x-equation">3. Solving the <span class="math-inline">\(X\)</span>-equation</h3>
+<p>The general solution is</p>
+<div class="math-block">\[
+X(x) = A\sin(kx) + B\cos(kx).
+\]</div>
+<p>The side boundary conditions require</p>
+<div class="math-block">\[
+T(0,y)=0 \Rightarrow X(0)=0,
+\qquad
+T(a,y)=0 \Rightarrow X(a)=0.
+\]</div>
+<p>From <span class="math-inline">\(X(0)=0\)</span> we obtain <span class="math-inline">\(B=0\)</span>, so</p>
+<div class="math-block">\[
+X(x) = A\sin(kx).
+\]</div>
+<p>From <span class="math-inline">\(X(a)=0\)</span>:</p>
+<div class="math-block">\[
+\sin(ka)=0
+\quad\Rightarrow\quad
+ka = n\pi,\qquad n=1,2,3,\ldots
+\]</div>
+<p>Thus the allowed eigenvalues are</p>
+<div class="math-block">\[
+k_n = \frac{n\pi}{a},
+\qquad
+X_n(x) = \sin\!\left( \frac{n\pi x}{a} \right).
+\]</div>
+<h3 id="sec-10-4-solving-the-y-equation">4. Solving the <span class="math-inline">\(Y\)</span>-equation</h3>
+<p>For each eigenvalue <span class="math-inline">\(k_n\)</span>, the equation</p>
+<div class="math-block">\[
+Y&#x27;&#x27; - k_n^{2}Y = 0
+\]</div>
+<p>has the general solution</p>
+<div class="math-block">\[
+Y_n(y) = C\,e^{k_n y} + D\,e^{-k_n y}.
+\]</div>
+<p>The temperature must remain finite and vanish as <span class="math-inline">\(y\to\infty\)</span>:</p>
+<div class="math-block">\[
+T(x,\infty)=0 \;\Rightarrow\; Y_n(\infty)=0.
+\]</div>
+<p>This forces <span class="math-inline">\(C = 0\)</span>, so</p>
+<div class="math-block">\[
+Y_n(y) = D\,e^{-k_n y}.
+\]</div>
+<p>The separated solutions are therefore</p>
+<div class="math-block">\[
+T_n(x,y)
+= D_n\,e^{-k_n y}
+\sin\!\left( \frac{n\pi x}{a} \right),
+\qquad
+k_n = \frac{n\pi}{a}.
+\]</div>
+<h3 id="sec-10-5-superposition-and-the-base-condition">5. Superposition and the base condition</h3>
+<p>By the linearity of Laplace’s equation, the full solution is a sum over all modes:</p>
+<div class="math-block">\[
+T(x,y)
+= \sum_{n=1}^{\infty}
+D_n\,e^{-k_n y}
+\sin\!\left( \frac{n\pi x}{a} \right).
+\]</div>
+<p>The base <span class="math-inline">\(y=0\)</span> is held at temperature <span class="math-inline">\(T_0\)</span>:</p>
+<div class="math-block">\[
+T_0
+= T(x,0)
+= \sum_{n=1}^{\infty}
+D_n
+\sin\!\left( \frac{n\pi x}{a} \right),
+\]</div>
+<p>which is the <strong>Fourier sine series</strong> of the constant function <span class="math-inline">\(T_0\)</span> on <span class="math-inline">\((0,a)\)</span>.</p>
+<p>Using the standard coefficient formula,</p>
+<div class="math-block">\[
+D_n
+= \frac{2}{a}
+\int_{0}^{a}
+T_0\,
+\sin\!\left( \frac{n\pi x}{a} \right)\,dx
+= \frac{2T_0}{n\pi}\big( 1 - (-1)^{n} \big).
+\]</div>
+<p>Thus</p>
+<div class="math-block">\[
+D_n =
+\begin{cases}
+	\dfrac{4T_0}{n\pi}, &amp; n \;\text{odd},\\[4pt]
+	0, &amp; n \;\text{even}.
+\end{cases}
+\]</div>
+<figure id="chapter-10-fig-1" class="figure"><img src="assets/img/Fig10_2.png" alt=" 		Steady–state temperature distribution in a semi–infinite metal plate with 		boundary conditions 		$T(0,y)=T(a,y)=T(x,\infty)=0$ and $T(x,0)=T_0=100^{\circ}\mathrm{C}$, 		where $a=10\,\text{cm}$. 		The solution is given by the Fourier sine series 		$ 		T(x,y)=\sum_{m=0}^{\infty} 		\frac{2T_0}{(2m+1)\pi}\, 		\exp\!\left[-\frac{(2m+1)\pi y}{a}\right] 		\sin\!\left(\frac{(2m+1)\pi x}{a}\right). 		$ 		The first three odd eigenmodes ($n=1,3,5$) are shown together with the full 		temperature field reconstructed from the first fifty-one modes. 		Higher modes decay rapidly with height $y$, so the temperature profile far from 		the base is dominated by the fundamental mode. 	" loading="lazy" style="--figure-width: 100%;"><figcaption>
+		Steady–state temperature distribution in a semi–infinite metal plate with
+		boundary conditions
+		<span class="math-inline">\(T(0,y)=T(a,y)=T(x,\infty)=0\)</span> and <span class="math-inline">\(T(x,0)=T_0=100^{\circ}\mathrm{C}\)</span>,
+		where <span class="math-inline">\(a=10\,\text{cm}\)</span>.
+		The solution is given by the Fourier sine series
+		<span class="math-inline">\(
+		T(x,y)=\sum_{m=0}^{\infty}
+		\frac{2T_0}{(2m+1)\pi}\,
+		\exp\!\left[-\frac{(2m+1)\pi y}{a}\right]
+		\sin\!\left(\frac{(2m+1)\pi x}{a}\right).
+		\)</span>
+		The first three odd eigenmodes (<span class="math-inline">\(n=1,3,5\)</span>) are shown together with the full
+		temperature field reconstructed from the first fifty-one modes.
+		Higher modes decay rapidly with height <span class="math-inline">\(y\)</span>, so the temperature profile far from
+		the base is dominated by the fundamental mode.
+	</figcaption></figure>
+<h3 id="sec-10-6-final-temperature-distribution">6. Final temperature distribution</h3>
+<p>Writing the odd indices as <span class="math-inline">\(n = 2m+1\)</span>, the steady–state temperature distribution is</p>
+<div class="math-block">\[
+\boxed{
+	T(x,y)
+	=
+	\sum_{m=0}^{\infty}
+	\frac{4T_0}{(2m+1)\pi}\,
+	\exp\!\left[
+	-\frac{(2m+1)\pi y}{a}
+	\right]
+	\sin\!\left(
+	\frac{(2m+1)\pi x}{a}
+	\right).
+}
+\]</div>
+<p>This satisfies all boundary conditions:</p>
+<div class="math-block">\[
+T(0,y)=0,\qquad
+T(a,y)=0,\qquad
+T(x,\infty)=0,\qquad
+T(x,0)=T_0.
+\]</div>
+<section class="callout remark"><header>Remark - Mode interpretation</header><p>Higher modes (<span class="math-inline">\(n\ge 3\)</span>) decay rapidly with height <span class="math-inline">\(y\)</span>. Near the base, many modes contribute and the temperature varies more sharply in <span class="math-inline">\(x\)</span>. Far from the base, the solution is dominated by the fundamental mode <span class="math-inline">\(n=1\)</span>.</p></section>
+<h2 id="sec-10-helmholtz-equation-and-the-infinite-spherical-well">Helmholtz Equation and the Infinite Spherical Well</h2>
+<p>Using the time dependence</p>
+<div class="math-block">\[
+\Psi(\mathbf{r},t) = \psi(\mathbf{r})\,e^{-iEt/\hbar},
+\]</div>
+<p>the spatial wave function <span class="math-inline">\(\psi(\mathbf{r})\)</span> satisfies the time-independent Schrödinger equation.</p>
+<h3 id="sec-10-from-schr-dinger-to-helmholtz">From Schrödinger to Helmholtz</h3>
+<p>The equation</p>
+<div class="math-block">\[
+-\frac{\hbar^{2}}{2m}\nabla^{2}\psi + V(\mathbf{r})\psi = E\psi
+\]</div>
+<p>simplifies to the <strong>Helmholtz equation</strong></p>
+<div class="math-block">\[
+\boxed{\nabla^{2}\psi + k^{2}\psi = 0}
+\]</div>
+<p>whenever <span class="math-inline">\(V(\mathbf{r}) = V_{0}\)</span> is constant, where</p>
+<div class="math-block">\[
+k^{2} = \frac{2m}{\hbar^{2}}(E - V_{0}).
+\]</div>
+<h3 id="sec-10-infinite-spherical-well">Infinite Spherical Well</h3>
+<p>The potential for a 3D infinite spherical well is</p>
+<div class="math-block">\[
+V(r)=
+\begin{cases}
+	0, &amp; 0\le r&lt;a,\\
+	\infty, &amp; r\ge a.
+\end{cases}
+\]</div>
+<p>Inside the well, <span class="math-inline">\(V=0\)</span>, and thus</p>
+<div class="math-block">\[
+\nabla^{2}\psi + k^{2}\psi = 0,
+\qquad
+k^{2}=\frac{2mE}{\hbar^{2}}.
+\]</div>
+<p>Boundary conditions:</p>
+<div class="math-block">\[
+\psi(r=a,\theta,\phi)=0,
+\qquad
+\psi(r\to 0)\ \text{finite}.
+\]</div>
+<p>This leads naturally to separation in spherical coordinates, producing Bessel functions in the radial equation and Legendre functions in the angular part.</p>
+<h3 id="sec-10-separation-in-spherical-coordinates-three-odes">Separation in Spherical Coordinates: Three ODEs</h3>
+<p>In spherical coordinates <span class="math-inline">\((r,\theta,\phi)\)</span>, the Laplacian is</p>
+<div class="math-block">\[
+\nabla^2\psi =
+\frac{1}{r^2}\frac{\partial}{\partial r}
+\left(r^2\frac{\partial \psi}{\partial r}\right)
++ \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}
+\left(\sin\theta\,\frac{\partial \psi}{\partial\theta}\right)
++ \frac{1}{r^2\sin^2\theta}\,\frac{\partial^2\psi}{\partial\phi^2}.
+\]</div>
+<p>We look for a fully separated solution of the form</p>
+<div class="math-block">\[
+\psi(r,\theta,\phi)
+= R(r)\,\Theta(\theta)\,\Phi(\phi).
+\]</div>
+<p>Substituting into <span class="math-inline">\(\nabla^2\psi + k^2\psi = 0\)</span> and dividing by <span class="math-inline">\(R\,\Theta\,\Phi\)</span> gives</p>
+<div class="math-block">\[
+\frac{1}{R}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)
++ k^2 r^2
++
+\frac{1}{\Theta\sin\theta}
+\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
++
+\frac{1}{\Phi\sin^2\theta}\frac{d^2\Phi}{d\phi^2}
+= 0.
+\]</div>
+<p>Group the radial and angular parts:</p>
+<div class="math-block">\[
+\underbrace{\frac{1}{R}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)
+	+ k^2 r^2}_{\text{depends only on } r}
++
+\underbrace{
+	\frac{1}{\Theta\sin\theta}
+	\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
+	+
+	\frac{1}{\Phi\sin^2\theta}\frac{d^2\Phi}{d\phi^2}
+}_{\text{depends only on }(\theta,\phi)}
+= 0.
+\]</div>
+<p>Since the first term depends only on <span class="math-inline">\(r\)</span> and the second only on <span class="math-inline">\(\theta,\phi\)</span>, each must equal a constant.  We choose a separation constant <span class="math-inline">\(-\ell(\ell+1)\)</span>:</p>
+<div class="math-block">\[
+\frac{1}{\Theta\sin\theta}
+\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
++
+\frac{1}{\Phi\sin^2\theta}\frac{d^2\Phi}{d\phi^2}
+= -\ell(\ell+1),
+\]</div>
+<div class="math-block">\[
+\frac{1}{R}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)
++ \left[k^2 r^2 - \ell(\ell+1)\right] = 0.
+\]</div>
+<p>We now separate the angular equation further.</p>
+<h3 id="sec-10-angular-equations-and">Angular Equations: <span class="math-inline">\(\Phi(\phi)\)</span> and <span class="math-inline">\(\Theta(\theta)\)</span></h3>
+<p>Start from</p>
+<div class="math-block">\[
+\frac{1}{\Theta\sin\theta}
+\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
++
+\frac{1}{\Phi\sin^2\theta}\frac{d^2\Phi}{d\phi^2}
+= -\ell(\ell+1).
+\]</div>
+<p>Multiply by <span class="math-inline">\(\sin^2\theta\)</span>:</p>
+<div class="math-block">\[
+\frac{\sin\theta}{\Theta}
+\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
++
+\frac{1}{\Phi}\frac{d^2\Phi}{d\phi^2}
+= -\ell(\ell+1)\sin^2\theta.
+\]</div>
+<p>The first term depends only on <span class="math-inline">\(\theta\)</span>, the second only on <span class="math-inline">\(\phi\)</span>, so we separate again by setting each side equal to a constant, which we call <span class="math-inline">\(-m^2\)</span>:</p>
+<div class="math-block">\[
+\frac{1}{\Phi}\frac{d^2\Phi}{d\phi^2} = -m^2,
+\qquad
+\frac{\sin\theta}{\Theta}
+\frac{d}{d\theta}\!\left(\sin\theta \frac{d\Theta}{d\theta}\right)
++ \ell(\ell+1)\sin^2\theta = m^2.
+\]</div>
+<p>Thus we obtain two ODEs:</p>
+<ol><li><p><strong><span class="math-inline">\(\phi\)</span>-equation</strong></p>
+<div class="math-block">\[
+	\boxed{
+		\frac{d^2\Phi}{d\phi^2} + m^2 \Phi = 0.
+	}
+	\]</div></li><li><p><strong><span class="math-inline">\(\theta\)</span>-equation</strong></p>
+<div class="math-block">\[
+	\boxed{
+		\frac{1}{\sin\theta}\frac{d}{d\theta}
+		\left(\sin\theta \frac{d\Theta}{d\theta}\right)
+		+ \left[\ell(\ell+1) - \frac{m^2}{\sin^2\theta}\right]\Theta(\theta) = 0.
+	}
+	\]</div></li></ol>
+<p class="paragraph-title">Solution of the <span class="math-inline">\(\phi\)</span>-equation.</p>
+<p>The general solution is</p>
+<div class="math-block">\[
+\Phi(\phi) = A_\phi e^{im\phi} + B_\phi e^{-im\phi}.
+\]</div>
+<p>Single-valuedness of <span class="math-inline">\(\psi\)</span> requires <span class="math-inline">\(\Phi(\phi+2\pi) = \Phi(\phi)\)</span>, which implies</p>
+<div class="math-block">\[
+m = 0, \pm1, \pm2, \ldots
+\]</div>
+<p>We usually choose the basis <span class="math-inline">\(e^{im\phi}\)</span>, so we set</p>
+<div class="math-block">\[
+\Phi(\phi) = e^{im\phi}.
+\]</div>
+<p class="paragraph-title">Solution of the <span class="math-inline">\(\theta\)</span>-equation.</p>
+<p>With the substitution <span class="math-inline">\(x = \cos\theta\)</span>, this equation becomes the <strong>associated Legendre equation</strong>. Its regular solutions are the <strong>associated Legendre functions</strong>:</p>
+<div class="math-block">\[
+\Theta(\theta) \propto P_\ell^{\,m}(\cos\theta),
+\]</div>
+<p>with <span class="math-inline">\(\ell = 0,1,2,\ldots\)</span> and <span class="math-inline">\(|m| \le \ell\)</span>.</p>
+<p>Combining <span class="math-inline">\(\Theta\)</span> and <span class="math-inline">\(\Phi\)</span>, the normalized angular functions are the <strong>spherical harmonics</strong>:</p>
+<div class="math-block">\[
+\boxed{
+	Y_{\ell m}(\theta,\phi)
+	= N_{\ell m} P_\ell^{\,m}(\cos\theta)\,e^{im\phi},
+}
+\]</div>
+<p>where <span class="math-inline">\(N_{\ell m}\)</span> is a normalization constant.  The set <span class="math-inline">\(\{Y_{\ell m}\}\)</span> forms an orthonormal basis on the sphere.</p>
+<p>Thus the angular part of the solution is completely determined:</p>
+<div class="math-block">\[
+\psi(r,\theta,\phi) = R_\ell(r)\,Y_{\ell m}(\theta,\phi).
+\]</div>
+<h3 id="sec-10-radial-equation-and-bessel-functions">Radial Equation and Bessel Functions</h3>
+<p>The radial part of the separated solution satisfies</p>
+<div class="math-block">\[
+\boxed{
+	\frac{d}{dr}\!\left(r^{2}\frac{dR}{dr}\right)
+	+ \left[k^{2} r^{2} - \ell(\ell+1)\right] R(r) = 0.
+}
+\]</div>
+<p>We now show how this can be solved in terms of ordinary Bessel functions of half–integer order.</p>
+<p class="paragraph-title">Step 1. Non-dimensionalize the equation.</p>
+<p>Introduce the dimensionless variable</p>
+<div class="math-block">\[
+x = kr,
+\]</div>
+<p>so that</p>
+<div class="math-block">\[
+\frac{d}{dr} = k\,\frac{d}{dx},
+\qquad
+\frac{d^{2}}{dr^{2}} = k^{2}\,\frac{d^{2}}{dx^{2}}.
+\]</div>
+<p>First expand the derivative in the radial equation:</p>
+<div class="math-block">\[
+\frac{d}{dr}\!\left(r^{2}\frac{dR}{dr}\right)
+= r^{2}\frac{d^{2}R}{dr^{2}} + 2r\frac{dR}{dr}.
+\]</div>
+<p>Thus the equation becomes</p>
+<div class="math-block">\[
+r^{2}\frac{d^{2}R}{dr^{2}} + 2r\frac{dR}{dr}
++ \left[k^{2} r^{2} - \ell(\ell+1)\right]R(r) = 0.
+\]</div>
+<p>Now rewrite everything in terms of <span class="math-inline">\(x = kr\)</span>. Using <span class="math-inline">\(r = x/k\)</span>,</p>
+<div class="math-block">\[
+r^{2}\frac{d^{2}R}{dr^{2}}
+= \frac{x^{2}}{k^{2}} \cdot k^{2}\frac{d^{2}R}{dx^{2}}
+= x^{2}\frac{d^{2}R}{dx^{2}},
+\]</div>
+<div class="math-block">\[
+2r\frac{dR}{dr}
+= 2\frac{x}{k}\cdot k\frac{dR}{dx}
+= 2x\frac{dR}{dx},
+\]</div>
+<p>and</p>
+<div class="math-block">\[
+k^{2}r^{2} = x^{2}.
+\]</div>
+<p>Hence the radial equation becomes</p>
+<div class="math-block">\[
+\boxed{
+	x^{2}\frac{d^{2}R}{dx^{2}} + 2x\frac{dR}{dx}
+	+ \bigl(x^{2} - \ell(\ell+1)\bigr) R(x) = 0.
+}
+\]</div>
+<p class="paragraph-title">Step 2. Reduce to the standard Bessel form.</p>
+<p>The standard Bessel equation of order <span class="math-inline">\(p\)</span> is</p>
+<div class="math-block">\[
+x^{2} y&#x27;&#x27; + x y&#x27; + (x^{2} - p^{2})y = 0.
+\]</div>
+<p>Our equation has a <span class="math-inline">\(2x \frac{dR}{dx}\)</span> term instead of <span class="math-inline">\(x \frac{dR}{dx}\)</span>, so we remove the extra factor by factoring out a square root. We set</p>
+<div class="math-block">\[
+R(x) = x^{-1/2} F(x),
+\]</div>
+<p>and compute the derivatives:</p>
+<div class="math-block">\[
+R&#x27;(x) = -\frac{1}{2}x^{-3/2} F(x) + x^{-1/2} F&#x27;(x),
+\]</div>
+<div class="math-block">\[
+R&#x27;&#x27;(x)
+= \frac{3}{4}x^{-5/2}F(x) - x^{-3/2}F&#x27;(x) + x^{-1/2}F&#x27;&#x27;(x).
+\]</div>
+<p>Now substitute these into</p>
+<div class="math-block">\[
+x^{2} R&#x27;&#x27; + 2x R&#x27; + \bigl(x^{2} - \ell(\ell+1)\bigr)R = 0.
+\]</div>
+<p>Compute each term:</p>
+<div class="math-block">\[
+x^{2} R&#x27;&#x27; = x^{2}\!\left(
+\frac{3}{4}x^{-5/2}F
+- x^{-3/2}F&#x27;
++ x^{-1/2}F&#x27;&#x27;
+\right)
+=
+\frac{3}{4}x^{-1/2}F - x^{1/2}F&#x27; + x^{3/2}F&#x27;&#x27;,
+\]</div>
+<div class="math-block">\[
+2x R&#x27; = 2x\!\left(
+-\frac{1}{2}x^{-3/2}F + x^{-1/2}F&#x27;
+\right)
+= -x^{-1/2}F + 2x^{1/2}F&#x27;,
+\]</div>
+<div class="math-block">\[
+\bigl(x^{2} - \ell(\ell+1)\bigr)R
+=
+\bigl(x^{2} - \ell(\ell+1)\bigr)\,x^{-1/2}F
+=
+x^{3/2}F - \ell(\ell+1)x^{-1/2}F.
+\]</div>
+<p>Add them together:</p>
+<div class="math-block">\[
+x^{2} R&#x27;&#x27; + 2x R&#x27; + \bigl(x^{2} - \ell(\ell+1)\bigr)R
+=
+\Bigl(\tfrac{3}{4}x^{-1/2}F - x^{1/2}F&#x27; + x^{3/2}F&#x27;&#x27;\Bigr)
++
+\Bigl(-x^{-1/2}F + 2x^{1/2}F&#x27;\Bigr)
++
+\Bigl(x^{3/2}F - \ell(\ell+1)x^{-1/2}F\Bigr).
+\]</div>
+<p>Group terms by powers of <span class="math-inline">\(x\)</span>:</p>
+<p>- Coefficient of <span class="math-inline">\(x^{3/2}\)</span>: <span class="math-inline">\(F&#x27;&#x27; + F\)</span>, - Coefficient of <span class="math-inline">\(x^{1/2}\)</span>: <span class="math-inline">\(-F&#x27; + 2F&#x27; = F&#x27;\)</span>, - Coefficient of <span class="math-inline">\(x^{-1/2}\)</span>: <span class="math-inline">\(\tfrac{3}{4}F - F - \ell(\ell+1)F = -\bigl(\ell(\ell+1) + \tfrac{1}{4}\bigr)F\)</span>.</p>
+<p>Thus</p>
+<div class="math-block">\[
+x^{2} R&#x27;&#x27; + 2x R&#x27; + \bigl(x^{2} - \ell(\ell+1)\bigr)R
+=
+x^{3/2}\!\left[
+F&#x27;&#x27; + \frac{1}{x}F&#x27; + \left(1 - \frac{\ell(\ell+1)+\tfrac{1}{4}}{x^{2}}\right)F
+\right].
+\]</div>
+<p>Since <span class="math-inline">\(x^{3/2}\neq 0\)</span>, the bracket must vanish:</p>
+<div class="math-block">\[
+F&#x27;&#x27;(x) + \frac{1}{x}F&#x27;(x)
++ \left[1 - \frac{\ell(\ell+1)+\tfrac{1}{4}}{x^{2}}\right]F(x) = 0.
+\]</div>
+<p>Note that</p>
+<div class="math-block">\[
+\ell(\ell+1)+\tfrac{1}{4} = \left(\ell+\tfrac{1}{2}\right)^{2},
+\]</div>
+<p>so the equation becomes</p>
+<div class="math-block">\[
+\boxed{
+	x^{2} F&#x27;&#x27; + x F&#x27; + \left(x^{2} - \left(\ell+\tfrac{1}{2}\right)^{2}\right)F = 0,
+}
+\]</div>
+<p>which is precisely the Bessel equation of order</p>
+<div class="math-block">\[
+p = \ell + \tfrac{1}{2}.
+\]</div>
+<p class="paragraph-title">Step 3. General solution and return to <span class="math-inline">\(R_\ell(r)\)</span>.</p>
+<p>The general solution of the Bessel equation of order <span class="math-inline">\(p\)</span> is</p>
+<div class="math-block">\[
+F(x) = A\,J_{p}(x) + B\,Y_{p}(x),
+\]</div>
+<p>so here</p>
+<div class="math-block">\[
+F(x) = A\,J_{\ell+1/2}(x) + B\,Y_{\ell+1/2}(x).
+\]</div>
+<p>Recall that <span class="math-inline">\(R(x) = x^{-1/2}F(x)\)</span>, hence</p>
+<div class="math-block">\[
+R(x)
+= x^{-1/2}
+\left[
+A\,J_{\ell+1/2}(x) + B\,Y_{\ell+1/2}(x)
+\right].
+\]</div>
+<p>Returning to the original variable <span class="math-inline">\(r\)</span> with <span class="math-inline">\(x = kr\)</span>, we obtain</p>
+<div class="math-block">\[
+R_\ell(r)
+= \frac{1}{\sqrt{kr}}
+\left[
+A\,J_{\ell+1/2}(kr) + B\,Y_{\ell+1/2}(kr)
+\right].
+\]</div>
+<p>Absorbing the overall factor <span class="math-inline">\(1/\sqrt{k}\)</span> into the constants and writing it in the conventional form,</p>
+<div class="math-block">\[
+\boxed{
+	R_\ell(r)
+	=
+	A\,\sqrt{\frac{\pi}{2kr}}\,
+	J_{\ell+1/2}(kr)
+	+
+	B\,\sqrt{\frac{\pi}{2kr}}\,
+	Y_{\ell+1/2}(kr).
+}
+\]</div>
+<p>Thus the radial equation for the infinite spherical well is solved in terms of ordinary Bessel functions of half–integer order.</p>
+<p>where <span class="math-inline">\(J_{p}\)</span> and <span class="math-inline">\(Y_{p}\)</span> are the Bessel functions of the first and second kind.</p>
+<p>  <strong>Behavior near the origin.</strong> For small argument <span class="math-inline">\(x\to 0\)</span>,</p>
+<div class="math-block">\[
+J_{p}(x) \sim \frac{1}{\Gamma(p+1)}
+\left(\frac{x}{2}\right)^{p},
+\qquad
+Y_{p}(x) \sim -\frac{\Gamma(p)}{\pi}
+\left(\frac{2}{x}\right)^{p},
+\quad (p&gt;0).
+\]</div>
+<p>Thus for <span class="math-inline">\(p=\ell+1/2&gt;0\)</span>,</p>
+<div class="math-block">\[
+J_{\ell+1/2}(kr) \sim (kr)^{\ell+1/2}, \qquad
+Y_{\ell+1/2}(kr) \sim (kr)^{-\ell-1/2},
+\]</div>
+<p>so the <span class="math-inline">\(Y_{\ell+1/2}\)</span> term diverges as <span class="math-inline">\(r\to 0\)</span>.</p>
+<section class="callout remark"><header>Remark - Regularity at the origin</header><p>Physical wave functions must stay finite at <span class="math-inline">\(r=0\)</span>. Therefore the coefficient of the singular solution must vanish:</p>
+<div class="math-block">\[
+	B = 0.
+	\]</div></section>
+<p>Absorbing constants into a single coefficient, the physical radial solution inside the well is</p>
+<div class="math-block">\[
+\boxed{
+	R_\ell(r)
+	= A_\ell\,\sqrt{\frac{\pi}{2kr}}\,
+	J_{\ell+1/2}(kr).
+}
+\]</div>
+<h3 id="sec-10-boundary-condition-and-energy-quantization">Boundary Condition and Energy Quantization</h3>
+<p>The infinite potential at <span class="math-inline">\(r=a\)</span> forces the wave function to vanish:</p>
+<div class="math-block">\[
+\psi(r=a,\theta,\phi) = 0.
+\]</div>
+<p>Since the spherical harmonic <span class="math-inline">\(Y_{\ell m}(\theta,\phi)\)</span> is never identically zero, this requires</p>
+<div class="math-block">\[
+R_\ell(a) = 0.
+\]</div>
+<p>Using the expression for <span class="math-inline">\(R_\ell(r)\)</span>, this becomes</p>
+<div class="math-block">\[
+\sqrt{\frac{\pi}{2k a}}\, J_{\ell+1/2}(k a) = 0.
+\]</div>
+<p>The prefactor is nonzero, so the boundary condition requires</p>
+<div class="math-block">\[
+J_{\ell+1/2}(ka) = 0.
+\]</div>
+<p>Let <span class="math-inline">\(\beta_{\ell n}\)</span> denote the <span class="math-inline">\(n\)</span>-th positive zero of <span class="math-inline">\(J_{\ell+1/2}(x)\)</span>:</p>
+<div class="math-block">\[
+J_{\ell+1/2}(\beta_{\ell n}) = 0,
+\qquad n=1,2,3,\ldots
+\]</div>
+<p>Then</p>
+<div class="math-block">\[
+k_{\ell n} = \frac{\beta_{\ell n}}{a},
+\]</div>
+<p>and the allowed energies are</p>
+<div class="math-block">\[
+\boxed{
+	E_{\ell n}
+	= \frac{\hbar^{2} k_{\ell n}^{2}}{2m}
+	= \frac{\hbar^{2}}{2m}
+	\left(\frac{\beta_{\ell n}}{a}\right)^{2}.
+}
+\]</div>
+<p>The corresponding (unnormalized) stationary states are</p>
+<div class="math-block">\[
+\boxed{
+	\psi_{\ell m n}(r,\theta,\phi)
+	= A_{\ell n}\,
+	\sqrt{\frac{\pi}{2k_{\ell n} r}}\,
+	J_{\ell+1/2}(k_{\ell n} r)\,
+	Y_{\ell m}(\theta,\phi).
+}
+\]</div>
+<p>with</p>
+<div class="math-block">\[
+\ell = 0,1,2,\ldots,
+\qquad m = -\ell,\ldots,\ell,
+\qquad n=1,2,3,\ldots
+\]</div>
+<h3 id="sec-10-summary-of-the-separation">Summary of the separation:</h3>
+<ul><li><p>The <span class="math-inline">\(\phi\)</span>-equation gives periodic solutions <span class="math-inline">\(\Phi(\phi)=e^{im\phi}\)</span>.</p></li><li><p>The <span class="math-inline">\(\theta\)</span>-equation gives associated Legendre functions <span class="math-inline">\(P_\ell^{\,m}(\cos\theta)\)</span>.</p></li><li><p>The radial equation gives Bessel functions of half-integer order <span class="math-inline">\(J_{\ell+1/2}(kr)\)</span>.</p></li></ul>
+<p>Together these yield the full set of eigenfunctions <span class="math-inline">\(\psi_{\ell m n}\)</span> and quantized energies <span class="math-inline">\(E_{\ell n}\)</span>.</p>
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      <a href="../chapter-09/index.html">Previous: Series Solutions of Ordinary Differential Equations (Chapter 12)</a>
+      <a href="../../toc.html">Contents</a>
+      <span></span>
+    </nav>
+  </article>
+</main>
+</body>
+</html>
