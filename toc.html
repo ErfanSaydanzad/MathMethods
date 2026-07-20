@@ -12,8 +12,7 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
-        // The PDF numbers equations within the chapter (
-umberwithin
+        // The PDF numbers equations within the chapter (\numberwithin
         // {equation}{chapter}), so "1.8" is the eighth equation of
         // chapter 1. MathJax counts from 1 on every page, which would have
         // shown that same equation as "8". Prefixing the chapter number
@@ -26,9 +25,9 @@ umberwithin
           dv: ['{\\frac{d #1}{d #2}}', 2],
           abs: ['{\\left|#1\\right|}', 1],
           norm: ['{\\left\\|#1\\right\\|}', 1],
-          curl: '{\\operatorname{curl}}',
-          div: '{\\operatorname{div}}',
-          grad: '{\\operatorname{grad}}',
+          curl: '{\\vec{\\nabla}\\times}',
+          div: '{\\vec{\\nabla}\\cdot}',
+          grad: '{\\vec{\\nabla}}',
           sech: '{\\operatorname{sech}}',
           csch: '{\\operatorname{csch}}',
           coth: '{\\operatorname{coth}}',
@@ -65,7 +64,6 @@ umberwithin
   <h2><a href="chapters/chapter-01/index.html">Chapter 1. Infinite Series and Power Series</a></h2>
   <ol><li><a href="chapters/chapter-01/index.html#sec-1-definitions-and-notation">Definitions and Notation</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-geometric-sequences-and-series">Geometric Sequences and Series</a></li>
-<li><a href="chapters/chapter-01/index.html#sec-1-applications-of-series">Applications of Series</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-limit-of-the-general-term-as-n">Limit of the General Term as n</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-testing-series-for-convergence">Testing Series for Convergence</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-alternating-series">Alternating Series</a></li>
@@ -74,7 +72,9 @@ umberwithin
 <li><a href="chapters/chapter-01/index.html#sec-1-theorems-about-power-series">Theorems About Power Series</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-taylor-and-maclaurin-series">Taylor and Maclaurin Series</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-techniques-for-obtaining-power-series-expansions">Techniques for Obtaining Power Series Expansions</a></li>
-<li><a href="chapters/chapter-01/index.html#sec-1-some-applications">Some Applications</a></li></ol>
+<li><a href="chapters/chapter-01/index.html#sec-1-applications-of-series">Applications of Series</a></li>
+<li><a href="chapters/chapter-01/index.html#sec-1-summary-types-of-series">Summary: Types of Series</a></li>
+<li><a href="chapters/chapter-01/index.html#sec-1-for-the-interested-reader">For the Interested Reader</a></li></ol>
 </section><section class="toc-chapter">
   <h2><a href="chapters/chapter-02/index.html">Chapter 2. Complex Numbers</a></h2>
   <ol><li><a href="chapters/chapter-02/index.html#sec-2-introduction-to-complex-numbers">Introduction to Complex Numbers</a></li>

@@ -12,8 +12,7 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
-        // The PDF numbers equations within the chapter (
-umberwithin
+        // The PDF numbers equations within the chapter (\numberwithin
         // {equation}{chapter}), so "1.8" is the eighth equation of
         // chapter 1. MathJax counts from 1 on every page, which would have
         // shown that same equation as "8". Prefixing the chapter number
@@ -26,9 +25,9 @@ umberwithin
           dv: ['{\\frac{d #1}{d #2}}', 2],
           abs: ['{\\left|#1\\right|}', 1],
           norm: ['{\\left\\|#1\\right\\|}', 1],
-          curl: '{\\operatorname{curl}}',
-          div: '{\\operatorname{div}}',
-          grad: '{\\operatorname{grad}}',
+          curl: '{\\vec{\\nabla}\\times}',
+          div: '{\\vec{\\nabla}\\cdot}',
+          grad: '{\\vec{\\nabla}}',
           sech: '{\\operatorname{sech}}',
           csch: '{\\operatorname{csch}}',
           coth: '{\\operatorname{coth}}',

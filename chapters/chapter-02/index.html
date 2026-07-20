@@ -12,8 +12,7 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
-        // The PDF numbers equations within the chapter (
-umberwithin
+        // The PDF numbers equations within the chapter (\numberwithin
         // {equation}{chapter}), so "1.8" is the eighth equation of
         // chapter 1. MathJax counts from 1 on every page, which would have
         // shown that same equation as "8". Prefixing the chapter number
@@ -26,9 +25,9 @@ umberwithin
           dv: ['{\\frac{d #1}{d #2}}', 2],
           abs: ['{\\left|#1\\right|}', 1],
           norm: ['{\\left\\|#1\\right\\|}', 1],
-          curl: '{\\operatorname{curl}}',
-          div: '{\\operatorname{div}}',
-          grad: '{\\operatorname{grad}}',
+          curl: '{\\vec{\\nabla}\\times}',
+          div: '{\\vec{\\nabla}\\cdot}',
+          grad: '{\\vec{\\nabla}}',
           sech: '{\\operatorname{sech}}',
           csch: '{\\operatorname{csch}}',
           coth: '{\\operatorname{coth}}',
@@ -472,7 +471,7 @@ z_1z_2=(x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1).
 	= \frac{|z+1-i|}{3}.
 	\]</div>
 <p>Thus convergence requires <span class="math-inline">\(|z+1-i| &lt; 3\)</span>. The disk is centered at <span class="math-inline">\(z_0 = -1 + i\)</span> with radius <span class="math-inline">\(R = 3\)</span>.</p></section>
-<section class="callout remark"><header>Remark - Properties of the Disk of Convergence</header><ul><li><p>If <span class="math-inline">\(R = \infty\)</span>, the power series converges for all <span class="math-inline">\(z \in \mathbb{C}\)</span>. In this case, the function defined by the series is called <strong>entire</strong>.</p></li><li><p>If <span class="math-inline">\(R = 0\)</span>, the series converges only at the center <span class="math-inline">\(z = z_0\)</span>.</p></li><li><p>For all <span class="math-inline">\(z\)</span> with <span class="math-inline">\(|z - z_0| &lt; R\)</span>, convergence is uniform on compact subsets of the disk. Term-by-term differentiation and integration are therefore valid within this region (see Theorem in Section <span class="math-inline">\(\ref{sec:complex_power_series}\)</span>).</p></li></ul></section>
+<section class="callout remark"><header>Remark - Properties of the Disk of Convergence</header><ul><li><p>If <span class="math-inline">\(R = \infty\)</span>, the power series converges for all <span class="math-inline">\(z \in \mathbb{C}\)</span>. In this case, the function defined by the series is called <strong>entire</strong>.</p></li><li><p>If <span class="math-inline">\(R = 0\)</span>, the series converges only at the center <span class="math-inline">\(z = z_0\)</span>.</p></li><li><p>For all <span class="math-inline">\(z\)</span> with <span class="math-inline">\(|z - z_0| &lt; R\)</span>, convergence is uniform on compact subsets of the disk. Term-by-term differentiation and integration are therefore valid within this region (see Theorem in Section <a href="../chapter-02/index.html#sec-2-complex-power-series-disk-of-convergence">2.5</a>).</p></li></ul></section>
 <h2 id="sec-2-euler-s-formula">Euler's Formula</h2>
 <section class="callout theorem"><header>Theorem - Euler's Formula</header><p>For any real angle <span class="math-inline">\(\theta\)</span>,</p>
 <div class="math-block">\[
