@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '10.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 10</p>
@@ -54,6 +64,7 @@
     <nav class="chapter-toc" aria-label="Chapter contents">
       <a class="toc-level-2" href="#sec-10-introduction">Introduction</a>
 <a class="toc-level-2" href="#sec-10-separating-time-and-space">Separating Time and Space</a>
+<a class="toc-level-2" href="#sec-10-separation-of-variables-and-coordinate-symmetry">Separation of Variables and Coordinate Symmetry</a>
 <a class="toc-level-3" href="#sec-10-spatial-separation-ansatz-and-laplacians">Spatial Separation Ansatz and Laplacians</a>
 <a class="toc-level-2" href="#sec-10-laplace-s-equation-steady-state-temperature-in-a-semi-infinite-plate">Laplace’s Equation: Steady–State Temperature in a Semi–Infinite Plate</a>
 <a class="toc-level-3" href="#sec-10-1-governing-equation">1. Governing equation</a>
@@ -154,7 +165,7 @@ f(t) = C\,e^{-iEt/\hbar}.
 \Psi(\mathbf{r},t) = \psi(\mathbf{r})e^{-iEt/\hbar}.
 \]</div></section>
 <section class="callout remark"><header>Remark</header><p>Once time has been separated, all remaining work focuses on solving for <span class="math-inline">\(\psi(\mathbf{r})\)</span>, the time-independent spatial wave function.</p></section>
-<p>Separation of Variables and Coordinate Symmetry</p>
+<h2 id="sec-10-separation-of-variables-and-coordinate-symmetry">Separation of Variables and Coordinate Symmetry</h2>
 <p>After separating time, the spatial part <span class="math-inline">\(\psi(\mathbf{r})\)</span> typically satisfies</p>
 <div class="math-block">\[
 \nabla^{2}\psi + \lambda \psi = 0
@@ -822,5 +833,10 @@ k_{\ell n} = \frac{\beta_{\ell n}}{a},
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

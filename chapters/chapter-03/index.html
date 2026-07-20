@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '3.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 3</p>
@@ -58,6 +68,7 @@
 <a class="toc-level-2" href="#sec-3-elementary-row-operations">Elementary Row Operations</a>
 <a class="toc-level-2" href="#sec-3-row-echelon-form-ref-and-reduced-row-echelon-form-rref">Row Echelon Form (REF) and Reduced Row Echelon Form (RREF)</a>
 <a class="toc-level-2" href="#sec-3-gauss-jordan-reduction">Gauss--Jordan Reduction</a>
+<a class="toc-level-2" href="#sec-3-determinants">Determinants</a>
 <a class="toc-level-3" href="#sec-3-general-definition-cofactor-expansion">General Definition: Cofactor Expansion</a>
 <a class="toc-level-3" href="#sec-3-properties-of-determinants">Properties of Determinants</a>
 <a class="toc-level-2" href="#sec-3-cramer-s-rule">Cramer&#x27;s Rule</a>
@@ -111,7 +122,7 @@
 <a class="toc-level-3" href="#sec-3-rotation-about-the-x-axis">Rotation about the x-axis</a>
 <a class="toc-level-3" href="#sec-3-general-3d-rotation">General 3D Rotation</a>
 <a class="toc-level-2" href="#sec-3-linear-independence">Linear Independence</a>
-<a class="toc-level-3" href="#sec-3-vectors-60">Vectors</a>
+<a class="toc-level-3" href="#sec-3-vectors-61">Vectors</a>
 <a class="toc-level-3" href="#sec-3-functions-and-linear-dependence">Functions and Linear Dependence</a>
 <a class="toc-level-3" href="#sec-3-wronskian-test-for-independence">Wronskian Test for Independence</a>
 <a class="toc-level-2" href="#sec-3-homogeneous-equations">Homogeneous Equations</a>
@@ -127,6 +138,8 @@
 <a class="toc-level-3" href="#sec-3-modes-by-symmetry">Modes by Symmetry</a>
 <a class="toc-level-2" href="#sec-3-general-vector-spaces">General Vector Spaces</a>
 <a class="toc-level-3" href="#sec-3-definition-of-a-vector-space">Definition of a Vector Space</a>
+<a class="toc-level-3" href="#sec-3-examples-of-vector-spaces">Examples of Vector Spaces</a>
+<a class="toc-level-2" href="#sec-3-bra-ket-notation-and-inner-outer-products">Bra--Ket Notation and Inner/Outer Products</a>
 <a class="toc-level-3" href="#sec-3-motivation">Motivation</a>
 <a class="toc-level-3" href="#sec-3-kets-and-bras">Kets and Bras</a>
 <a class="toc-level-3" href="#sec-3-inner-product-dot-product">Inner Product (Dot Product)</a>
@@ -142,7 +155,7 @@
 <a class="toc-level-3" href="#sec-3-orthonormal-bases">Orthonormal Bases</a>
 <a class="toc-level-3" href="#sec-3-schwarz-s-inequality">Schwarz’s Inequality</a>
 <a class="toc-level-2" href="#sec-3-gram-schmidt-method-of-orthonormalization">Gram--Schmidt Method of Orthonormalization</a>
-<a class="toc-level-3" href="#sec-3-motivation-91">Motivation</a>
+<a class="toc-level-3" href="#sec-3-motivation-94">Motivation</a>
 <a class="toc-level-3" href="#sec-3-procedure">Procedure</a>
     </nav>
   </div>
@@ -183,7 +196,7 @@
 <div class="math-block">\[
 	\Rightarrow\ (x_1,x_2)=(3,2).
 	\]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-01.svg" alt="TikZ diagram" loading="lazy"></figure></div></section>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 55%;"><img src="assets/img/ch03_fig1_unique_solution.png" alt="ch03 fig1 unique solution" loading="lazy"></figure></div></section>
 <h3 id="sec-3-matrix-form-and-augmented-matrix">Matrix Form, and Augmented Matrix</h3>
 <p>A system of linear equations</p>
 <div class="math-block">\[
@@ -232,7 +245,7 @@
 <p>Pivot in column 3 has nonzero entries <em>above</em> it, violating (iii).</p></section>
 <section class="callout remark"><header>Remark - Rank</header><p>of a matrix equals the number of pivots (nonzero rows) in its RREF.</p></section>
 <h2 id="sec-3-gauss-jordan-reduction">Gauss--Jordan Reduction</h2>
-<section class="callout example"><header>Example</header><p>System:</p>
+<section class="callout example"><header>Example - I   (Unique solution)</header><p>System:</p>
 <div class="math-block">\[
 	\begin{cases}
 		x_1+x_2=5\\
@@ -266,7 +279,7 @@
 	\boxed{x_1=3,\quad x_2=2}
 	\]</div>
 <p>This is RREF; <span class="math-inline">\(\mathrm{rank}(M)=\mathrm{rank}(A)=2=n\Rightarrow\)</span> unique solution.</p></section>
-<section class="callout example"><header>Example</header><div class="math-block">\[
+<section class="callout example"><header>Example - II   (Infinitely many solutions)</header><div class="math-block">\[
 	\begin{cases}
 		x_1+x_2=2\\
 		2x_1+2x_2=4
@@ -286,7 +299,7 @@
 <div class="math-block">\[
 	\boxed{(x_1,x_2)=(2-t,t),\ t\in\mathbb{R}}.
 	\]</div></section>
-<section class="callout example"><header>Example</header><div class="math-block">\[
+<section class="callout example"><header>Example - III   (Inconsistent)</header><div class="math-block">\[
 	\begin{cases}
 		x-y+4z=5\\
 		2x-3y+8z=4\\
@@ -318,7 +331,7 @@
 <div class="math-block">\[
 	\boxed{\mathrm{rank}(M)=2,\ \mathrm{rank}(A)=3\Rightarrow\text{ no solution (inconsistent).}}
 	\]</div></section>
-<section class="callout example"><header>Example</header><div class="math-block">\[
+<section class="callout example"><header>Example - IV   (Unique solution)</header><div class="math-block">\[
 	\left[
 	\begin{array}{ccc|c}
 		2&amp;0&amp;-1&amp;2\\
@@ -411,16 +424,16 @@
 		\text{(c)}&amp; x+y=2,\;\ x-y=4\quad\Rightarrow\ (x,y)=(3,-1)\ \text{(unique).}
 	\end{array}
 	\]</div></section>
-<section class="callout example"><header>Example - IV   (Unique solution)</header><p class="paragraph-title">(a) Parallel lines <span class="math-inline">\(\Rightarrow\)</span> No solution</p>
+<p class="paragraph-title">(a) Parallel lines <span class="math-inline">\(\Rightarrow\)</span> No solution</p>
 <p>Two distinct lines with the same slope never intersect.</p>
-<figure id="chapter-03-fig-1" class="figure"><img src="assets/img/tikz-02.svg" alt="Parallel lines showing an inconsistent system: no intersection." loading="lazy"><figcaption>Parallel lines showing an inconsistent system: no intersection.</figcaption></figure>
+<figure id="chapter-03-fig-1" class="figure"><img src="assets/img/ch03_fig2_no_solution.png" alt="Parallel lines showing an inconsistent system: no intersection." loading="lazy" style="--figure-width: 45%;"><figcaption>Parallel lines showing an inconsistent system: no intersection.</figcaption></figure>
 <p class="paragraph-title">(b) Same line <span class="math-inline">\(\Rightarrow\)</span> Infinitely many solutions</p>
 <p>The equations represent the same geometric line.</p>
-<figure id="chapter-03-fig-2" class="figure"><img src="assets/img/tikz-03.svg" alt="Coincident lines showing infinitely many solutions." loading="lazy"><figcaption>Coincident lines showing infinitely many solutions.</figcaption></figure>
+<figure id="chapter-03-fig-2" class="figure"><img src="assets/img/ch03_fig3_infinite_solutions.png" alt="Coincident lines showing infinitely many solutions." loading="lazy" style="--figure-width: 45%;"><figcaption>Coincident lines showing infinitely many solutions.</figcaption></figure>
 <p class="paragraph-title">(c) Intersecting lines <span class="math-inline">\(\Rightarrow\)</span> Unique solution</p>
 <p>The lines meet at exactly one point.</p>
-<figure id="chapter-03-fig-3" class="figure"><img src="assets/img/tikz-04.svg" alt="Intersecting lines showing a unique solution at $(3,-1)$." loading="lazy"><figcaption>Intersecting lines showing a unique solution at <span class="math-inline">\((3,-1)\)</span>.</figcaption></figure></section>
-<p>Determinants</p>
+<figure id="chapter-03-fig-3" class="figure"><img src="assets/img/ch03_fig4_intersection.png" alt="Intersecting lines showing a unique solution at $(3,-1)$." loading="lazy" style="--figure-width: 50%;"><figcaption>Intersecting lines showing a unique solution at <span class="math-inline">\((3,-1)\)</span>.</figcaption></figure>
+<h2 id="sec-3-determinants">Determinants</h2>
 <p>Determinants provide a compact way of associating a scalar quantity with a square matrix. They are especially useful for testing invertibility and for solving systems of linear equations.</p>
 <section class="callout definition"><header>Definition - Determinant of a <span class="math-inline">\(2\times2\)</span> Matrix</header><p>For</p>
 <div class="math-block">\[
@@ -648,8 +661,9 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 	\vec{a} = (1,2,2),
 	\qquad
 	\vec{b} = (3,0,1).
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	\vec{a}\cdot\vec{b} = (1)(3) + (2)(0) + (2)(1) = 3 + 0 + 2 = 5.
 	\]</div>
 <p><strong>Step 2. Find the magnitudes.</strong></p>
@@ -1236,7 +1250,7 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 <div class="math-block">\[
 	(AB)^T = B^T A^T.
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><p>From the definition,</p>
+<div class="proof" data-lead="Proof."><p>From the definition,</p>
 <div class="math-block">\[
 	(AB)_{ij} = \sum_k a_{ik} b_{kj}.
 	\]</div>
@@ -1252,7 +1266,7 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 <p>Thus,</p>
 <div class="math-block">\[
 	(AB)^T = B^T A^T.
-	\]</div></section>
+	\]</div></div>
 <section class="callout example"><header>Example</header><p>Let</p>
 <div class="math-block">\[
 	A =
@@ -1436,8 +1450,9 @@ AI = IA = A \quad \text{for any square matrix } A.
 	\vec{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix},
 	\quad
 	\vec{b}=\begin{bmatrix}5\\1\end{bmatrix}.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	\det(M)=(1)(-1)-(1)(1)=-1-1=-2 \neq 0.
 	\]</div>
 <p><strong>Step 2. Cofactor matrix.</strong></p>
@@ -1788,7 +1803,7 @@ a^2 + c^2 = 1, \qquad b^2 + d^2 = 1, \qquad ab+cd = 0.
 <div class="math-block">\[
 	\det(M) = \pm 1.
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><p>Since <span class="math-inline">\(M^TM = I\)</span>,</p>
+<div class="proof" data-lead="Proof."><p>Since <span class="math-inline">\(M^TM = I\)</span>,</p>
 <div class="math-block">\[
 	\det(M^TM) = \det(I) = 1.
 	\]</div>
@@ -1799,7 +1814,7 @@ a^2 + c^2 = 1, \qquad b^2 + d^2 = 1, \qquad ab+cd = 0.
 <p>so</p>
 <div class="math-block">\[
 	\det(M) = \pm 1.
-	\]</div></section>
+	\]</div></div>
 <section class="callout remark"><header>Remark</header><div class="math-block">\[
 	\det(M) = +1 \quad \Rightarrow \quad \text{pure rotation}.
 	\]</div>
@@ -1873,7 +1888,7 @@ R(\theta) =
 \end{pmatrix}
 \]</div>
 <p>is called the <strong>rotation matrix in 2D</strong>.</p>
-<figure id="chapter-03-fig-6" class="figure"><img src="assets/img/tikz-05.svg" alt="Active rotation of a vector by angle $\theta$." loading="lazy"><figcaption>Active rotation of a vector by angle <span class="math-inline">\(\theta\)</span>.</figcaption></figure>
+<figure id="chapter-03-fig-6" class="figure"><img src="assets/img/ch03_fig5_vector_rotation.png" alt="Active rotation of a vector by angle $\theta$." loading="lazy" style="--figure-width: 50%;"><figcaption>Active rotation of a vector by angle <span class="math-inline">\(\theta\)</span>.</figcaption></figure>
 <h3 id="sec-3-passive-rotation">Passive Rotation</h3>
 <p>In a <strong>passive rotation</strong>, instead of rotating the vector, we rotate the coordinate system by <span class="math-inline">\(\theta\)</span>, while keeping the vector fixed.</p>
 <p>Equivalently, the components of the vector are expressed relative to the rotated axes <span class="math-inline">\((x&#x27;,y&#x27;)\)</span>. In this case, the relation between old and new coordinates is</p>
@@ -1890,7 +1905,7 @@ R(\theta) =
 	x \\ y
 \end{pmatrix}.
 \]</div>
-<figure id="chapter-03-fig-7" class="figure"><img src="assets/img/tikz-06.svg" alt="Passive rotation: axes rotated, vector unchanged." loading="lazy"><figcaption>Passive rotation: axes rotated, vector unchanged.</figcaption></figure>
+<figure id="chapter-03-fig-7" class="figure"><img src="assets/img/ch03_fig6_rotated_axes.png" alt="Passive rotation: axes rotated, vector unchanged." loading="lazy" style="--figure-width: 50%;"><figcaption>Passive rotation: axes rotated, vector unchanged.</figcaption></figure>
 <h2 id="sec-3-rotations-and-reflections-in-3d">Rotations and Reflections in 3D</h2>
 <p>Rotations in three dimensions can be represented by special orthogonal matrices (<span class="math-inline">\(\det M = +1\)</span>). Reflections are also represented by orthogonal matrices, but with determinant <span class="math-inline">\(-1\)</span>.</p>
 <h3 id="sec-3-rotation-about-the-z-axis">Rotation about the <span class="math-inline">\(z\)</span>-axis</h3>
@@ -1941,7 +1956,7 @@ R(\theta, \beta, \alpha) = R_z(\theta)\, R_y(\beta)\, R_x(\alpha).
 \]</div>
 <section class="callout remark"><header>Remark</header><ul><li><p>Each rotation preserves vector length: <span class="math-inline">\(\left\|\vec{r}\right\| = \left\|R\vec{r}\right\|\)</span>.</p></li><li><p>The determinant distinguishes between a pure rotation (<span class="math-inline">\(\det = +1\)</span>) and a rotation combined with reflection (<span class="math-inline">\(\det = -1\)</span>).</p></li><li><p>The product of orthogonal matrices is also orthogonal.</p></li></ul></section>
 <h2 id="sec-3-linear-independence">Linear Independence</h2>
-<h3 id="sec-3-vectors-60">Vectors</h3>
+<h3 id="sec-3-vectors-61">Vectors</h3>
 <section class="callout definition"><header>Definition - Linear Dependence</header><p>A set of vectors <span class="math-inline">\(\{\vec{a}, \vec{b}, \vec{c}, \dots\}\)</span> is called <strong>linearly dependent</strong> if there exist scalars <span class="math-inline">\(k_1, k_2, k_3, \dots\)</span>, <strong>not all zero</strong>, such that</p>
 <div class="math-block">\[
 	k_1\vec{a} + k_2\vec{b} + k_3\vec{c} + \cdots = \vec{0}.
@@ -2097,8 +2112,9 @@ M = \begin{pmatrix}
 	5 &amp; -2 \\
 	-2 &amp; 2
 \end{pmatrix}.
-\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 \det(M - \lambda I) =
 \begin{vmatrix}
 	5-\lambda &amp; -2 \\
@@ -2321,6 +2337,7 @@ x = X e^{i\omega t}, \qquad y = Y e^{i\omega t}, \qquad z = Z e^{i\omega t}.
 <div class="math-block">\[
 		1 \cdot V = V, \qquad 0 \cdot V = \vec{0}.
 		\]</div></li></ol></section>
+<h3 id="sec-3-examples-of-vector-spaces">Examples of Vector Spaces</h3>
 <section class="callout example"><header>Example - Polynomials</header><p>The set of all polynomials of degree <span class="math-inline">\(\leq 3\)</span>,</p>
 <div class="math-block">\[
 	f(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3,
@@ -2338,7 +2355,7 @@ x = X e^{i\omega t}, \qquad y = Y e^{i\omega t}, \qquad z = Z e^{i\omega t}.
 	E_{21} = \begin{pmatrix}0&amp;0\\1&amp;0\end{pmatrix}, \quad
 	E_{22} = \begin{pmatrix}0&amp;0\\0&amp;1\end{pmatrix}.
 	\]</div></section>
-<p>Bra--Ket Notation and Inner/Outer Products</p>
+<h2 id="sec-3-bra-ket-notation-and-inner-outer-products">Bra--Ket Notation and Inner/Outer Products</h2>
 <h3 id="sec-3-motivation">Motivation</h3>
 <p>So far, we have written the dot product of two vectors <span class="math-inline">\(\vec{a}, \vec{b}\)</span> as</p>
 <div class="math-block">\[
@@ -2460,7 +2477,7 @@ f_n(x) = \cos(nx), \; \sin(nx), \qquad n=1,2,3,\dots
 \]</div>
 <p>This is a fundamental inequality that ensures consistency of the inner product structure.</p>
 <h2 id="sec-3-gram-schmidt-method-of-orthonormalization">Gram--Schmidt Method of Orthonormalization</h2>
-<h3 id="sec-3-motivation-91">Motivation</h3>
+<h3 id="sec-3-motivation-94">Motivation</h3>
 <p>Given a set of linearly independent vectors</p>
 <div class="math-block">\[
 \{|A\rangle, |B\rangle, |C\rangle\},
@@ -2493,9 +2510,9 @@ f_n(x) = \cos(nx), \; \sin(nx), \qquad n=1,2,3,\dots
 |v_2\rangle = \begin{pmatrix}-1 \\ 0 \\ 2\end{pmatrix},
 \qquad
 |v_3\rangle = \begin{pmatrix}0 \\ 1 \\ 1\end{pmatrix}.
-\]</div></section>
-<section class="callout solution"><header>Solution</header><p class="paragraph-title">Step 1: Construct <span class="math-inline">\(|e_1\rangle\)</span>.</p>
-<div class="math-block">\[
+\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 |e_1\rangle = \frac{|v_1\rangle}{\sqrt{\langle v_1|v_1\rangle}}
 = \frac{1}{\sqrt{2}}\begin{pmatrix}1 \\ 1 \\ 0\end{pmatrix}.
 \]</div>
@@ -2539,5 +2556,10 @@ f_n(x) = \cos(nx), \; \sin(nx), \qquad n=1,2,3,\dots
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

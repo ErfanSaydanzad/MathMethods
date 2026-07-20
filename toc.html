@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return ''  + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="index.html">
     <span class="brand-mark">M</span>
@@ -46,15 +56,15 @@
     <a href="toc.html">Contents</a>
   </nav>
 </header>
-<main class="toc-page content">
+<main class="toc-page content" id="main">
   <header class="simple-header">
     <p>Course Notes</p>
     <h1>Table of Contents</h1>
   </header>
   <section class="toc-chapter">
   <h2><a href="chapters/chapter-01/index.html">Chapter 1. Infinite Series and Power Series</a></h2>
-  <ol><li><a href="chapters/chapter-01/index.html#sec-1-motivation-and-overview">Motivation and Overview</a></li>
-<li><a href="chapters/chapter-01/index.html#sec-1-definitions-and-notation">Definitions and Notation</a></li>
+  <ol><li><a href="chapters/chapter-01/index.html#sec-1-definitions-and-notation">Definitions and Notation</a></li>
+<li><a href="chapters/chapter-01/index.html#sec-1-geometric-sequences-and-series">Geometric Sequences and Series</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-applications-of-series">Applications of Series</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-limit-of-the-general-term-as-n">Limit of the General Term as n</a></li>
 <li><a href="chapters/chapter-01/index.html#sec-1-testing-series-for-convergence">Testing Series for Convergence</a></li>
@@ -88,6 +98,7 @@
 <li><a href="chapters/chapter-03/index.html#sec-3-elementary-row-operations">Elementary Row Operations</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-row-echelon-form-ref-and-reduced-row-echelon-form-rref">Row Echelon Form (REF) and Reduced Row Echelon Form (RREF)</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-gauss-jordan-reduction">Gauss--Jordan Reduction</a></li>
+<li><a href="chapters/chapter-03/index.html#sec-3-determinants">Determinants</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-cramer-s-rule">Cramer&#x27;s Rule</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-vectors">Vectors</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-matrix-operations">Matrix Operations</a></li>
@@ -101,6 +112,7 @@
 <li><a href="chapters/chapter-03/index.html#sec-3-homogeneous-equations">Homogeneous Equations</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-eigenvalues-eigenvectors-and-matrix-diagonalization">Eigenvalues, Eigenvectors, and Matrix Diagonalization</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-general-vector-spaces">General Vector Spaces</a></li>
+<li><a href="chapters/chapter-03/index.html#sec-3-bra-ket-notation-and-inner-outer-products">Bra--Ket Notation and Inner/Outer Products</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-hilbert-spaces-inner-product-norm-and-orthogonality">Hilbert Spaces: Inner Product, Norm, and Orthogonality</a></li>
 <li><a href="chapters/chapter-03/index.html#sec-3-gram-schmidt-method-of-orthonormalization">Gram--Schmidt Method of Orthonormalization</a></li></ol>
 </section><section class="toc-chapter">
@@ -120,11 +132,11 @@
   <h2><a href="chapters/chapter-05/index.html">Chapter 5. Multiple Integrals; Applications of Integration</a></h2>
   <ol><li><a href="chapters/chapter-05/index.html#sec-5-single-integral">Single integral</a></li>
 <li><a href="chapters/chapter-05/index.html#sec-5-double-and-triple-integrals">Double and Triple Integrals</a></li>
-<li><a href="chapters/chapter-05/index.html#sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate y-First vs.~x-First</a></li>
+<li><a href="chapters/chapter-05/index.html#sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate y-First vs. x-First</a></li>
 <li><a href="chapters/chapter-05/index.html#sec-5-applications-of-integration">Applications of Integration</a></li>
 <li><a href="chapters/chapter-05/index.html#sec-5-change-of-variables-in-integrals">Change of Variables in Integrals</a></li>
-<li><a href="chapters/chapter-05/index.html#sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian  Cylindrical Coordinates</a></li>
-<li><a href="chapters/chapter-05/index.html#sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian  Spherical Coordinates</a></li>
+<li><a href="chapters/chapter-05/index.html#sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian Cylindrical Coordinates</a></li>
+<li><a href="chapters/chapter-05/index.html#sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian Spherical Coordinates</a></li>
 <li><a href="chapters/chapter-05/index.html#sec-5-connection-with-the-jacobian-matrix">Connection with the Jacobian Matrix</a></li></ol>
 </section><section class="toc-chapter">
   <h2><a href="chapters/chapter-06/index.html">Chapter 6. Vector Analysis</a></h2>
@@ -161,9 +173,15 @@
   <h2><a href="chapters/chapter-10/index.html">Chapter 10. Partial Differential Equations (Chapter 13)</a></h2>
   <ol><li><a href="chapters/chapter-10/index.html#sec-10-introduction">Introduction</a></li>
 <li><a href="chapters/chapter-10/index.html#sec-10-separating-time-and-space">Separating Time and Space</a></li>
+<li><a href="chapters/chapter-10/index.html#sec-10-separation-of-variables-and-coordinate-symmetry">Separation of Variables and Coordinate Symmetry</a></li>
 <li><a href="chapters/chapter-10/index.html#sec-10-laplace-s-equation-steady-state-temperature-in-a-semi-infinite-plate">Laplace’s Equation: Steady–State Temperature in a Semi–Infinite Plate</a></li>
 <li><a href="chapters/chapter-10/index.html#sec-10-helmholtz-equation-and-the-infinite-spherical-well">Helmholtz Equation and the Infinite Spherical Well</a></li></ol>
 </section>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

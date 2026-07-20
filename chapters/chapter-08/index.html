@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '8.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 8</p>
@@ -152,8 +162,9 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 \]</div>
 <section class="callout example"><header>Example - Solve the differential equation</header><div class="math-block">\[
 	\frac{dy}{dx} = x\,y.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Recognize the type of equation.</strong> This is a <strong>first-order separable</strong> (and also linear) differential equation.</p>
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>This is a <strong>first-order separable</strong> (and also linear) differential equation.</p>
 <p><strong>Step 2. Separate the variables.</strong></p>
 <div class="math-block">\[
 	\frac{dy}{y} = x\,dx.
@@ -179,8 +190,9 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 <p>confirming that the solution satisfies the ODE.</p></section>
 <section class="callout example"><header>Example - Solve the differential equation</header><div class="math-block">\[
 	x\,\frac{dy}{dx} = y + 1.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Separate the variables.</strong> Divide both sides by <span class="math-inline">\(x(y+1)\)</span>:</p>
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>Divide both sides by <span class="math-inline">\(x(y+1)\)</span>:</p>
 <div class="math-block">\[
 	\frac{1}{y+1}\frac{dy}{dx} = \frac{1}{x}
 	\quad\Longrightarrow\quad
@@ -212,8 +224,9 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 <section class="callout example"><header>Example - Solve the differential equation</header><div class="math-block">\[
 	\frac{dy}{dx} = \sqrt{\,1 - y^2\,}.
 	\]</div>
-<p>Find the particular solutions satisfying <strong>(a)</strong> <span class="math-inline">\(x=0, y=0\)</span> and <strong>(b)</strong> <span class="math-inline">\(x=0, y=1\)</span>, and discuss any solutions not obtained by separation.</p></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Separation of variables and integration.</strong> For <span class="math-inline">\(|y| &lt; 1\)</span>, the equation can be written in separable form:</p>
+<p>Find the particular solutions satisfying <strong>(a)</strong> <span class="math-inline">\(x=0, y=0\)</span> and <strong>(b)</strong> <span class="math-inline">\(x=0, y=1\)</span>, and discuss any solutions not obtained by separation.</p>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>For <span class="math-inline">\(|y| &lt; 1\)</span>, the equation can be written in separable form:</p>
 <div class="math-block">\[
 	\frac{dy}{\sqrt{1 - y^2}} = dx.
 	\]</div>
@@ -268,7 +281,7 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 <p><strong>Step 5. Interpretation and summary.</strong></p>
 <ul><li><p>The general solution <span class="math-inline">\(y = \sin(x+\alpha)\)</span> applies where <span class="math-inline">\(|y|&lt;1\)</span> and <span class="math-inline">\(y&#x27; = \sqrt{1-y^2} \ge 0\)</span>.</p></li><li><p>The singular solutions <span class="math-inline">\(y = \pm1\)</span> correspond to the flat portions of the slope field where <span class="math-inline">\(y&#x27;=0\)</span>.</p></li><li><p>The complete solution set consists of rising sine arcs smoothly connected to horizontal segments at <span class="math-inline">\(y=\pm1\)</span>.</p></li></ul>
 <h3 id="sec-8-all-solutions">All solutions:</h3>
-<div class="centered"><p> y(x) = (x+)  on intervals where  (x+)0, together with  y1. </p></div></section>
+<div class="centered"><p> y(x) = (x+)  on intervals where  (x+)0,  together with  y1. </p></div></section>
 <h3 id="sec-8-linear-first-order-equations">Linear First-Order Equations</h3>
 <p>A linear first-order equation has the form</p>
 <div class="math-block">\[
@@ -290,8 +303,9 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 	\]</div></li></ol>
 <section class="callout example"><header>Example - Solve the first-order linear ODE</header><div class="math-block">\[
 	y&#x27; + 2y = e^{-x}.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Identify <span class="math-inline">\(P(x)\)</span> and <span class="math-inline">\(Q(x)\)</span>.</strong> The equation is in the standard linear form</p>
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>The equation is in the standard linear form</p>
 <div class="math-block">\[
 	y&#x27; + P(x)y = Q(x),
 	\]</div>
@@ -354,7 +368,7 @@ y^{-n}y&#x27; + P(x)y^{1-n} = Q(x).
 z&#x27; + (1-n)P(x)z = (1-n)Q(x).
 \]</div>
 <p>This is now a <strong>first-order linear ODE</strong> in <span class="math-inline">\(z(x)\)</span>, which can be solved using the integrating factor method.</p>
-<div class="centered"><p> <strong>Reduced linear form:</strong>  z' + (1-n)P(x)z = (1-n)Q(x). </p></div>
+<div class="centered"><p> <strong>Reduced linear form:</strong>   z' + (1-n)P(x)z = (1-n)Q(x). </p></div>
 <p>After solving for <span class="math-inline">\(z(x)\)</span>, the original dependent variable is recovered via</p>
 <div class="math-block">\[
 y = z^{\frac{1}{1-n}}.
@@ -362,8 +376,9 @@ y = z^{\frac{1}{1-n}}.
 <section class="callout remark"><header>Remark</header><p>The Bernoulli equation provides an important link between nonlinear and linear first-order ODEs. By multiplying through by <span class="math-inline">\(y^{-n}\)</span> and substituting <span class="math-inline">\(z = y^{1-n}\)</span>, we convert a nonlinear equation into a solvable linear form. This transformation frequently appears in problems involving population dynamics, exponential growth and decay, and fluid motion.</p></section>
 <section class="callout example"><header>Example - Reduce to linear form and solve</header><div class="math-block">\[
 	y&#x27; + y = x\,y^{2/3}.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Multiply by </strong> <span class="math-inline">\(y^{-n}\)</span> <strong> with </strong> <span class="math-inline">\(n=\tfrac{2}{3}\)</span>.</p>
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p><span class="math-inline">\(y^{-n}\)</span> <strong> with </strong> <span class="math-inline">\(n=\tfrac{2}{3}\)</span>.</p>
 <div class="math-block">\[
 	y^{-2/3}y&#x27; + y^{1/3} = x.
 	\]</div>
@@ -453,8 +468,9 @@ M(x,y)\,dx + N(x,y)\,dy = 0,
 <section class="callout example"><header>Example - Solving an Exact Differential Equation</header><p>Solve</p>
 <div class="math-block">\[
 	(2xy + y^3)\,dx + (x^2 + 3xy^2)\,dy = 0.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1.</strong> Identify</p>
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>Identify</p>
 <div class="math-block">\[
 	M(x,y) = 2xy + y^3, \qquad N(x,y) = x^2 + 3xy^2.
 	\]</div>
@@ -515,9 +531,9 @@ M(x,y)\,dx + N(x,y)\,dy = 0,
 <section class="callout example"><header>Example - Integrating factor <span class="math-inline">\(\mu=\mu(x)\)</span>, not separable</header><p>Solve</p>
 <div class="math-block">\[
 	\bigl[(x+1)\,y + x\bigr]\,dx + x\,dy = 0.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Identify <span class="math-inline">\(M,N\)</span> and test exactness.</strong></p>
-<div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 	M(x,y)=(x+1)\,y + x,\qquad N(x,y)=x.
 	\]</div>
 <p>Compute</p>
@@ -570,9 +586,9 @@ M(x,y)\,dx + N(x,y)\,dy = 0,
 <section class="callout example"><header>Example - Integrating factor <span class="math-inline">\(\mu=\mu(y)\)</span>, not separable</header><p>Solve</p>
 <div class="math-block">\[
 	y\,dx + (3x + y)\,dy = 0.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Identify <span class="math-inline">\(M,N\)</span> and test exactness.</strong></p>
-<div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 	M(x,y)=y,\qquad N(x,y)=3x + y.
 	\]</div>
 <p>Compute</p>
@@ -659,7 +675,7 @@ a\,y&#x27;&#x27; + b\,y&#x27; + c\,y = f(x),
 	\end{aligned}}
 	\]</div>
 <p>where <span class="math-inline">\(C_1, C_2\)</span> are arbitrary constants.</p></section>
-<section class="callout proof"><header>Proof</header><p>Consider the homogeneous constant–coefficient ODE</p>
+<div class="proof" data-lead="Proof."><p>Consider the homogeneous constant–coefficient ODE</p>
 <div class="math-block">\[
 	a\,y&#x27;&#x27;+b\,y&#x27;+c\,y=0,\qquad a\neq 0.
 	\]</div>
@@ -745,7 +761,7 @@ a\,y&#x27;&#x27; + b\,y&#x27; + c\,y = f(x),
 <div class="math-block">\[
 	y(x)=e^{\alpha x}\big(C_1\cos\beta x + C_2\sin\beta x\big).
 	\]</div>
-<p>Combining the three cases completes the proof.</p></section>
+<p>Combining the three cases completes the proof.</p></div>
 <section class="callout remark"><header>Remark</header><ul><li><p>The step <span class="math-inline">\(2ar+b=0\)</span> in the repeated-root case is precisely the condition <span class="math-inline">\(p&#x27;(r)=0\)</span> where <span class="math-inline">\(p(r)=ar^2+br+c\)</span>. This is why the reduction–of–order equation collapses to <span class="math-inline">\(v&#x27;&#x27;=0\)</span>, giving <span class="math-inline">\(v(x)=x\)</span> and hence <span class="math-inline">\(y_2=x e^{r x}\)</span>.</p></li><li><p>The Wronskians shown above explicitly verify linear independence in the distinct-root and complex-root cases.</p></li><li><p>The exponential ansatz works here because constant coefficients make the ODE invariant under differentiation of <span class="math-inline">\(e^{r x}\)</span>: derivatives only pull down factors of <span class="math-inline">\(r\)</span>, converting the differential equation to an algebraic one.</p></li></ul></section>
 <h3 id="sec-8-nonhomogeneous-equations">Nonhomogeneous Equations</h3>
 <section class="callout definition"><header>Definition</header><p>A <strong>nonhomogeneous</strong> second-order linear ODE is</p>
@@ -766,8 +782,9 @@ a\,y&#x27;&#x27; + b\,y&#x27; + c\,y = f(x),
 <div class="math-block">\[
 	m\,\ddot{x} + b\,\dot{x} + k\,x = F_0\sin(\omega t),
 	\]</div>
-<p>where <span class="math-inline">\(m\)</span> is the mass, <span class="math-inline">\(b\)</span> the damping coefficient, <span class="math-inline">\(k\)</span> the spring constant, and <span class="math-inline">\(F_0\sin(\omega t)\)</span> the external driving force.</p></section>
-<section class="callout solution"><header>Solution</header><p>Divide through by <span class="math-inline">\(m\)</span>:</p>
+<p>where <span class="math-inline">\(m\)</span> is the mass, <span class="math-inline">\(b\)</span> the damping coefficient, <span class="math-inline">\(k\)</span> the spring constant, and <span class="math-inline">\(F_0\sin(\omega t)\)</span> the external driving force.</p>
+<p class="solution-head">Solution.</p>
+<p>Divide through by <span class="math-inline">\(m\)</span>:</p>
 <div class="math-block">\[
 	\ddot{x} + 2\gamma\,\dot{x} + \omega_0^2 x = \frac{F_0}{m}\sin(\omega t),
 	\]</div>
@@ -905,5 +922,10 @@ a\,y&#x27;&#x27; + b\,y&#x27; + c\,y = f(x),
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

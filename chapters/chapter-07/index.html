@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '7.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 7</p>
@@ -149,7 +159,7 @@ e^{ik(x+L)} = e^{ikx} \quad \Rightarrow \quad e^{ikL} = 1.
 	\boxed{
 		c_n = \frac{1}{L}\int_{-L/2}^{L/2} f(x)\,e^{-i k_n x}\,dx.}
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><p>Starting from <span class="math-inline">\( f(x) = \sum c_n e^{i k_n x} \)</span>, multiply by <span class="math-inline">\( e^{-i k_m x} \)</span> and integrate:</p>
+<div class="proof" data-lead="Proof."><p>Starting from <span class="math-inline">\( f(x) = \sum c_n e^{i k_n x} \)</span>, multiply by <span class="math-inline">\( e^{-i k_m x} \)</span> and integrate:</p>
 <div class="math-block">\[
 	\int_{-L/2}^{L/2} f(x)e^{-i k_m x}\,dx
 	= \sum_n c_n \!\int_{-L/2}^{L/2} e^{i(k_n-k_m)x}\,dx
@@ -158,7 +168,7 @@ e^{ik(x+L)} = e^{ikx} \quad \Rightarrow \quad e^{ikL} = 1.
 <p>by orthogonality. Hence,</p>
 <div class="math-block">\[
 	\boxed{c_m = \frac{1}{L}\int_{-L/2}^{L/2} f(x)\,e^{-i k_m x}\,dx.}
-	\]</div></section>
+	\]</div></div>
 <section class="callout remark"><header>Remark</header><p>For a <strong>real-valued function</strong> <span class="math-inline">\( f(x) \)</span>, the complex coefficients satisfy</p>
 <div class="math-block">\[
 	c_{-n} = c_n^*.
@@ -174,7 +184,7 @@ e^{ik(x+L)} = e^{ikx} \quad \Rightarrow \quad e^{ikL} = 1.
 		\Big].
 	}
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><h3 id="sec-7-starting-from-the-complex-fourier-series">Starting from the Complex Fourier Series</h3>
+<div class="proof" data-lead="Proof."><h3 id="sec-7-starting-from-the-complex-fourier-series">Starting from the Complex Fourier Series</h3>
 <p>We begin with the complex form of the Fourier series for a periodic function <span class="math-inline">\( f(x) \)</span> of period <span class="math-inline">\( L \)</span>:</p>
 <div class="math-block">\[
 f(x) = \sum_{n=-\infty}^{\infty} c_n\, e^{i k_n x},
@@ -221,7 +231,7 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 	+ b_n \sin\left(\frac{2\pi n x}{L}\right)
 	\right].
 }
-\]</div></section>
+\]</div></div>
 <section class="callout remark"><header>Remark</header><ul><li><p><span class="math-inline">\( \tfrac{a_0}{2} \)</span>: average (DC component) of <span class="math-inline">\(f(x)\)</span>,</p></li><li><p><span class="math-inline">\( a_n \)</span>: amplitude of the cosine component,</p></li><li><p><span class="math-inline">\( b_n \)</span>: amplitude of the sine component,</p></li><li><p>frequency of the <span class="math-inline">\(n\)</span>-th harmonic: <span class="math-inline">\( f_n = \tfrac{n}{L}. \)</span></p></li></ul></section>
 <section class="callout theorem"><header>Theorem - Fourier Coefficients</header><p>For <span class="math-inline">\(f(x)\)</span> of period <span class="math-inline">\(L\)</span>:</p>
 <div class="math-block">\[
@@ -232,7 +242,7 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 			b_n &amp;= \frac{2}{L}\!\int_{-L/2}^{L/2} f(x)\sin\!\left(\frac{2\pi n x}{L}\right)\!dx.
 	\end{aligned}}
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><p>Multiply both sides of the Fourier expansion by <span class="math-inline">\( \cos\!\left(\frac{2\pi m x}{L}\right) \)</span> and integrate over one period:</p>
+<div class="proof" data-lead="Proof."><p>Multiply both sides of the Fourier expansion by <span class="math-inline">\( \cos\!\left(\frac{2\pi m x}{L}\right) \)</span> and integrate over one period:</p>
 <div class="math-block">\[
 	\int_{-L/2}^{L/2} f(x)\cos\!\left(\frac{2\pi m x}{L}\right)dx
 	= \int_{-L/2}^{L/2} \Big[a_0 + \sum_{n=1}^{\infty}\big(a_n\cos\!\tfrac{2\pi n x}{L} + b_n\sin\!\tfrac{2\pi n x}{L}\big)\Big]
@@ -269,7 +279,7 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 <div class="math-block">\[
 	\boxed{a_0 = \frac{1}{L}\int_{-L/2}^{L/2} f(x)\,dx,}
 	\]</div>
-<p>which represents the <strong>average value</strong> (mean) of the function <span class="math-inline">\( f(x) \)</span> over one period.</p></section>
+<p>which represents the <strong>average value</strong> (mean) of the function <span class="math-inline">\( f(x) \)</span> over one period.</p></div>
 <h3 id="sec-7-dirichlet-conditions-and-convergence-of-fourier-series">Dirichlet Conditions and Convergence of Fourier Series</h3>
 <section class="callout definition"><header>Definition - Dirichlet Conditions</header><p>A periodic function <span class="math-inline">\( f(x) \)</span> of period <span class="math-inline">\( L \)</span> can be represented by a Fourier series (without modification) on the interval <span class="math-inline">\( \big[-\tfrac{L}{2}, \tfrac{L}{2}\big] \)</span> if it satisfies the following conditions:</p>
 <ol><li><p><span class="math-inline">\( f(x) \)</span> is <strong>single-valued</strong> and <strong>piecewise continuous</strong> within one period.</p></li><li><p><span class="math-inline">\( f(x) \)</span> has a <strong>finite number of finite discontinuities</strong>.</p></li><li><p><span class="math-inline">\( f(x) \)</span> has a <strong>finite number of maxima and minima</strong> within one period.</p></li><li><p>The integral of its absolute value over one period is finite:</p>
@@ -355,8 +365,9 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 	a_0=\frac{1}{2\pi}\!\int_{-\pi}^{\pi}\!f(x)\,dx,\quad
 	a_n=\frac{1}{\pi}\!\int_{-\pi}^{\pi}\!f(x)\cos(nx)\,dx,\quad
 	b_n=\frac{1}{\pi}\!\int_{-\pi}^{\pi}\!f(x)\sin(nx)\,dx.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p><span class="math-inline">\(a_0\)</span>.</p>
+	\]</div>
+<p class="solution-head">Solution.</p>
+<p><span class="math-inline">\(a_0\)</span>.</p>
 <div class="math-block">\[
 	a_0=\frac{1}{2\pi}\!\int_{-\pi}^{\pi}\!f(x)\,dx
 	= \frac{1}{2\pi}\!\int_{0}^{\pi}\!1\,dx
@@ -399,8 +410,9 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 		a_n&amp;=\frac{1}{\pi}\!\int_{-\pi}^{\pi} f(x)\cos(nx)\,dx,\\
 		b_n&amp;=\frac{1}{\pi}\!\int_{-\pi}^{\pi} f(x)\sin(nx)\,dx.
 	\end{aligned}
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	a_0=\frac{1}{\pi}\int_{0}^{\pi}\!x\,dx
 	=\frac{1}{\pi}\Big[\frac{x^{2}}{2}\Big]_0^{\pi}
 	=\frac{\pi}{2}
@@ -467,8 +479,9 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 	f(t)=\dfrac{a_0}{2}+\sum_{n=1}^{\infty}\Big[ a_n\cos(\omega_n t)+ b_n\sin(\omega_n t)\Big],
 	\qquad
 	\omega_n=\dfrac{2\pi n}{T}.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	a_0=\frac{2}{T}\int_{-T/2}^{T/2}f(t)\,dt
 	=\frac{2}{T}\int_{0}^{T/2} t\,dt
 	=\frac{2}{T}\cdot\frac{(T/2)^2}{2}
@@ -543,8 +556,9 @@ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cos k_n x + b_n \sin k_n 
 	\]</div>
 <p>which repeats every interval of length <span class="math-inline">\(L\)</span>. This represents a periodic <strong>ramp waveform</strong>, analogous to a sawtooth pattern in signal processing.</p>
 <div class="centered"><figure class="figure figure-single" style="--figure-width: 62%;"><img src="assets/img/Fig7_sawtooth_ramp.png" alt="Fig7 sawtooth ramp" loading="lazy"></figure>
-<p>  Periodic ramp function <span class="math-inline">\(f(x)=x\)</span> on <span class="math-inline">\([-L/2,L/2]\)</span>, repeated with period <span class="math-inline">\(L\)</span>.</p></div></section>
-<section class="callout solution"><header>Solution</header><p>For a periodic function <span class="math-inline">\(f(x)\)</span> of period <span class="math-inline">\(L\)</span>, the complex Fourier coefficients are</p>
+<p>  Periodic ramp function <span class="math-inline">\(f(x)=x\)</span> on <span class="math-inline">\([-L/2,L/2]\)</span>, repeated with period <span class="math-inline">\(L\)</span>.</p></div>
+<p class="solution-head">Solution.</p>
+<p>For a periodic function <span class="math-inline">\(f(x)\)</span> of period <span class="math-inline">\(L\)</span>, the complex Fourier coefficients are</p>
 <div class="math-block">\[
 	C_n = \frac{1}{L}\int_{-L/2}^{L/2} f(x)\, e^{-i\,k_n x}\,dx,
 	\qquad \text{where } k_n = \frac{2\pi n}{L}.
@@ -682,8 +696,9 @@ k_n = \frac{2\pi n}{L}.
 	g(k)=\frac{1}{2\pi}\!\int_{-\infty}^{\infty} f(x)\,e^{-ikx}\,dx,
 	\qquad
 	f(x)=\int_{-\infty}^{\infty} g(k)\,e^{ikx}\,dk.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	g(k)=\frac{1}{2\pi}\int_{-a}^{a} e^{-ikx}\,dx.
 	\]</div>
 <p><strong>Step 2. Evaluate the integral.</strong></p>
@@ -721,8 +736,9 @@ k_n = \frac{2\pi n}{L}.
 	f(t) = \int_{-\infty}^{\infty} g(\omega)e^{i\omega t}\,d\omega,
 	\qquad
 	g(\omega) = \frac{1}{2\pi}\int_{-\infty}^{\infty} f(t)e^{-i\omega t}\,dt.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+	\]</div>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	g(\omega)
 	= \frac{1}{2\pi}\!\left[
 	\int_{-\infty}^{0} e^{at} e^{-i\omega t}\,dt
@@ -760,5 +776,10 @@ k_n = \frac{2\pi n}{L}.
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

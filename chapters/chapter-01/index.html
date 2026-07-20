@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '1.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,14 +56,15 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 1</p>
     <h2>Infinite Series and Power Series</h2>
     <nav class="chapter-toc" aria-label="Chapter contents">
-      <a class="toc-level-2" href="#sec-1-motivation-and-overview">Motivation and Overview</a>
-<a class="toc-level-2" href="#sec-1-definitions-and-notation">Definitions and Notation</a>
+      <a class="toc-level-2" href="#sec-1-definitions-and-notation">Definitions and Notation</a>
+<a class="toc-level-2" href="#sec-1-geometric-sequences-and-series">Geometric Sequences and Series</a>
+<a class="toc-level-3" href="#sec-1-finite-geometric-series">Finite Geometric Series</a>
 <a class="toc-level-3" href="#sec-1-infinite-geometric-series">Infinite Geometric Series</a>
 <a class="toc-level-2" href="#sec-1-applications-of-series">Applications of Series</a>
 <a class="toc-level-2" href="#sec-1-limit-of-the-general-term-as-n">Limit of the General Term as n</a>
@@ -64,7 +75,7 @@
 <a class="toc-level-3" href="#sec-1-ratio-test">Ratio Test</a>
 <a class="toc-level-3" href="#sec-1-limit-comparison-test">Limit Comparison Test</a>
 <a class="toc-level-2" href="#sec-1-alternating-series">Alternating Series</a>
-<a class="toc-level-3" href="#sec-1-absolute-vs-conditional-convergence">Absolute vs.\ Conditional Convergence</a>
+<a class="toc-level-3" href="#sec-1-absolute-vs-conditional-convergence">Absolute vs. Conditional Convergence</a>
 <a class="toc-level-2" href="#sec-1-summary-table">Summary Table</a>
 <a class="toc-level-2" href="#sec-1-power-series">Power Series</a>
 <a class="toc-level-3" href="#sec-1-radius-and-interval-of-convergence">Radius and Interval of Convergence</a>
@@ -91,81 +102,41 @@
       <p>Chapter 1</p>
       <h1>Infinite Series and Power Series</h1>
     </header>
-    <h2 id="sec-1-motivation-and-overview">Motivation and Overview</h2>
-<p>Mathematics is the language of physics. From Newton's laws to Schrödinger's equation, every major theory in physics is expressed through mathematical models. As a physics student, your success depends on mastering the mathematical techniques necessary to solve real physical problems.</p>
-<section class="callout context"><header>Note - 1. Classical Mechanics</header><p>Mechanics starts with Newton’s second law, leading to second-order ordinary differential equations (ODEs):</p>
-<div class="math-block">\[
-	\vec{F}_{\text{net}} = m \vec{a} = m \frac{d\vec{v}}{dt} = m \frac{d^2 \vec{r}}{dt^2}
-	\]</div>
-<div class="math-block">\[
-	\vec{v} = \frac{d\vec{r}}{dt}
-	\]</div>
-<figure class="figure figure-single" style="--figure-width: 100%;"><img src="assets/img/Fig1.png" alt="Fig1" loading="lazy"></figure>
-<p><strong>Mathematical Topics:</strong></p>
-<ul><li><p><strong>Ordinary Differential Equations (Ch. 8):</strong></p>
-<ul><li><p>First- and second-order equations, Laplace transforms</p></li></ul></li><li><p><strong>Linear Algebra (Ch. 3):</strong></p>
-<ul><li><p>Systems of equations, eigenvalue problems</p></li></ul></li><li><p><strong>Infinite Series and Power Series (Ch. 1):</strong></p>
-<ul><li><p>Series approximations to motion</p></li></ul></li></ul>
-<p><strong>Applications:</strong> Oscillators, planetary motion, variational principles</p></section>
-<section class="callout context"><header>Note - 2. Electromagnetism (Macroscopic Maxwell Equations)</header><p>Maxwell’s equations describe how electric and magnetic fields behave in materials:</p>
-<div class="math-block">\[
-	\begin{aligned}
-		&amp;\operatorname{div} \vec{D} = \rho_f, \quad &amp;&amp;\operatorname{div} \vec{B} = 0 \\
-		&amp;\operatorname{curl} \vec{E} = -\frac{\partial \vec{B}}{\partial t}, \quad &amp;&amp;\operatorname{curl} \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t}
-	\end{aligned}
-	\]</div>
-<figure class="figure figure-single" style="--figure-width: 100%;"><img src="assets/img/Fig2.png" alt="Fig2" loading="lazy"></figure>
-<p><strong>Mathematical Topics:</strong></p>
-<ul><li><p><strong>Vector Analysis (Ch. 6):</strong></p>
-<ul><li><p>Gradient, divergence, curl; Gauss’s and Stokes’s theorems</p></li></ul></li><li><p><strong>Partial Differential Equations (Ch. 13):</strong></p>
-<ul><li><p>Laplace’s, Poisson’s, and wave equations</p></li></ul></li><li><p><strong>Fourier Series and Transforms (Ch. 7):</strong></p>
-<ul><li><p>Solving boundary value problems for fields</p></li></ul></li><li><p><strong>Multiple Integrals (Ch. 5):</strong></p>
-<ul><li><p>Charge and current distributions in space</p></li></ul></li></ul>
-<p><strong>Applications:</strong> Fields in dielectrics, waveguides, AC circuits</p></section>
-<section class="callout context"><header>Note - 3. Quantum Mechanics</header><p>Quantum mechanics uses wavefunctions to describe particles. The key equation is Schrödinger’s equation:</p>
-<div class="math-block">\[
-	i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \nabla^2 \psi + V \psi
-	\]</div>
-<figure class="figure figure-single" style="--figure-width: 100%;"><img src="assets/img/Fig3.png" alt="Fig3" loading="lazy"></figure>
-<p><strong>Mathematical Topics:</strong></p>
-<ul><li><p><strong>Complex Numbers (Ch. 2):</strong></p>
-<ul><li><p>Euler’s formula, imaginary amplitudes</p></li></ul></li><li><p><strong>Linear Algebra (Ch. 3):</strong></p>
-<ul><li><p>Operators, eigenvalues, Hilbert space</p></li></ul></li><li><p><strong>Fourier Series and Transforms (Ch. 7):</strong></p>
-<ul><li><p>Analyzing wavefunctions in different bases</p></li></ul></li><li><p><strong>Partial Differential Equations (Ch. 10):</strong></p>
-<ul><li><p>Solving time-independent and time-dependent Schrödinger equations</p></li></ul></li><li><p><strong>Power Series (Ch. 1):</strong></p>
-<ul><li><p>Special functions: Hermite, Laguerre, etc.</p></li></ul></li></ul>
-<p><strong>Applications:</strong> Atomic structure, tunneling, harmonic oscillator</p></section>
-<h2 id="sec-1-definitions-and-notation">Definitions and Notation</h2>
+    <h2 id="sec-1-definitions-and-notation">Definitions and Notation</h2>
 <section class="callout definition"><header>Definition</header><p>A <strong>sequence</strong> is an ordered list of numbers:</p>
 <div class="math-block">\begin{equation}
 			a_1, a_2, \dots, a_n, \dots
 		\end{equation}</div>
 <p>where <span class="math-inline">\(a_1\)</span> is the <strong>first term</strong> and <span class="math-inline">\(a_n\)</span> is the <strong>general term</strong>.</p></section>
-<section class="callout example"><header>Examples of Sequences</header><ul><li><p><span class="math-inline">\(1, 2, 3, \dots, n, \dots \quad \Rightarrow a_1 = 1,\quad a_n = n\)</span></p></li><li><p><span class="math-inline">\(1^2, 2^2, 3^2, \dots, n^2, \dots \quad \Rightarrow a_1 = 1,\quad a_n = n^2\)</span></p></li></ul></section>
+<p class="paragraph-title">Examples of Sequences</p>
+<ul><li><p><span class="math-inline">\(1, 2, 3, \dots, n, \dots \quad \Rightarrow a_1 = 1,\quad a_n = n\)</span></p></li><li><p><span class="math-inline">\(1^2, 2^2, 3^2, \dots, n^2, \dots \quad \Rightarrow a_1 = 1,\quad a_n = n^2\)</span></p></li></ul>
 <section class="callout definition"><header>Definition</header><p>A <strong>partial sum</strong> <span class="math-inline">\(S_N\)</span> is the sum of the first <span class="math-inline">\(N\)</span> terms of a sequence:</p>
 <div class="math-block">\begin{equation}
 			S_N = a_1 + a_2 + \cdots + a_N = \sum_{n=1}^{N} a_n
 		\end{equation}</div></section>
-<section class="callout example"><header>Examples of Partial Sums</header><ul><li><p><span class="math-inline">\(S_4 = \sum_{n=1}^{4} n = 1 + 2 + 3 + 4 = 10\)</span></p></li><li><p><span class="math-inline">\(S_3 = \sum_{n=1}^{3} n^2 = 1^2 + 2^2 + 3^2 = 14\)</span></p></li></ul></section>
+<p class="paragraph-title">Examples of Partial Sums</p>
+<ul><li><p><span class="math-inline">\(S_4 = \sum_{n=1}^{4} n = 1 + 2 + 3 + 4 = 10\)</span></p></li><li><p><span class="math-inline">\(S_3 = \sum_{n=1}^{3} n^2 = 1^2 + 2^2 + 3^2 = 14\)</span></p></li></ul>
 <section class="callout definition"><header>Definition</header><p>An <strong>infinite series</strong> is the sum of all terms in a sequence:</p>
 <div class="math-block">\begin{equation}
 			S_{\infty} = \sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \cdots
 		\end{equation}</div></section>
-<section class="callout example"><header>Examples of Infinite Series</header><ul><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} n = 1 + 2 + 3 + \cdots\)</span></p></li><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} n^2 = 1^2 + 2^2 + 3^2 + \cdots\)</span></p></li><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} \dfrac{(-1)^{n-1} x^n}{(n - 1)!} = x - x^2 + \dfrac{x^3}{2} - \cdots\)</span></p></li></ul></section>
+<p class="paragraph-title">Examples of Infinite Series</p>
+<ul><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} n = 1 + 2 + 3 + \cdots\)</span></p></li><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} n^2 = 1^2 + 2^2 + 3^2 + \cdots\)</span></p></li><li><p><span class="math-inline">\(\sum_{n=1}^{\infty} \dfrac{(-1)^{n-1} x^n}{(n - 1)!} = x - x^2 + \dfrac{x^3}{2} - \cdots\)</span></p></li></ul>
 <section class="callout remark"><header>Remark - Notation</header><p><span class="math-inline">\(n!\)</span> (read <em>"n factorial"</em>) is defined as:</p>
 <ul><li><p><span class="math-inline">\(n! = n \cdot (n - 1) \cdots 3 \cdot 2 \cdot 1\)</span></p></li><li><p><span class="math-inline">\(0! = 1\)</span></p></li><li><p>Example: <span class="math-inline">\(5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120\)</span></p></li></ul></section>
-<p>Geometric Sequences and Series</p>
+<h2 id="sec-1-geometric-sequences-and-series">Geometric Sequences and Series</h2>
 <section class="callout definition"><header>Definition</header><p>A <strong>geometric sequence</strong> is a sequence where each term is obtained by multiplying the previous one by a fixed number <span class="math-inline">\(r\)</span> (called the <strong>common ratio</strong>):</p>
 <div class="math-block">\begin{equation}
 			a, ar, ar^2, ar^3, \dots
 		\end{equation}</div></section>
-<section class="callout example"><header>Example - Examples</header><ul><li><p><strong>Exponential Growth (e.g., Bacteria):</strong> <span class="math-inline">\(2,\ 4,\ 8,\ 16,\ \dots\)</span> with <span class="math-inline">\(r = 2\)</span></p></li><li><p><strong>Decay (e.g., Bouncing Ball):</strong> <span class="math-inline">\(1,\ \frac{2}{3},\ \frac{4}{9},\ \frac{8}{27},\ \dots\)</span> with <span class="math-inline">\(r = \frac{2}{3}\)</span></p></li></ul></section>
-<p>Finite Geometric Series</p>
+<p class="paragraph-title">Examples</p>
+<ul><li><p><strong>Exponential Growth (e.g., Bacteria):</strong> <span class="math-inline">\(2,\ 4,\ 8,\ 16,\ \dots\)</span> with <span class="math-inline">\(r = 2\)</span></p></li><li><p><strong>Decay (e.g., Bouncing Ball):</strong> <span class="math-inline">\(1,\ \frac{2}{3},\ \frac{4}{9},\ \frac{8}{27},\ \dots\)</span> with <span class="math-inline">\(r = \frac{2}{3}\)</span></p></li></ul>
+<h3 id="sec-1-finite-geometric-series">Finite Geometric Series</h3>
 <section class="callout theorem"><header>Theorem</header><p>The sum of the first <span class="math-inline">\(N\)</span> terms of a geometric series is:</p>
 <div class="math-block">\begin{equation}
 		S_N = a \cdot \frac{1 - r^N}{1 - r}, \quad r \ne 1
 	\end{equation}</div></section>
-<section class="callout proof"><header>Proof</header><p>Consider the geometric series</p>
+<div class="proof" data-lead="Proof."><p>Consider the geometric series</p>
 <div class="math-block">\[
 S_N = a + ar + ar^2 + \cdots + ar^{N-1}.
 \]</div>
@@ -184,7 +155,7 @@ S_N(1 - r) = a(1 - r^N).
 <p>Finally, dividing both sides by <span class="math-inline">\((1-r)\)</span> (valid when <span class="math-inline">\(r \neq 1\)</span>), we obtain</p>
 <div class="math-block">\[
 S_N = a \cdot \frac{1 - r^N}{1 - r}.
-\]</div></section>
+\]</div></div>
 <h3 id="sec-1-infinite-geometric-series">Infinite Geometric Series</h3>
 <p>An infinite geometric series of the form:</p>
 <div class="math-block">\[
@@ -234,8 +205,9 @@ a + ar + ar^2 + \cdots
 <section class="callout example"><header>Example</header><p>Evaluate:</p>
 <div class="math-block">\[
 	\lim_{n \to \infty} \dfrac{(2n - 1)^4 + \sqrt{1 + 9n^8}}{1 - n^3 - 7n^4}
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p>Divide numerator and denominator by <span class="math-inline">\(n^4\)</span>:</p>
+	\]</div>
+<p class="solution-head">Solution.</p>
+<p>Divide numerator and denominator by <span class="math-inline">\(n^4\)</span>:</p>
 <div class="math-block">\begin{align}
 		&amp;= \lim_{n \to \infty} \frac{(2 - \frac{1}{n})^4 + \sqrt{\frac{1}{n^8} + 9}}{\frac{1}{n^4} - \frac{n^3}{n^4} - 7} \notag \\
 		&amp;= \frac{2^4 + \sqrt{9}}{-7} = \frac{16 + 3}{-7} = -\frac{19}{7}
@@ -243,16 +215,18 @@ a + ar + ar^2 + \cdots
 <section class="callout example"><header>Example</header><p>Evaluate:</p>
 <div class="math-block">\[
 	\lim_{n \to \infty} \frac{\ln n}{n}
-	\]</div></section>
-<section class="callout solution"><header>Solution - Using L'Hôpital's Rule</header><div class="math-block">\begin{align}
+	\]</div>
+<p class="solution-head">Solution: Using L'Hôpital's Rule</p>
+<div class="math-block">\begin{align}
 		\lim_{n \to \infty} \frac{\ln n}{n} &amp;= \lim_{n \to \infty} \frac{1/n}{1} = 0
 	\end{align}</div>
 <p><strong>Note:</strong> Although <span class="math-inline">\(n\)</span> is discrete, the limit is evaluated using a continuous extension <span class="math-inline">\(f(x) = \frac{\ln x}{x}\)</span>.</p></section>
 <section class="callout example"><header>Example</header><p>Evaluate:</p>
 <div class="math-block">\[
 	\lim_{n \to \infty} \left( \frac{1}{n} \right)^{1/n}
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p>Take logarithm:</p>
+	\]</div>
+<p class="solution-head">Solution.</p>
+<p>Take logarithm:</p>
 <div class="math-block">\begin{align}
 		\ln \left( \left( \frac{1}{n} \right)^{1/n} \right) &amp;= -\frac{\ln n}{n} \to 0 \quad \text{as } n \to \infty
 	\end{align}</div>
@@ -260,6 +234,9 @@ a + ar + ar^2 + \cdots
 <div class="math-block">\begin{equation}
 		\lim_{n \to \infty} \left( \frac{1}{n} \right)^{1/n} = e^0 = 1
 	\end{equation}</div></section>
+<section class="callout context"><header>Video</header><p><strong>Defining Convergent and Divergent Infinite Series</strong></p>
+<a class="video-preview" href="https://www.youtube.com/watch?v=cr8QcflluF0" target="_blank" rel="noopener" aria-label="Watch Defining Convergent and Divergent Infinite Series on YouTube"><img src="https://img.youtube.com/vi/cr8QcflluF0/hqdefault.jpg" alt="Video thumbnail for Defining Convergent and Divergent Infinite Series" loading="lazy"><span class="video-preview-play" aria-hidden="true"></span><span class="video-preview-label">Watch on YouTube</span></a>
+<p><a href="https://www.youtube.com/watch?v=cr8QcflluF0" target="_blank" rel="noopener">Open video on YouTube</a></p></section>
 <h2 id="sec-1-testing-series-for-convergence">Testing Series for Convergence</h2>
 <h3 id="sec-1-preliminary-test">Preliminary Test</h3>
 <section class="callout theorem"><header>Theorem - Preliminary Test</header><p>If <span class="math-inline">\(\displaystyle \lim_{n\to\infty} a_n \neq 0\)</span>, the series <span class="math-inline">\(\displaystyle \sum a_n\)</span> <strong>diverges</strong>.</p>
@@ -483,7 +460,7 @@ f(a) = c_0,\quad f&#x27;(a) = 1!\,c_1,\quad f&#x27;&#x27;(a)=2!\,c_2, \ \ldots
 	\frac{f^{(n)}(a)}{n!}(x-a)^n
 	\]</div>
 <p>for every <span class="math-inline">\(x\)</span> in the interval where the series converges. This is called the <strong>Taylor series of <span class="math-inline">\(f\)</span> about <span class="math-inline">\(x=a\)</span></strong>.</p></section>
-<section class="callout proof"><header>Proof</header><p>From the assumption that <span class="math-inline">\(f(x)\)</span> can be written as a power series about <span class="math-inline">\(x=a\)</span>, term-by-term differentiation shows that</p>
+<div class="proof" data-lead="Proof."><p>From the assumption that <span class="math-inline">\(f(x)\)</span> can be written as a power series about <span class="math-inline">\(x=a\)</span>, term-by-term differentiation shows that</p>
 <div class="math-block">\[
 	c_n = \frac{f^{(n)}(a)}{n!}.
 	\]</div>
@@ -492,7 +469,7 @@ f(a) = c_0,\quad f&#x27;(a) = 1!\,c_1,\quad f&#x27;&#x27;(a)=2!\,c_2, \ \ldots
 	f(x) = \sum_{n=0}^{\infty} c_n (x-a)^n
 	= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n,
 	\]</div>
-<p>establishing the result. □</p></section>
+<p>establishing the result. □</p></div>
 <section class="callout theorem"><header>Theorem - Maclaurin Series</header><p>A <strong>Maclaurin series</strong> is a Taylor series centered at <span class="math-inline">\(a=0\)</span>:</p>
 <div class="math-block">\[
 	f(x)
@@ -750,5 +727,10 @@ f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(x-a)^n
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '4.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 4</p>
@@ -68,8 +78,8 @@
 <a class="toc-level-3" href="#sec-4-second-derivative">Second Derivative</a>
 <a class="toc-level-2" href="#sec-4-more-on-chain-rule">More on Chain Rule</a>
 <a class="toc-level-2" href="#sec-4-chain-rule-in-polar-and-rectangular-coordinates">Chain Rule in Polar and Rectangular Coordinates</a>
-<a class="toc-level-3" href="#sec-4-step-1-compute-x">Step 1. Compute   x</a>
-<a class="toc-level-3" href="#sec-4-step-2-compute-x">Step 2. Compute  x</a>
+<a class="toc-level-3" href="#sec-4-step-1-compute-x">Step 1. Compute x</a>
+<a class="toc-level-3" href="#sec-4-step-2-compute-x">Step 2. Compute x</a>
 <a class="toc-level-3" href="#sec-4-step-3-a-reciprocal-relation">Step 3. A reciprocal relation</a>
 <a class="toc-level-3" href="#sec-4-step-4-using-differentials">Step 4. Using differentials</a>
 <a class="toc-level-3" href="#sec-4-matrix-notation">Matrix notation</a>
@@ -389,8 +399,8 @@ df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac
 	y = \ln(u), \qquad u = \sin(v), \qquad v = 2x.
 	\]</div>
 <p>Find <span class="math-inline">\(\frac{d y}{d x}\)</span>.</p>
-</section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	\frac{d y}{d x} = \frac{d y}{d u}\,\frac{d u}{d v}\,\frac{d v}{d x}.
 	\]</div>
 <p>Compute the derivatives step by step:</p>
@@ -416,8 +426,8 @@ df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac
 	\qquad y = \sin(t).
 	\]</div>
 <p>Find <span class="math-inline">\(\frac{d z}{d t}\)</span>.</p>
-</section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	\frac{d z}{d t}
 	= \frac{\partial z}{\partial x}\frac{d x}{d t}
 	+ \frac{\partial z}{\partial y}\frac{d y}{d t}.
@@ -483,8 +493,8 @@ x + e^x = t
 	x^3 - 3y^3 + xy + 2 = 0
 	\]</div>
 <p>at the point <span class="math-inline">\((1,2)\)</span>.</p>
-</section>
-<section class="callout solution"><header>Solution</header><p>Differentiate implicitly with respect to <span class="math-inline">\(x\)</span>:</p>
+<p class="solution-head">Solution.</p>
+<p>Differentiate implicitly with respect to <span class="math-inline">\(x\)</span>:</p>
 <div class="math-block">\[
 	3x^2 - 9y^2\,\frac{d y}{d x} + y + x\,\frac{d y}{d x} = 0.
 	\]</div>
@@ -537,7 +547,7 @@ x + e^x = t
 		+ \frac{\partial u}{\partial y}\frac{\partial y}{\partial t}
 		+ \frac{\partial u}{\partial z}\frac{\partial z}{\partial t}}
 	\]</div></section>
-<section class="callout proof"><header>Proof</header><p>Write the total differential of <span class="math-inline">\(u=u(x,y,z)\)</span>:</p>
+<div class="proof" data-lead="Proof."><p>Write the total differential of <span class="math-inline">\(u=u(x,y,z)\)</span>:</p>
 <div class="math-block">\[
 	du = \frac{\partial u}{\partial x}\,dx + \frac{\partial u}{\partial y}\,dy + \frac{\partial u}{\partial z}\,dz.
 	\]</div>
@@ -575,16 +585,16 @@ x + e^x = t
 		\frac{\partial z}{\partial s} &amp; \frac{\partial z}{\partial t}
 	\end{pmatrix},
 	\]</div>
-<p>which is the desired matrix chain rule.</p></section>
+<p>which is the desired matrix chain rule.</p></div>
 <section class="callout example"><header>Example</header><p>Let</p>
 <div class="math-block">\[
 	z = xy,
 	\qquad x = \sin(s+t),
 	\qquad y = s - t.
 	\]</div>
-<p>We want to compute <span class="math-inline">\(\frac{\partial z}{\partial s}\)</span> and <span class="math-inline">\(\frac{\partial z}{\partial t}\)</span>.</p></section>
-<section class="callout solution"><header>Solution</header><p class="paragraph-title">Step 1. Apply the Chain Rule</p>
-<div class="math-block">\[
+<p>We want to compute <span class="math-inline">\(\frac{\partial z}{\partial s}\)</span> and <span class="math-inline">\(\frac{\partial z}{\partial t}\)</span>.</p>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 	\frac{\partial z}{\partial s}
 	= \frac{\partial z}{\partial x}\frac{\partial x}{\partial s}
 	+ \frac{\partial z}{\partial y}\frac{\partial y}{\partial s},
@@ -636,9 +646,9 @@ x + e^x = t
 	x^2+y^2=t^2,\qquad
 	x\sin t=ye^y,
 	\]</div>
-<p>find <span class="math-inline">\(\frac{d z}{d t}=?\)</span></p></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Differentiate the constraints.</strong></p>
-<div class="math-block">\[
+<p>find <span class="math-inline">\(\frac{d z}{d t}=?\)</span></p>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 	2x\,dx+2y\,dy=2t\,dt,
 	\qquad
 	\sin t\,dx+x\cos t\,dt=(y+1)e^y\,dy.
@@ -702,8 +712,9 @@ x + e^x = t
 	x^2 + y^3 = st + 5,
 	\qquad
 	x^3 - y^2 = s^2 + t^2.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><h3 id="sec-4-step-1-differential-of-z">Step 1. Differential of <span class="math-inline">\(z\)</span></h3>
+	\]</div>
+<p class="solution-head">Solution.</p>
+<h3 id="sec-4-step-1-differential-of-z">Step 1. Differential of <span class="math-inline">\(z\)</span></h3>
 <p>We compute</p>
 <div class="math-block">\[
 	dz = \frac{\partial z}{\partial x} dx + \frac{\partial z}{\partial y} dy
@@ -802,8 +813,9 @@ x + e^x = t
 		=\frac{3s x^3+4sxy+2s y^2-4t x^2+12txy^2+6t y^3}{\,4xy+9x^2y^2\,}
 		\;}
 	\]</div></section>
-<section class="callout example"><header>Example</header><p>Given the equations of Example 3, find <span class="math-inline">\(\left(\frac{\partial s}{\partial z}\right)_{x}\)</span>.</p></section>
-<section class="callout solution"><header>Solution</header><h3 id="sec-4-step-1-dx-0-in-example-3">Step 1. <span class="math-inline">\(dx =0\)</span> in Example 3</h3>
+<section class="callout example"><header>Example</header><p>Given the equations of Example 3, find <span class="math-inline">\(\left(\frac{\partial s}{\partial z}\right)_{x}\)</span>.</p>
+<p class="solution-head">Solution.</p>
+<h3 id="sec-4-step-1-dx-0-in-example-3">Step 1. <span class="math-inline">\(dx =0\)</span> in Example 3</h3>
 <div class="math-block">\[
 	dz = x\,dy.
 	\]</div>
@@ -1226,9 +1238,9 @@ I(x) = \int_{u(x)}^{v(x)} f(x,t)\,dt,
 <section class="callout example"><header>Example - Leibniz rule with variable limits</header><p>Evaluate</p>
 <div class="math-block">\[
 I(x) = \int_{x}^{2x} \frac{e^{xt}}{t}\,dt.
-\]</div></section>
-<section class="callout solution"><header>Solution</header><p class="paragraph-title">Step 1. Apply Leibniz’s rule</p>
-<div class="math-block">\[
+\]</div>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 \frac{d I}{d x} = \frac{e^{x(2x)}}{2x}\frac{d (2x)}{d x}
 - \frac{e^{x(x)}}{x}\frac{d (x)}{d x}
 + \int_{x}^{2x} \frac{\partial}{\partial x}\!\Big(\frac{e^{xt}}{t}\Big)\,dt.
@@ -1262,5 +1274,10 @@ I(x) = \int_{x}^{2x} \frac{e^{xt}}{t}\,dt.
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

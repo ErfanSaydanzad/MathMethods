@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return ''  + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="toc.html">Contents</a>
   </nav>
 </header>
-<main class="home">
+<main class="home" id="main">
   <section class="home-hero">
     <p>PHYS 3260 Lecture Notes</p>
     <h1>Mathematical Methods in the Physical Sciences</h1>
@@ -94,6 +104,47 @@
   <strong>Partial Differential Equations (Chapter 13)</strong>
 </a>
   </section>
+  <section class="overview content">
+    <p>Why These Methods Matter  Why These Methods MatterWhy These Methods Matter</p>
+<p>Mathematics is the language of physics. From Newton's laws to Schr\"odinger's equation, every major physical theory is stated mathematically, and a physical idea is only as sharp as the mathematics used to express it. The methods in these notes are not a detour on the way to physics; they are how physics is done.</p>
+<p>Rather than meet those methods one at a time and wonder where each is going, it helps to see the destination first. The three areas below are ones you already know something about. Each raises a mathematical question, and each question is answered by a chapter of these notes. The same handful of tools keeps reappearing: series to approximate, linear algebra to handle many coupled quantities at once, and differential equations to describe change.</p>
+<p>coursetheme1. Classical Mechanics</p>
+<p>Mechanics begins with Newton's second law, which is a second-order ordinary differential equation:</p>
+<div class="math-block">\[
+	\vec{F}_{\text{net}} = m \vec{a} = m \frac{d\vec{v}}{dt} = m \frac{d^2 \vec{r}}{dt^2},
+	\qquad
+	\vec{v} = \frac{d\vec{r}}{dt}.
+	\]</div>
+<p>Solving it for a given force is the central problem of the subject.</p>
+<figure class="figure figure-single"><img src="assets/img/Fig1.png" alt="Fig1" loading="lazy"></figure>
+<p><strong>Where this is developed:</strong></p>
+<ul><li><p><strong>Ordinary Differential Equations (Ch. 8):</strong> first- and second-order equations</p></li><li><p><strong>Linear Algebra (Ch. 3):</strong> systems of equations, eigenvalue problems, normal modes</p></li><li><p><strong>Infinite Series and Power Series (Ch. 1):</strong> approximating motion when no exact solution exists</p></li></ul>
+<section class="callout context"><header>Note - Applications</header><p>oscillators, planetary motion, variational principles coursetheme</p>
+<p>coursetheme2. Electromagnetism</p>
+<p>Maxwell's equations describe how electric and magnetic fields behave in materials:</p>
+<div class="math-block">\[
+	\begin{aligned}
+		&amp;\operatorname{div} \vec{D} = \rho_f, \quad &amp;&amp;\operatorname{div} \vec{B} = 0 \\
+		&amp;\operatorname{curl} \vec{E} = -\frac{\partial \vec{B}}{\partial t}, \quad &amp;&amp;\operatorname{curl} \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t}
+	\end{aligned}
+	\]</div>
+<p>They are written in the language of vector calculus, so learning that language is a prerequisite for reading them at all.</p>
+<figure class="figure figure-single"><img src="assets/img/Fig2.png" alt="Fig2" loading="lazy"></figure>
+<p><strong>Where this is developed:</strong></p>
+<ul><li><p><strong>Vector Analysis (Ch. 6):</strong> gradient, divergence, curl; Gauss's and Stokes's theorems</p></li><li><p><strong>Partial Differential Equations (Ch. 10):</strong> Laplace's, Poisson's, and wave equations</p></li><li><p><strong>Fourier Series and Transforms (Ch. 7):</strong> solving boundary value problems for fields</p></li><li><p><strong>Multiple Integrals (Ch. 5):</strong> charge and current distributions in space</p></li></ul></section>
+<section class="callout context"><header>Note - Applications</header><p>fields in dielectrics, waveguides, AC circuits coursetheme</p>
+<p>coursetheme3. Quantum Mechanics</p>
+<p>Quantum mechanics describes a particle by a wavefunction, which evolves according to the Schr\"odinger equation:</p>
+<div class="math-block">\[
+	i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \nabla^2 \psi + V \psi.
+	\]</div>
+<p>Note that the equation is complex, and that it is again a partial differential equation: two of the threads running through these notes meet here.</p>
+<figure class="figure figure-single"><img src="assets/img/Fig3.png" alt="Fig3" loading="lazy"></figure>
+<p><strong>Where this is developed:</strong></p>
+<ul><li><p><strong>Complex Numbers (Ch. 2):</strong> Euler's formula, complex amplitudes</p></li><li><p><strong>Linear Algebra (Ch. 3):</strong> operators, eigenvalues, Hilbert space</p></li><li><p><strong>Fourier Series and Transforms (Ch. 7):</strong> analysing wavefunctions in different bases</p></li><li><p><strong>Partial Differential Equations (Ch. 10):</strong> time-dependent and time-independent Schr\"odinger equations</p></li><li><p><strong>Series Solutions (Ch. 9):</strong> special functions such as Legendre and Bessel</p></li></ul></section>
+<section class="callout context"><header>Note - Applications</header><p>atomic structure, tunnelling, the harmonic oscillator coursetheme</p>
+<p> Read across the three boxes and the pattern is hard to miss: the same few chapters keep being called on. That is the argument for studying these methods together rather than picking them up piecemeal. When a technique appears later in the notes and its purpose is not obvious, it is worth returning to this page to see which physical question it was meant to answer.</p></section>
+  </section>
   <section class="preface content">
     <p>Preface </p>
 <h2 id="sec-0-about-these-notes">About These Notes</h2>
@@ -104,8 +155,13 @@
 <p>Vector analysis then builds the language of fields. Concepts such as gradient, divergence, and curl are central to electromagnetism, fluid flow, and many other parts of physics. The integral theorems of vector calculus show how local properties and global behavior are connected, giving mathematical structure to important physical laws.</p>
 <p>The later chapters focus on methods for solving physical problems. Fourier series and Fourier transforms allow functions to be decomposed into simpler modes, an idea that is fundamental in wave motion, signal analysis, heat flow, and quantum theory. Ordinary differential equations describe how systems evolve and respond to external influences. Series solutions and special functions arise when these equations cannot be solved in elementary form, while partial differential equations bring together many of the main ideas of the course in the study of waves, potentials, diffusion, and boundary-value problems.</p>
 <p>The organization and style of these notes are inspired by Mary L. Boas’s <em>Mathematical Methods in the Physical Sciences</em>. Like that text, these notes aim to be practical, clear, and closely connected to applications. Many examples are drawn from physics, and one of my future goals is to include more physical examples throughout the notes. I hope this text serves not only as a guide for this course, but also as a useful reference for later study. Mathematical methods become powerful through practice, patience, and repeated connection to real problems, and these notes are meant to support that process.</p>
-<div class="flushright"><p>Erfan Saydanzad <br> Department of Physics <br> Kennesaw State University</p></div>
+<div class="flushright"><p>Erfan Saydanzad  Department of Physics  Kennesaw State University</p></div>
   </section>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '6.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 6</p>
@@ -88,8 +98,8 @@
 <a class="toc-level-3" href="#sec-6-volume-integrals">Volume Integrals</a>
 <a class="toc-level-3" href="#sec-6-green-s-theorem-in-the-plane">Green’s Theorem in the Plane</a>
 <a class="toc-level-2" href="#sec-6-proof">Proof:</a>
-<a class="toc-level-3" href="#sec-6-part-i-the-term-involving-p-y-p-y">Part I: The Term Involving  P y∂P/∂y</a>
-<a class="toc-level-3" href="#sec-6-part-ii-the-term-involving-q-x-q-x">Part II: The Term Involving  Q x∂Q/∂x</a>
+<a class="toc-level-3" href="#sec-6-part-i-the-term-involving-p-y-p-y">Part I: The Term Involving P y∂P/∂y</a>
+<a class="toc-level-3" href="#sec-6-part-ii-the-term-involving-q-x-q-x">Part II: The Term Involving Q x∂Q/∂x</a>
 <a class="toc-level-3" href="#sec-6-physical-interpretation">Physical Interpretation</a>
 <a class="toc-level-2" href="#sec-6-the-divergence-and-stokes-s-theorems">The Divergence and Stokes’s Theorems</a>
 <a class="toc-level-3" href="#sec-6-the-divergence-theorem-in-the-plane">The Divergence Theorem in the Plane</a>
@@ -126,7 +136,7 @@
 	W=\vec{F}\cdot\vec{r}=Fr\cos\theta.
 	\]</div>
 <p>Only the component of <span class="math-inline">\(\vec{F}\)</span> in the direction of motion contributes to the work.</p></section>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-01.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 50%;"><img src="assets/img/ch06_fig01_work_dot_product.png" alt="ch06 fig01 work dot product" loading="lazy"></figure></div>
 <h3 id="sec-6-cross-product-vector-product">Cross Product (Vector Product)</h3>
 <section class="callout definition"><header>Definition - Cross Product</header><p>For two vectors <span class="math-inline">\(\vec{A}\)</span> and <span class="math-inline">\(\vec{B}\)</span>,</p>
 <div class="math-block">\[
@@ -437,8 +447,9 @@
 <div class="math-block">\[
 	\phi(x,y,z) = x^2 + y^2 + z^2 = a^2
 	\]</div>
-<p>at the point <span class="math-inline">\((0,0,a)\)</span>.</p></section>
-<section class="callout solution"><header>Solution</header><div class="math-block">\[
+<p>at the point <span class="math-inline">\((0,0,a)\)</span>.</p>
+<p class="solution-head">Solution.</p>
+<div class="math-block">\[
 	\vec{\nabla}\phi = \frac{\partial \phi}{\partial x}\hat{i} + \frac{\partial \phi}{\partial y}\hat{j} + \frac{\partial \phi}{\partial z}\hat{k}
 	= 2x\,\hat{i} + 2y\,\hat{j} + 2z\,\hat{k}.
 	\]</div>
@@ -483,7 +494,7 @@
 		\end{aligned}
 	}
 	\]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-02.svg" alt="TikZ diagram" loading="lazy"></figure></div></section>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 50%;"><img src="assets/img/ch06_fig02_sphere_tangent.png" alt="ch06 fig02 sphere tangent" loading="lazy"></figure></div></section>
 <section class="callout theorem"><header>Theorem - Important Properties of the Gradient</header><ol><li><p><span class="math-inline">\(\vec{\nabla}(\phi+\psi)=\vec{\nabla}\phi+\vec{\nabla}\psi.\)</span></p></li><li><p><span class="math-inline">\(\vec{\nabla}(m\phi)=m\vec{\nabla}\phi+\phi\vec{\nabla} m.\)</span></p></li><li><p><span class="math-inline">\(\vec{\nabla}(\phi\psi)=\phi\vec{\nabla}\psi+\psi\vec{\nabla}\phi.\)</span></p></li></ol></section>
 <h2 id="sec-6-expressions-involving">Expressions Involving <span class="math-inline">\(\vec{\nabla}\)</span></h2>
 <p>The differential operator</p>
@@ -522,7 +533,7 @@
 	\]</div></section>
 <section class="callout remark"><header>Remark</header><p>The curl measures the <em>rotation</em> or <em>circulation density</em> of a vector field about a point.</p></section>
 <section class="callout example"><header>Example - Divergence and Curl of</header><p><span class="math-inline">\(\displaystyle \vec{V}(x,y,z)=x\sin y\,\hat{i}+\cos y\,\hat{j}+xy\,\hat{k}.\)</span></p>
-<p><em>Components:</em>  <span class="math-inline">\(V_x=x\sin y,\; V_y=\cos y,\; V_z=xy.\)</span></p>
+<p><em>Components:</em>   <span class="math-inline">\(V_x=x\sin y,\; V_y=\cos y,\; V_z=xy.\)</span></p>
 <p> <strong>Divergence.</strong></p>
 <div class="math-block">\[
 	\vec{\nabla}\!\cdot\!\vec{V}
@@ -881,7 +892,7 @@
 <ul><li><p>Magnetic field lines are always closed loops; there are no magnetic monopoles.</p></li><li><p>The field has no divergence—no “beginning” or “end.”</p></li></ul></li><li><p><strong>Faraday’s Law:</strong> <span class="math-inline">\(\displaystyle \vec{\nabla}\times\vec{E} = -\frac{\partial \vec{B}}{\partial t}\)</span></p>
 <ul><li><p>A time-varying magnetic field induces a <strong>circulating electric field</strong>.</p></li><li><p>The curl of <span class="math-inline">\(\vec{E}\)</span> represents the tendency of <span class="math-inline">\(\vec{E}\)</span> to form closed loops.</p></li><li><p>This is the principle behind electromagnetic induction.</p></li></ul></li><li><p><strong>Ampère–Maxwell Law:</strong> <span class="math-inline">\(\displaystyle \vec{\nabla}\times\vec{B} = \mu_0\vec{J}_f + \mu_0\epsilon_0\frac{\partial \vec{E}}{\partial t}\)</span></p>
 <ul><li><p>A circulating magnetic field is produced by electric currents <span class="math-inline">\(\vec{J}\)</span> and by changing electric fields <span class="math-inline">\(\frac{\partial \vec{E}}{\partial t}\)</span>.</p></li><li><p>The second term (<span class="math-inline">\(\mu_0\epsilon_0\frac{\partial \vec{E}}{\partial t}\)</span>) is the <strong>displacement current density</strong>, introduced by Maxwell to ensure charge conservation.</p></li></ul></li></ol>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-03.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 95%;"><img src="assets/img/ch06_fig03_divergence_curl.png" alt="ch06 fig03 divergence curl" loading="lazy"></figure></div>
 <h3 id="sec-6-derivation-of-the-electromagnetic-wave-equation">Derivation of the Electromagnetic Wave Equation</h3>
 <p>We now derive how Maxwell’s equations predict that changing electric and magnetic fields propagate as waves in vacuum. In Vacuum (no charges or currents): <span class="math-inline">\(\rho_f = 0\)</span>, <span class="math-inline">\(\vec{J}_f = 0.\)</span> Then Maxwell’s equations become:</p>
 <div class="math-block">\[
@@ -923,7 +934,7 @@
 	}
 	\]</div>
 <p>These are <strong>wave equations</strong> for <span class="math-inline">\(\vec{E}\)</span> and <span class="math-inline">\(\vec{B}\)</span>, describing electromagnetic waves propagating through space.</p>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-04.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 55%;"><img src="assets/img/ch06_fig04_em_wave.png" alt="ch06 fig04 em wave" loading="lazy"></figure></div>
 <h2 id="sec-6-vector-integrals">Vector Integrals</h2>
 <p>In vector calculus, integrals of scalar or vector functions can be defined over curves, surfaces, or volumes. These are classified as:</p>
 <div class="math-block">\[
@@ -968,7 +979,7 @@ I = \int_1^2 (2y^3 + y^2 + y)\,dy
 = \left[\frac{y^4}{2} + \frac{y^3}{3} + \frac{y^2}{2}\right]_1^2
 = \frac{34}{3}.
 \]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-05.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 55%;"><img src="assets/img/ch06_fig05_parabola_path.png" alt="ch06 fig05 parabola path" loading="lazy"></figure></div>
 <h3 id="sec-6-ii-parametric-curve-x-2u-2-u-1-y-1-u-2-from-1-1-to-4-2">(ii) Parametric Curve <span class="math-inline">\(x=2u^2+u+1\)</span>, <span class="math-inline">\(y=1+u^2\)</span> from <span class="math-inline">\((1,1)\)</span> to <span class="math-inline">\((4,2)\)</span></h3>
 <p><strong>Step 1. Express <span class="math-inline">\(d\vec{r}\)</span>.</strong></p>
 <div class="math-block">\[
@@ -997,7 +1008,7 @@ I = \int_0^1 (10u^3 + u^2 + 8u + 2)\,du
 = \left[\frac{10u^4}{4} + \frac{u^3}{3} + 4u^2 + 2u\right]_0^1
 = \frac{32}{3}.
 \]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-06.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 55%;"><img src="assets/img/ch06_fig06_parametric_path.png" alt="ch06 fig06 parametric path" loading="lazy"></figure></div>
 <h3 id="sec-6-iii-piecewise-linear-path">(iii) Piecewise Linear Path</h3>
 <p><strong>Segment 1:</strong> along <span class="math-inline">\(y=1\)</span> from <span class="math-inline">\((1,1)\)</span> to <span class="math-inline">\((4,1)\)</span>.</p>
 <div class="math-block">\[
@@ -1025,7 +1036,7 @@ I_2 = \int_1^2 (y-4)\,dy
 <div class="math-block">\[
 I = I_1 + I_2 = \frac{21}{2} - \frac{5}{2} = 8.
 \]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-07.svg" alt="TikZ diagram" loading="lazy"></figure></div></section>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 55%;"><img src="assets/img/ch06_fig07_piecewise_path.png" alt="ch06 fig07 piecewise path" loading="lazy"></figure></div></section>
 <section class="callout remark"><header>Remark - Observation</header><p>Although all three paths start and end at the same points, the resulting integrals differ:</p>
 <div class="math-block">\[
 	I_{\text{(i)}} = \frac{34}{3}, \qquad
@@ -1040,8 +1051,9 @@ I = I_1 + I_2 = \frac{21}{2} - \frac{5}{2} = 8.
 <p>where <span class="math-inline">\(C\)</span> is the circle in the <span class="math-inline">\(xy\)</span>–plane defined by</p>
 <div class="math-block">\[
 	x^2 + y^2 = a^2, \qquad z = 0.
-	\]</div></section>
-<section class="callout solution"><header>Solution</header><p>This integral is very simple in polar coordinates.</p>
+	\]</div>
+<p class="solution-head">Solution.</p>
+<p>This integral is very simple in polar coordinates.</p>
 <div class="math-block">\[
 	x = a\cos\theta,
 	\qquad y = a\sin\theta,
@@ -1061,12 +1073,12 @@ I = I_1 + I_2 = \frac{21}{2} - \frac{5}{2} = 8.
 <div class="math-block">\[
 	\boxed{\,I = \pi a^2.\,}
 	\]</div>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-08.svg" alt="TikZ diagram" loading="lazy"></figure></div></section>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 50%;"><img src="assets/img/ch06_fig08_circle_contour.png" alt="ch06 fig08 circle contour" loading="lazy"></figure></div></section>
 <section class="callout example"><header>Example - Compute the line integral</header><div class="math-block">\[
 	I=\int_C \frac{x\,dy - y\,dx}{x^2+y^2}
 	\]</div>
 <p><strong>from <span class="math-inline">\((-1,0)\)</span> to <span class="math-inline">\((1,0)\)</span> along the two paths shown below.</strong></p>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-09.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 60%;"><img src="assets/img/ch06_fig09_two_paths.png" alt="ch06 fig09 two paths" loading="lazy"></figure></div>
 <p>We can write this integral as</p>
 <div class="math-block">\[
 	I=\int_C \vec{F}\cdot d\vec{r},
@@ -1230,7 +1242,7 @@ V = -\,q\int_C \vec{E}\cdot d\vec{r}.
 \boxed{\Phi = \iint_{\sigma} \vec{F}\cdot d\vec{\sigma}},
 \]</div>
 <p>which represents the <strong>flux</strong> of the vector field <span class="math-inline">\(\vec{F}\)</span> through the surface <span class="math-inline">\(S\)</span>. Physically, this measures how much of the field “flows” through <span class="math-inline">\(S\)</span>. Only the normal component of <span class="math-inline">\(\vec{F}\)</span> contributes to the flux; tangential components make no contribution.</p>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-10.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 70%;"><img src="assets/img/ch06_fig10_flux_surface.png" alt="ch06 fig10 flux surface" loading="lazy"></figure></div>
 <h3 id="sec-6-volume-integrals">Volume Integrals</h3>
 <p>A volume integral extends the concept to three dimensions. For a scalar field <span class="math-inline">\(\phi(x,y,z)\)</span>,</p>
 <div class="math-block">\[
@@ -1264,7 +1276,7 @@ V = -\,q\int_C \vec{E}\cdot d\vec{r}.
 	\]</div></section>
 <h2 id="sec-6-proof">Proof:</h2>
 <h3 id="sec-6-part-i-the-term-involving-p-y-p-y">Part I: The Term Involving <span class="math-inline">\(\frac{\partial P}{\partial y}\)</span></h3>
-<figure id="chapter-06-fig-1" class="figure"><img src="assets/img/tikz-11.svg" alt="Region bounded between $y_1(x)$ and $y_2(x)$ for $x \in [a,b]$. The strip of width $dx$ contributes to $\int \frac{\partial P}{\partial y}\,dy$." loading="lazy"><figcaption>Region bounded between <span class="math-inline">\(y_1(x)\)</span> and <span class="math-inline">\(y_2(x)\)</span> for <span class="math-inline">\(x \in [a,b]\)</span>. The strip of width <span class="math-inline">\(dx\)</span> contributes to <span class="math-inline">\(\int \frac{\partial P}{\partial y}\,dy\)</span>.</figcaption></figure>
+<figure id="chapter-06-fig-1" class="figure"><img src="assets/img/ch06_fig11_green_vertical.png" alt="Region bounded between $y_1(x)$ and $y_2(x)$ for $x \in [a,b]$. The strip of width $dx$ contributes to $\int \frac{\partial P}{\partial y}\,dy$." loading="lazy" style="--figure-width: 60%;"><figcaption>Region bounded between <span class="math-inline">\(y_1(x)\)</span> and <span class="math-inline">\(y_2(x)\)</span> for <span class="math-inline">\(x \in [a,b]\)</span>. The strip of width <span class="math-inline">\(dx\)</span> contributes to <span class="math-inline">\(\int \frac{\partial P}{\partial y}\,dy\)</span>.</figcaption></figure>
 <p>Consider</p>
 <div class="math-block">\[
 I = \iint_A \frac{\partial P(x,y)}{\partial y}\,dx\,dy.
@@ -1288,7 +1300,7 @@ I = \int_a^b \!\!\left[\int_{y_1(x)}^{y_2(x)}
 I =-\int_b^a P(x,y_2(x))\,dx - \int_a^b P(x,y_1(x))\,dx = -\oint_{\partial A} P\,dx.
 \]</div>
 <h3 id="sec-6-part-ii-the-term-involving-q-x-q-x">Part II: The Term Involving <span class="math-inline">\(\frac{\partial Q}{\partial x}\)</span></h3>
-<figure id="chapter-06-fig-2" class="figure"><img src="assets/img/tikz-12.svg" alt="Region bounded between $x_1(y)$ and $x_2(y)$ for $y \in [c,d]$. The strip of width $dy$ contributes to $\int \frac{\partial Q}{\partial x}\,dx$." loading="lazy"><figcaption>Region bounded between <span class="math-inline">\(x_1(y)\)</span> and <span class="math-inline">\(x_2(y)\)</span> for <span class="math-inline">\(y \in [c,d]\)</span>. The strip of width <span class="math-inline">\(dy\)</span> contributes to <span class="math-inline">\(\int \frac{\partial Q}{\partial x}\,dx\)</span>.</figcaption></figure>
+<figure id="chapter-06-fig-2" class="figure"><img src="assets/img/ch06_fig12_green_horizontal.png" alt="Region bounded between $x_1(y)$ and $x_2(y)$ for $y \in [c,d]$. The strip of width $dy$ contributes to $\int \frac{\partial Q}{\partial x}\,dx$." loading="lazy" style="--figure-width: 60%;"><figcaption>Region bounded between <span class="math-inline">\(x_1(y)\)</span> and <span class="math-inline">\(x_2(y)\)</span> for <span class="math-inline">\(y \in [c,d]\)</span>. The strip of width <span class="math-inline">\(dy\)</span> contributes to <span class="math-inline">\(\int \frac{\partial Q}{\partial x}\,dx\)</span>.</figcaption></figure>
 <p>Consider</p>
 <div class="math-block">\[
 II = \iint_A \frac{\partial Q(x,y)}{\partial x}\,dx\,dy.
@@ -1559,8 +1571,9 @@ P\,dx + Q\,dy
 <div class="math-block">\[
 	x^{2}+y^{2}+z^{2}=R^{2},
 	\]</div>
-<p>centered at the origin with radius <span class="math-inline">\(R=3\)</span>, and <span class="math-inline">\(\hat{n}\)</span> is the outward unit normal vector.</p></section>
-<section class="callout solution"><header>Solution</header><p>By Gauss’s theorem,</p>
+<p>centered at the origin with radius <span class="math-inline">\(R=3\)</span>, and <span class="math-inline">\(\hat{n}\)</span> is the outward unit normal vector.</p>
+<p class="solution-head">Solution.</p>
+<p>By Gauss’s theorem,</p>
 <div class="math-block">\[
 	\oint_{\partial \tau} \vec{F}\cdot d\vec{\sigma}
 	=
@@ -1655,7 +1668,7 @@ P\,dx + Q\,dy
 		\oint_{\partial A} \vec{F}\cdot d\vec{r}.
 	}
 	\]</div></section>
-<div class="centered"><figure class="figure"><img src="assets/img/tikz-13.svg" alt="TikZ diagram" loading="lazy"></figure></div>
+<div class="centered"><figure class="figure figure-single" style="--figure-width: 65%;"><img src="assets/img/ch06_fig13_stokes.png" alt="ch06 fig13 stokes" loading="lazy"></figure></div>
 <p>This expresses that the <strong>circulation</strong> of <span class="math-inline">\(\vec{F}\)</span> around a closed boundary equals the <strong>total curl flux</strong> through the enclosed region.</p>
 <h3 id="sec-6-extension-to-three-dimensions-general-stokes-s-theorem">Extension to Three Dimensions (General Stokes’s Theorem)</h3>
 <section class="callout theorem"><header>Theorem - Stokes’s Theorem in Three Dimensions</header><p>If <span class="math-inline">\(\vec{F}\)</span> has continuous partial derivatives on a smooth surface <span class="math-inline">\(\sigma\)</span> bounded by a positively oriented closed curve <span class="math-inline">\(C\)</span>, then</p>
@@ -1896,5 +1909,10 @@ q_{\text{enc}} = \int_{\tau} \rho\,d\tau,
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>

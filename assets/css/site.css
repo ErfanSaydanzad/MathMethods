@@ -1,31 +1,105 @@
+/* ==========================================================================
+   Mathematical Methods in the Physical Sciences -- lecture note stylesheet
+
+   Design goals, in priority order:
+     1. Long-form readability. Students read this for hours.
+     2. Consistency. A theorem looks identical in every chapter.
+     3. Calm. Nothing moves, blinks or competes with the mathematics.
+     4. Prints like a book.
+
+   Semantic colour is defined ONCE per callout kind, in the token block
+   below. Every callout is drawn by a single rule that reads those tokens,
+   so a definition can never drift away from other definitions.
+   ========================================================================== */
+
 :root {
-  --ink: #202124;
-  --muted: #667085;
-  --line: #d9dee7;
+  /* Ink and paper */
+  --ink: #1a1c1e;
+  --ink-soft: #4a5057;
+  --muted: #6b7280;
+  --line: #e3e6ea;
+  --line-strong: #cfd4da;
   --paper: #ffffff;
-  --wash: #f6f8fb;
-  --accent: #0f766e;
-  --accent-soft: #e6f4f1;
-  --warm: #9a5b22;
-  --blue-soft: #edf4ff;
-  --green-soft: #edf8f1;
-  --rose-soft: #fff1ef;
-  --shadow: 0 18px 50px rgba(28, 39, 49, 0.08);
+  --wash: #f7f8fa;
+
+  /* One accent, used sparingly: links and the current-section marker. */
+  --accent: #0f5f66;
+  --accent-soft: #e8f2f2;
+
+  /* --- Semantic colours. Change a kind here and it changes everywhere. --- */
+  --c-definition: #1d4ed8;
+  --c-definition-bg: #f2f6fe;
+  --c-theorem: #6d28d9;
+  --c-theorem-bg: #f7f4fe;
+  /* Examples share the solution green: a solution now lives inside its
+     example, so one colour covers the worked-problem material. */
+  --c-example: #15803d;
+  --c-example-bg: #f2f9f4;
+  --c-solution: #15803d;
+  --c-solution-bg: #f2f9f4;
+  --c-remark: #475569;
+  --c-remark-bg: #f7f8fa;
+  --c-proof: #475569;
+  --c-proof-bg: #fcfcfd;
+  --c-context: #0f766e;
+  --c-context-bg: #f0f7f7;
+
+  /* Type */
+  /* Sans for reading, serif for titles -- the original pairing. */
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+
+  /* Width of the content column. Everything in the column aligns to this:
+     prose, callouts, headings and figures share one right edge. Display
+     equations are wide, so this is set for mathematics, not for prose. */
+  --measure: 57rem;
+  /* Pure prose (no equations) gets a shorter line: ~72 characters. */
+  --prose: 41rem;
+
   color-scheme: light;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   margin: 0;
+  background: var(--paper);
   color: var(--ink);
-  background: linear-gradient(180deg, #fbfcfd 0, #fff 18rem);
+  font-family: var(--sans);
   font-size: 17px;
   line-height: 1.72;
+  text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offset: 0.16em; }
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 0.12em; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Skip repeated chrome when tabbing or using a screen reader. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  z-index: 50;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--accent);
+}
+
+/* --------------------------------------------------------------- header -- */
 
 .site-header {
   position: sticky;
@@ -34,11 +108,10 @@ a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offs
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
-  padding: 0 28px;
-  border-bottom: 1px solid rgba(217, 222, 231, 0.9);
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(14px);
+  min-height: 58px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .brand {
@@ -46,7 +119,8 @@ a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offs
   align-items: center;
   gap: 10px;
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.95rem;
   text-decoration: none;
   line-height: 1.2;
 }
@@ -54,372 +128,760 @@ a { color: var(--accent); text-decoration-thickness: 0.08em; text-underline-offs
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--line);
-  background: var(--paper);
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
   color: var(--accent);
-  font-family: Georgia, serif;
+  font-family: var(--serif);
   font-weight: 700;
 }
 
-.top-nav { display: flex; gap: 18px; font-size: 0.94rem; }
+.top-nav {
+  display: flex;
+  gap: 20px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
 .top-nav a { color: var(--muted); text-decoration: none; }
 .top-nav a:hover { color: var(--ink); }
 
+/* ----------------------------------------------------------------- home -- */
+
+/* Same shell width as .layout, so the page does not jump between views. */
 .home, .toc-page {
-  width: min(1120px, calc(100% - 36px));
+  width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
 }
 
 .home-hero, .simple-header {
-  padding: clamp(44px, 8vw, 92px) 0 28px;
+  padding: clamp(40px, 7vw, 76px) 0 26px;
   border-bottom: 1px solid var(--line);
 }
 
 .home-hero p, .simple-header p, .chapter-hero p, .sidebar-kicker {
-  margin: 0 0 8px;
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0;
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .home-hero h1, .simple-header h1 {
-  max-width: 820px;
+  max-width: 26ch;
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.4rem, 7vw, 5.6rem);
-  line-height: 0.98;
-  font-weight: 500;
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
-.home-meta { margin-top: 18px; color: var(--muted); }
+.home-meta {
+  margin-top: 16px;
+  max-width: var(--prose);
+  color: var(--ink-soft);
+}
 
 .home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 12px;
-  padding: 28px 0 52px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  padding: 30px 0 60px;
 }
 
 .chapter-card {
   display: flex;
-  min-height: 132px;
+  min-height: 118px;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
   padding: 18px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--paper);
   color: var(--ink);
   text-decoration: none;
-  box-shadow: 0 1px 0 rgba(28, 39, 49, 0.03);
+}
+.chapter-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.chapter-card span {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.chapter-card strong {
+  font-family: var(--serif);
+  font-size: 1.16rem;
+  line-height: 1.25;
+  font-weight: 400;
 }
 
-.chapter-card:hover { border-color: #a9b6c7; box-shadow: var(--shadow); transform: translateY(-1px); }
-.chapter-card span { color: var(--muted); font-size: 0.85rem; }
-.chapter-card strong { font-family: Georgia, serif; font-size: 1.24rem; line-height: 1.18; font-weight: 500; }
+/* -------------------------------------------------------- chapter shell -- */
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(230px, 300px) minmax(0, 1fr);
-  gap: clamp(24px, 5vw, 64px);
-  width: min(1320px, calc(100% - 36px));
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 52px;
+  width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
+  padding-bottom: 72px;
 }
 
 .sidebar { position: relative; }
+
 .sidebar-inner {
   position: sticky;
-  top: 88px;
-  max-height: calc(100vh - 110px);
-  overflow: auto;
-  padding: 26px 0;
+  top: 86px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: 30px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
 }
 
 .sidebar h2 {
-  margin: 0 0 16px;
-  font-family: Georgia, serif;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  font-weight: 500;
+  margin: 0 0 12px;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.chapter-toc { display: grid; gap: 4px; font-size: 0.9rem; }
-.chapter-toc a {
-  display: block;
-  padding: 6px 8px;
-  border-left: 2px solid transparent;
-  color: var(--muted);
-  text-decoration: none;
-  line-height: 1.35;
+.chapter-toc {
+  display: grid;
+  gap: 1px;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
-.chapter-toc a:hover, .chapter-toc a.is-active { border-left-color: var(--accent); color: var(--ink); background: var(--accent-soft); }
-.chapter-toc .toc-level-3 { padding-left: 22px; font-size: 0.84rem; }
+
+.chapter-toc a {
+  padding: 5px 10px;
+  border-left: 2px solid transparent;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.chapter-toc a:hover {
+  color: var(--ink);
+  background: var(--wash);
+}
+.chapter-toc a.is-active {
+  border-left-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+/* Two visible levels, so the shape of a chapter is readable at a glance. */
+.chapter-toc .toc-level-2 {
+  font-weight: 600;
+  color: var(--ink);
+}
+.chapter-toc .toc-level-3 {
+  padding-left: 22px;
+  font-size: 0.81rem;
+  font-weight: 400;
+  color: var(--muted);
+}
 
 .content {
-  width: min(100%, 860px);
-  padding-bottom: 64px;
+  min-width: 0;          /* lets long equations scroll instead of overflowing */
+  max-width: var(--measure);
+  padding: 30px 0 0;
 }
 
 .chapter-hero {
-  padding: clamp(42px, 7vw, 76px) 0 32px;
-  border-bottom: 1px solid var(--line);
   margin-bottom: 34px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
 }
 
 .chapter-hero h1 {
+  max-width: 24ch;
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.1rem, 6vw, 4.6rem);
-  line-height: 1.02;
-  font-weight: 500;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+  line-height: 1.14;
+  font-weight: 400;
+  letter-spacing: -0.012em;
 }
 
+/* -------------------------------------------------------------- content -- */
+
 .content h2, .content h3, .content h4 {
-  scroll-margin-top: 88px;
-  line-height: 1.22;
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.3;
+  scroll-margin-top: 84px;   /* so anchor links clear the sticky header */
+  break-after: avoid;
 }
 
 .content h2 {
-  margin: 46px 0 14px;
-  padding-top: 8px;
-  font-family: Georgia, serif;
-  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem);
   font-weight: 500;
 }
 
 .content h3 {
-  margin: 34px 0 10px;
-  font-size: 1.25rem;
+  margin: 2rem 0 0.7rem;
+  font-size: 1.42rem;
 }
 
 .content h4 {
-  margin: 26px 0 8px;
-  font-size: 1.05rem;
-  color: var(--warm);
+  margin: 1.6rem 0 0.5rem;
+  font-size: 1.16rem;
+  color: var(--ink);
 }
 
-.content p { margin: 0 0 1em; }
-.content ul, .content ol { padding-left: 1.35rem; margin: 0.75em 0 1.1em; }
-.content li { margin: 0.32em 0; }
-.content li > p { margin: 0.2em 0; }
+.content p { margin: 0 0 1.1em; }
+.content ul, .content ol { padding-left: 1.4rem; margin: 0.8em 0 1.15em; }
+.content li { margin: 0.35em 0; }
+.content li > p { margin: 0.25em 0; }
+
+.content strong { font-weight: 700; }
 
 .paragraph-title {
-  margin-top: 1.25em;
-  font-weight: 750;
-  color: var(--warm);
+  font-weight: 700;
+  color: var(--ink);
 }
 
+/* ----------------------------------------------------------------- math -- */
+
+/* Display equations are the one thing allowed to use the full column
+   width, and to scroll sideways rather than wrap. */
 .math-block {
-  overflow-x: visible;
-  margin: 1.05rem 0 1.2rem;
-  padding: 0.2rem 0;
+  margin: 1.3rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15rem 0;
 }
+
+.math-block mjx-container[display="true"] { margin: 0 !important; }
 
 .math-inline { overflow-wrap: anywhere; }
 
-.math-block mjx-container[display="true"] {
-  overflow: visible !important;
-  max-width: 100%;
-}
+/* -------------------------------------------------------------- figures -- */
 
-.figure, .table-figure {
-  margin: 1.6rem 0 2rem;
+figure, .figure, .table-figure {
+  margin: 1.7rem 0;
   text-align: center;
+  break-inside: avoid;
 }
 
-.figure img {
-  display: block;
-  width: min(var(--figure-width, 86%), 100%);
+.figure img, figure img {
+  max-width: min(var(--figure-width, 100%), 100%);
   height: auto;
-  margin: 0 auto;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-.figure-single { margin: 1rem 0; }
+.figure-single { margin: 1.1rem 0; }
 
 figcaption {
-  max-width: 760px;
-  margin: 0.75rem auto 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
+  margin: 0.7rem auto 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: left;
 }
 
+/* --------------------------------------------------------- interactives -- */
+
 .interactive-figure {
-  margin: 1.6rem 0 2rem;
+  margin: 1.8rem 0;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--paper);
-  overflow: hidden;
+  break-inside: avoid;
 }
 
 .interactive-figure > header {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  align-items: baseline;
-  justify-content: space-between;
   padding: 12px 16px;
   border-bottom: 1px solid var(--line);
   background: var(--wash);
 }
 
 .interactive-figure > header span {
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 800;
+  display: block;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .interactive-figure > header strong {
-  font-family: Georgia, serif;
-  font-size: 1.04rem;
-  font-weight: 500;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
-.interactive-mount {
-  min-height: 260px;
-  padding: 16px;
-  overflow-x: auto;
-}
+.interactive-mount { min-height: 220px; padding: 14px 16px; }
 
 .interactive-mount:empty::before,
 .interactive-mount > p:only-child {
   display: block;
-  margin: 0;
   color: var(--muted);
-  font-size: 0.94rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  text-align: center;
 }
 
 .interactive-caption {
   margin: 0;
   padding: 0 16px 14px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.45;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
 }
 
+/* ------------------------------------------------------------- callouts -- */
+
+/* ONE rule draws every callout. Each kind below only supplies two
+   variables, which is what keeps the colour coding consistent. */
 .callout {
-  margin: 1.25rem 0;
-  padding: 16px 18px;
+  --callout-color: var(--c-remark);
+  --callout-bg: var(--c-remark-bg);
+
+  margin: 1.5rem 0;
+  padding: 15px 18px;
   border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
-  background: var(--paper);
+  border-left: 3px solid var(--callout-color);
+  border-radius: 5px;
+  background: var(--callout-bg);
+  break-inside: avoid;
 }
 
 .callout header {
-  margin-bottom: 0.55rem;
-  color: var(--accent);
-  font-size: 0.86rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+  color: var(--callout-color);
+  font-family: var(--serif);
+  font-size: 1.14rem;
+  font-weight: 600;
+  line-height: 1.32;
 }
 
-.callout.definition { background: var(--blue-soft); border-left-color: #2563eb; }
-.callout.theorem { background: #f8f5ff; border-left-color: #7c3aed; }
-.callout.example { background: #fffaf0; border-left-color: var(--warm); }
-.callout.remark { background: #f8fafc; border-left-color: #64748b; }
-.callout.solution { background: var(--green-soft); border-left-color: #15803d; }
-.callout.context { background: #f8fbff; border-left-color: #0f766e; }
-.callout.proof {
-  background: #fbfbfd;
-  border-left-color: #475569;
-  border-style: dashed;
+.callout > *:last-child { margin-bottom: 0; }
+
+.callout.definition { --callout-color: var(--c-definition); --callout-bg: var(--c-definition-bg); }
+.callout.theorem    { --callout-color: var(--c-theorem);    --callout-bg: var(--c-theorem-bg); }
+.callout.example    { --callout-color: var(--c-example);    --callout-bg: var(--c-example-bg); }
+.callout.solution   { --callout-color: var(--c-solution);   --callout-bg: var(--c-solution-bg); }
+.callout.remark     { --callout-color: var(--c-remark);     --callout-bg: var(--c-remark-bg); }
+.callout.context    { --callout-color: var(--c-context);    --callout-bg: var(--c-context-bg); }
+
+/* A proof is NOT boxed. It reads as running text opened by "Proof." and
+   closed with a tombstone, the way a printed textbook sets it, which keeps
+   the number of panels on a page down. */
+.proof {
+  margin: 1.4rem 0;
+}
+.proof > p:first-of-type::before {
+  content: "Proof. ";
+  font-style: italic;
+  font-weight: 600;
+}
+/* Most proofs end on a display equation, so the tombstone hangs off the
+   block rather than the last child, where it would land mid-equation. */
+.proof::after {
+  content: "\25A1";
+  display: block;
+  margin-top: -0.7em;
+  color: var(--muted);
+  text-align: right;
 }
 
-.callout.proof header { color: #475569; }
+/* Linked video card. The thumbnail comes from YouTube; nothing is embedded,
+   so no third-party script runs unless the student follows the link. */
+.video-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0.8rem 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #fff;
+  text-decoration: none;
+}
+.video-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(15, 23, 42, 0.72));
+}
+.video-preview-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 68px;
+  height: 47px;
+  border-radius: 13px;
+  background: #dc2626;
+  transform: translate(-50%, -50%);
+}
+.video-preview-play::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 27px;
+  border-style: solid;
+  border-width: 10px 0 10px 17px;
+  border-color: transparent transparent transparent #fff;
+}
+.video-preview-label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 1;
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: rgba(15, 23, 42, 0.82);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.video-preview:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
 
-.table-wrap { overflow-x: auto; margin: 1rem 0; }
+/* Heading that opens a solution inside its example box, so an example and
+   its solution are one panel rather than two. */
+.solution-head {
+  margin: 1.15em 0 0.4em;
+  color: var(--c-solution);
+  font-family: var(--serif);
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+.solution-head + * { margin-top: 0; }
+
+/* --------------------------------------------------------------- tables -- */
+
+.table-wrap { overflow-x: auto; margin: 1.4rem 0; }
+
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.94rem;
-  background: var(--paper);
+  font-size: 0.93rem;
+  line-height: 1.5;
 }
+
 td, th {
-  padding: 10px 12px;
-  border: 1px solid var(--line);
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
   vertical-align: top;
 }
-tr:first-child td { font-weight: 700; background: var(--wash); }
+
+th, tr:first-child td {
+  border-bottom: 1px solid var(--line-strong);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------- degraded conversions -- */
 
 .tikz-fallback, .latex-table, .missing-asset {
   overflow-x: auto;
+  margin: 1.2rem 0;
   padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 5px;
   background: var(--wash);
   color: var(--muted);
-  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.84rem;
   text-align: left;
 }
+
+/* --------------------------------------------------------------- inline -- */
 
 .centered { text-align: center; }
 .flushright { text-align: right; }
 .underline { text-decoration: underline; }
 .text-accent { color: var(--accent); }
 
+/* ----------------------------------------------------- chapter movement -- */
+
 .chapter-nav {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 12px;
-  align-items: center;
-  margin-top: 54px;
-  padding-top: 22px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 60px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
-  font-size: 0.94rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
 }
 .chapter-nav a {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--ink);
+  border-radius: 6px;
+  color: var(--ink-soft);
   text-decoration: none;
 }
 .chapter-nav a:last-child { text-align: right; }
 .chapter-nav a:hover { border-color: var(--accent); color: var(--accent); }
 
+/* Front-matter overview: full column, since it carries figures and boxes. */
+.overview {
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.overview > h1, .overview > h2 {
+  margin-top: 0;
+}
+
 .preface {
-  margin-bottom: 70px;
+  max-width: var(--prose);
+  margin-bottom: 72px;
   padding-top: 34px;
   border-top: 1px solid var(--line);
 }
 
 .toc-chapter {
-  padding: 24px 0;
+  padding: 22px 0;
   border-bottom: 1px solid var(--line);
 }
 .toc-chapter h2 {
   margin: 0 0 10px;
-  font-family: Georgia, serif;
-  font-weight: 500;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 .toc-chapter h2 a { color: var(--ink); text-decoration: none; }
+.toc-chapter h2 a:hover { color: var(--accent); }
 .toc-chapter ol {
-  columns: 2 260px;
+  columns: 2 250px;
+  column-gap: 40px;
   margin: 0;
   padding-left: 1.2rem;
+  font-size: 0.94rem;
 }
+.toc-chapter ol a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.toc-chapter ol a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+.toc-chapter ol li::marker { color: var(--muted); }
+.toc-chapter li { margin: 0.2em 0; break-inside: avoid; }
 
-@media (max-width: 900px) {
-  .layout { display: block; width: min(100% - 28px, 860px); }
+/* ---------------------------------------------------------------- footer -- */
+
+.site-footer {
+  margin-top: 64px;
+  padding: 22px 0 30px;
+  border-top: 1px solid var(--line);
+}
+.site-footer-inner {
+  width: min(1240px, calc(100% - 40px));
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.84rem;
+}
+.site-footer p { margin: 0; }
+
+/* ----------------------------------------------------------- responsive -- */
+
+@media (max-width: 960px) {
+  .layout { display: block; width: min(100% - 32px, 760px); }
   .sidebar { display: none; }
-  .content { width: 100%; }
+  .content { width: 100%; padding-top: 24px; }
   .site-header { padding: 0 16px; }
   .brand span:last-child { display: none; }
-  .figure img { width: min(var(--figure-width, 100%), 100%); }
 }
 
 @media (max-width: 560px) {
-  body { font-size: 16px; }
+  body { font-size: 17px; }
+  :root { --measure: 100%; }
   .home, .toc-page { width: calc(100% - 28px); }
   .home-grid { grid-template-columns: 1fr; }
   .chapter-nav { grid-template-columns: 1fr; }
-  .chapter-nav a, .chapter-nav a:last-child { text-align: center; }
-  .top-nav { gap: 12px; }
+  .chapter-nav a, .chapter-nav a:last-child { text-align: left; }
+  .top-nav { gap: 14px; }
+  .toc-chapter ol { columns: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------------------------------------------------------------- print -- */
+
+/* Target: a page that comes out of the browser looking like the PDF.
+   Screen chrome disappears, the column becomes the page, and nothing is
+   allowed to split across a page break if it can be helped. */
+
+@page {
+  margin: 18mm 17mm 20mm;
+}
+
+@media print {
+  html, body {
+    background: #fff;
+    color: #000;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+
+  /* Screen-only furniture. */
+  .site-header,
+  .top-nav,
+  .sidebar,
+  .chapter-nav,
+  .skip-link,
+  .home-grid {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content,
+  .home,
+  .toc-page {
+    width: auto;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Full page width for text: print has its own comfortable measure. */
+  :root { --measure: 100%; }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .chapter-hero {
+    margin-bottom: 18pt;
+    padding-bottom: 8pt;
+    border-bottom: 0.5pt solid #999;
+  }
+  .chapter-hero h1 { font-size: 20pt; }
+  .chapter-hero p { color: #555; }
+
+  .content h2 {
+    margin: 16pt 0 6pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.5pt solid #bbb;
+    font-size: 14pt;
+  }
+  .content h3 { margin: 12pt 0 4pt; font-size: 12pt; }
+  .content h4 { margin: 10pt 0 3pt; font-size: 11pt; color: #000; }
+
+  /* Never strand a heading at the foot of a page. */
+  h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+
+  p, li { orphans: 3; widows: 3; }
+
+  /* Keep every self-contained block whole. */
+  .callout,
+  figure,
+  .figure,
+  .table-figure,
+  .math-block,
+  table,
+  .interactive-figure {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Callouts keep their identity in print, but as line and label rather
+     than a block of ink: tinted panels band badly on most printers. */
+  /* A thumbnail cannot be played on paper, so print the address. */
+  .video-preview { display: none; }
+
+  .site-footer {
+    margin-top: 18pt;
+    padding: 6pt 0 0;
+    border-top: 0.5pt solid #bbb;
+  }
+  .site-footer-inner { width: auto; font-size: 8.5pt; }
+
+  .proof { margin: 8pt 0; break-inside: avoid; }
+  .solution-head { margin: 7pt 0 3pt; font-size: 11pt; }
+
+  .callout {
+    margin: 9pt 0;
+    padding: 6pt 0 6pt 10pt;
+    border: 0;
+    border-left: 1.5pt solid var(--callout-color);
+    border-radius: 0;
+    background: transparent;
+  }
+  .callout header {
+    margin-bottom: 2pt;
+    color: var(--callout-color);
+    font-family: var(--serif);
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  /* Greyscale printers still need the kinds to be distinguishable, so the
+     label carries the meaning even when the colour is lost. */
+
+  figcaption {
+    margin-top: 4pt;
+    font-size: 9pt;
+    color: #333;
+  }
+
+  .figure img, figure img {
+    max-width: 100%;
+    /* Images are usually the thing that overflows a printed page. */
+    max-height: 78vh;
+    object-fit: contain;
+  }
+
+  table { font-size: 9.5pt; }
+  td, th { border-bottom: 0.5pt solid #bbb; }
+
+  .math-block {
+    margin: 8pt 0;
+    overflow: visible;   /* scrollbars cannot exist on paper */
+  }
+
+  .interactive-figure > header { background: transparent; }
+  .interactive-mount { display: none; }   /* nothing interactive on paper */
+  .interactive-figure::after {
+    content: "Interactive figure -- view online.";
+    display: block;
+    padding: 6pt 0;
+    color: #555;
+    font-size: 9pt;
+    font-style: italic;
+  }
+
+  .toc-chapter { break-inside: avoid; }
 }

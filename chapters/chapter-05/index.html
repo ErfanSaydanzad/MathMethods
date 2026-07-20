@@ -12,6 +12,15 @@
         displayMath: [['\\[', '\\]']],
         processEnvironments: true,
         tags: 'ams',
+        // The PDF numbers equations within the chapter (
+umberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return '5.' + n; }
+        },
         macros: {
           pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
           dv: ['{\\frac{d #1}{d #2}}', 2],
@@ -36,6 +45,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="../../index.html">
     <span class="brand-mark">M</span>
@@ -46,7 +56,7 @@
     <a href="../../toc.html">Contents</a>
   </nav>
 </header>
-<main class="layout">
+<main class="layout" id="main">
   <aside class="sidebar">
   <div class="sidebar-inner">
     <p class="sidebar-kicker">Chapter 5</p>
@@ -54,20 +64,20 @@
     <nav class="chapter-toc" aria-label="Chapter contents">
       <a class="toc-level-2" href="#sec-5-single-integral">Single integral</a>
 <a class="toc-level-2" href="#sec-5-double-and-triple-integrals">Double and Triple Integrals</a>
-<a class="toc-level-2" href="#sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate y-First vs.~x-First</a>
+<a class="toc-level-2" href="#sec-5-when-to-integrate-y-first-vs-x-first">When to Integrate y-First vs. x-First</a>
 <a class="toc-level-3" href="#sec-5-type-i-regions-vertical-strips">Type I Regions (Vertical Strips)</a>
 <a class="toc-level-3" href="#sec-5-type-ii-regions-horizontal-strips">Type II Regions (Horizontal Strips)</a>
 <a class="toc-level-3" href="#sec-5-either-description-works">Either Description Works</a>
 <a class="toc-level-2" href="#sec-5-applications-of-integration">Applications of Integration</a>
 <a class="toc-level-3" href="#sec-5-center-of-mass">Center of mass</a>
 <a class="toc-level-2" href="#sec-5-change-of-variables-in-integrals">Change of Variables in Integrals</a>
-<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian  Cylindrical Coordinates</a>
+<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-cylindrical-coordinates">Change of Variables: Cartesian Cylindrical Coordinates</a>
 <a class="toc-level-3" href="#sec-5-1-definition-of-cylindrical-coordinates">1. Definition of Cylindrical Coordinates</a>
 <a class="toc-level-3" href="#sec-5-2-the-local-unit-vectors">2. The Local Unit Vectors</a>
 <a class="toc-level-3" href="#sec-5-3-differential-displacement-d-r">3. Differential Displacement dr</a>
 <a class="toc-level-3" href="#sec-5-4-small-surface-element-d-s">4. Small Surface Element ds</a>
 <a class="toc-level-3" href="#sec-5-5-small-volume-element-dv">5. Small Volume Element dV</a>
-<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian  Spherical Coordinates</a>
+<a class="toc-level-2" href="#sec-5-change-of-variables-cartesian-spherical-coordinates">Change of Variables: Cartesian Spherical Coordinates</a>
 <a class="toc-level-3" href="#sec-5-1-definition-of-spherical-coordinates">1. Definition of Spherical Coordinates</a>
 <a class="toc-level-3" href="#sec-5-2-the-local-unit-vectors-18">2. The Local Unit Vectors</a>
 <a class="toc-level-3" href="#sec-5-3-differential-displacement-d-r-19">3. Differential Displacement dr</a>
@@ -186,8 +196,9 @@ x = x_1(y), \qquad x = x_2(y),
 	\iiint_R f(x,y,z)\,dV
 	\]</div>
 <p>is the accumulated <em>signed total</em> of <span class="math-inline">\(f\)</span> throughout the solid <span class="math-inline">\(R\)</span>. (If <span class="math-inline">\(f\equiv 1\)</span>, it equals the <em>volume</em> of <span class="math-inline">\(R\)</span>; if <span class="math-inline">\(f=\rho\)</span> is mass density, it equals the <em>mass</em>.)</p></section>
-<section class="callout example"><header>Example</header><p>Find the volume of the solid bounded by the coordinate planes, the vertical plane <span class="math-inline">\(2x+y=2\)</span>, and the plane <span class="math-inline">\(z=1+y\)</span> via a triple integral</p></section>
-<section class="callout solution"><header>Solution</header><p> <strong>Region and bounds.</strong> Projecting onto the <span class="math-inline">\(xy\)</span>-plane gives the triangle</p>
+<section class="callout example"><header>Example</header><p>Find the volume of the solid bounded by the coordinate planes, the vertical plane <span class="math-inline">\(2x+y=2\)</span>, and the plane <span class="math-inline">\(z=1+y\)</span> via a triple integral</p>
+<p class="solution-head">Solution.</p>
+<p> <strong>Region and bounds.</strong> Projecting onto the <span class="math-inline">\(xy\)</span>-plane gives the triangle</p>
 <div class="math-block">\[
 	A=\{(x,y):\ 0\le x\le 1,\ \ 0\le y\le 2-2x\}.
 	\]</div>
@@ -211,16 +222,16 @@ x = x_1(y), \qquad x = x_2(y),
 	=\int_{0}^{1} \big(4-6x+2x^{2}\big)\,dx
 	=\boxed{\ \dfrac{5}{3}\ }.
 	\]</div></section>
-<section class="callout example"><header>Example</header><p>On the same solid <span class="math-inline">\(V\)</span> as above, suppose the density (mass per unit volume) is <span class="math-inline">\(\rho(x,y,z)=x+z\)</span>. Find the total mass <span class="math-inline">\(M\)</span>.</p></section>
-<section class="callout solution"><header>Solution</header><p><strong>Triple–integral setup.</strong></p>
+<section class="callout example"><header>Example</header><p>On the same solid <span class="math-inline">\(V\)</span> as above, suppose the density (mass per unit volume) is <span class="math-inline">\(\rho(x,y,z)=x+z\)</span>. Find the total mass <span class="math-inline">\(M\)</span>.</p>
+<p class="solution-head">Solution.</p>
+<p><strong>Triple–integral setup.</strong></p>
 <div class="math-block">\[ dM = \rho(x,y,z) dx dy dz\]</div>
 <p>as a result:</p>
 <div class="math-block">\[
 	M=\iiint_{V} \rho(x,y,z)\,dV
 	=\int_{x=0}^{1}\int_{y=0}^{\,2-2x}\int_{z=0}^{\,1+y} (x+z)\,dz\,dy\,dx.
-	\]</div>
-<p><strong>Step 1. Integrate in <span class="math-inline">\(z\)</span>.</strong></p>
-<div class="math-block">\[
+	\]</div></section>
+<section class="callout solution"><header>Solution</header><div class="math-block">\[
 	\int_{0}^{\,1+y} (x+z)\,dz
 	=\Big[xz+\tfrac{z^{2}}{2}\Big]_{0}^{\,1+y}
 	=x(1+y)+\frac{(1+y)^{2}}{2}.
@@ -254,9 +265,10 @@ x = x_1(y), \qquad x = x_2(y),
 <p> <strong>Components:</strong>  <span class="math-inline">\(x_{\mathrm{cm}}=\dfrac{1}{M}\int x\,dm,\
 	y_{\mathrm{cm}}=\dfrac{1}{M}\int y\,dm,\
 	z_{\mathrm{cm}}=\dfrac{1}{M}\int z\,dm.\)</span></p></section>
-<figure id="chapter-05-fig-6" class="figure"><img src="assets/img/tikz-01.svg" alt="Right triangular lamina with vertices \((0,0)\), \((L,0)\), \((0,H)\)." loading="lazy"><figcaption>Right triangular lamina with vertices <span class="math-inline">\((0,0)\)</span>, <span class="math-inline">\((L,0)\)</span>, <span class="math-inline">\((0,H)\)</span>.</figcaption></figure>
-<section class="callout example"><header>Example</header><p>Centroid of a Right Triangle (Uniform Density <span class="math-inline">\(\sigma_0\)</span>)</p></section>
-<section class="callout solution"><header>Solution</header><p>A convenient Type I description is</p>
+<figure id="chapter-05-fig-6" class="figure"><img src="assets/img/ch05_fig1_triangular_region.png" alt="Right triangular lamina with vertices \((0,0)\), \((L,0)\), \((0,H)\)." loading="lazy" style="--figure-width: 60%;"><figcaption>Right triangular lamina with vertices <span class="math-inline">\((0,0)\)</span>, <span class="math-inline">\((L,0)\)</span>, <span class="math-inline">\((0,H)\)</span>.</figcaption></figure>
+<section class="callout example"><header>Example</header><p>Centroid of a Right Triangle (Uniform Density <span class="math-inline">\(\sigma_0\)</span>)</p>
+<p class="solution-head">Solution.</p>
+<p>A convenient Type I description is</p>
 <div class="math-block">\[
 	R=\Big\{(x,y):\ 0\le x\le L,\quad 0\le y\le H\!\left(1-\frac{x}{L}\right)\Big\}.
 	\]</div>
@@ -698,8 +710,9 @@ det(J) =
 	\]</div>
 <p>by the substitution <span class="math-inline">\(
 	u=x-y,\quad v=x+y.
-	\)</span></p></section>
-<section class="callout solution"><header>Solution</header><p><strong>Step 1. Map and Jacobian.</strong> The inverse relations are</p>
+	\)</span></p>
+<p class="solution-head">Solution.</p></section>
+<section class="callout solution"><header>Solution</header><p>The inverse relations are</p>
 <div class="math-block">\[
 	x=\frac{u+v}{2},\qquad y=\frac{v-u}{2}.
 	\]</div>
@@ -760,5 +773,10 @@ det(J) =
     </nav>
   </article>
 </main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
 </body>
 </html>
