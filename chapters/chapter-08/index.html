@@ -53,6 +53,7 @@
   <nav class="top-nav" aria-label="Primary">
     <a href="../../index.html">Home</a>
     <a href="../../toc.html">Contents</a>
+    <a href="../../projects.html">Projects</a>
   </nav>
 </header>
 <main class="layout" id="main">
@@ -254,7 +255,7 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 	\end{equation}</div>
 <p>are valid constant solutions since <span class="math-inline">\(y&#x27; = 0 = \sqrt{1 - y^2}\)</span>. These are <strong>singular solutions</strong> that cannot be obtained from the separated form.</p>
 <p><strong>Step 4. Particular solutions.</strong></p>
-<p><span class="underline">(a) <span class="math-inline">\(y(0)=0\)</span>:</span> From <span class="math-inline">\(\arcsin y = x + \alpha\)</span>, substituting <span class="math-inline">\(x=0,\, y=0\)</span> gives <span class="math-inline">\(\alpha=0\)</span> or <span class="math-inline">\(\pi\)</span>. Because <span class="math-inline">\(y&#x27;\ge 0\)</span>, we take the increasing branch:</p>
+<p>n̆derline(a) <span class="math-inline">\(y(0)=0\)</span>: From <span class="math-inline">\(\arcsin y = x + \alpha\)</span>, substituting <span class="math-inline">\(x=0,\, y=0\)</span> gives <span class="math-inline">\(\alpha=0\)</span> or <span class="math-inline">\(\pi\)</span>. Because <span class="math-inline">\(y&#x27;\ge 0\)</span>, we take the increasing branch:</p>
 <div class="math-block">\begin{equation}
 	\boxed{y(x) = \sin x, \qquad -\frac{\pi}{2} \le x \le \frac{\pi}{2}.}
 	\end{equation}</div>
@@ -268,7 +269,7 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 	\end{cases}
 	\end{equation}</div>
 <p>This gives a single continuous nondecreasing solution over the entire real line.</p>
-<p><span class="underline">(b) <span class="math-inline">\(y(0)=1\)</span>:</span> The constant function <span class="math-inline">\(y(x)\equiv1\)</span> is an obvious solution. Alternatively, using <span class="math-inline">\(\sin(x+\alpha)=1\)</span> at <span class="math-inline">\(x=0\)</span> gives <span class="math-inline">\(\alpha=\dfrac{\pi}{2}+2k\pi\)</span>. Choosing the increasing branch near <span class="math-inline">\(x=0\)</span>,</p>
+<p>n̆derline(b) <span class="math-inline">\(y(0)=1\)</span>: The constant function <span class="math-inline">\(y(x)\equiv1\)</span> is an obvious solution. Alternatively, using <span class="math-inline">\(\sin(x+\alpha)=1\)</span> at <span class="math-inline">\(x=0\)</span> gives <span class="math-inline">\(\alpha=\dfrac{\pi}{2}+2k\pi\)</span>. Choosing the increasing branch near <span class="math-inline">\(x=0\)</span>,</p>
 <div class="math-block">\begin{equation}
 	\boxed{y(x) = \sin\!\Big(x + \frac{\pi}{2}\Big) = \cos x, \qquad -\pi \le x \le 0.}
 	\end{equation}</div>
@@ -285,7 +286,7 @@ a_n(x)\,y^{(n)} + a_{n-1}(x)\,y^{(n-1)} + \cdots + a_1(x)\,y&#x27; + a_0(x)\,y =
 <p><strong>Step 5. Interpretation and summary.</strong></p>
 <ul><li><p>The general solution <span class="math-inline">\(y = \sin(x+\alpha)\)</span> applies where <span class="math-inline">\(|y|&lt;1\)</span> and <span class="math-inline">\(y&#x27; = \sqrt{1-y^2} \ge 0\)</span>.</p></li><li><p>The singular solutions <span class="math-inline">\(y = \pm1\)</span> correspond to the flat portions of the slope field where <span class="math-inline">\(y&#x27;=0\)</span>.</p></li><li><p>The complete solution set consists of rising sine arcs smoothly connected to horizontal segments at <span class="math-inline">\(y=\pm1\)</span>.</p></li></ul>
 <p><strong>All solutions.</strong></p>
-<div class="centered"><p> y(x) = (x+)  on intervals where  (x+)0,  together with  y1. </p></div></section>
+<div class="centered"><p>o̱xed y(x) = (x+)  on intervals where  o̧s(x+)0,  together with  y1. </p></div></section>
 <h3 id="sec-8-linear-first-order-equations">Linear First-Order Equations</h3>
 <p>A linear first-order equation has the form</p>
 <div class="math-block">\begin{equation}
@@ -372,7 +373,7 @@ y^{-n}y&#x27; + P(x)y^{1-n} = Q(x).
 z&#x27; + (1-n)P(x)z = (1-n)Q(x).
 \end{equation}</div>
 <p>This is now a <strong>first-order linear ODE</strong> in <span class="math-inline">\(z(x)\)</span>, which can be solved using the integrating factor method.</p>
-<div class="centered"><p> <strong>Reduced linear form:</strong>   z' + (1-n)P(x)z = (1-n)Q(x). </p></div>
+<div class="centered"><p>o̱xed <strong>Reduced linear form:</strong>   z' + (1-n)P(x)z = (1-n)Q(x). </p></div>
 <p>After solving for <span class="math-inline">\(z(x)\)</span>, the original dependent variable is recovered via</p>
 <div class="math-block">\begin{equation}
 y = z^{\frac{1}{1-n}}.
@@ -927,6 +928,7 @@ a\,y&#x27;&#x27; + b\,y&#x27; + c\,y = f(x),
 <ul><li><p><strong>Mechanical vibration.</strong> Mass on a spring, a pendulum, a building swaying in wind: all are <span class="math-inline">\(m\ddot x + b\dot x + kx = F(t)\)</span>, and the resonance condition <span class="math-inline">\(\omega\approx\omega_0\)</span> is why soldiers break step on bridges.</p></li><li><p><strong>Electrical circuits.</strong> The series RLC circuit obeys <span class="math-inline">\(L\ddot q + R\dot q + q/C = V(t)\)</span>, identical in form to the oscillator with <span class="math-inline">\(L\leftrightarrow m\)</span>, <span class="math-inline">\(R\leftrightarrow b\)</span>, <span class="math-inline">\(1/C\leftrightarrow k\)</span>. Resonance here is how a radio selects a station.</p></li><li><p><strong>Growth and decay.</strong> The first-order equation <span class="math-inline">\(\dot y = ky\)</span> describes radioactive decay, population growth, cooling, and the charging of a capacitor — the separable equations of this chapter.</p></li><li><p><strong>Chemical kinetics and mixing.</strong> Reaction rates and concentration in a stirred tank are first-order linear ODEs solved by the integrating factor.</p></li><li><p><strong>The starting point for everything later.</strong> Series solutions (Chapter 9) handle ODEs with variable coefficients that these elementary methods cannot; partial differential equations (Chapter 10) are solved by separating them into ordinary ones.</p></li></ul>
 <section class="callout remark"><header>Remark</header><p>Two ideas from this chapter carry the most weight later. First, for a <em>linear</em> equation the general solution is <span class="math-inline">\(y_h + y_p\)</span>: the full space of solutions is a particular solution plus the entire solution set of the homogeneous equation. Second, the exponential ansatz <span class="math-inline">\(y=e^{rx}\)</span> turns a constant-coefficient linear ODE into an algebraic equation, because differentiating <span class="math-inline">\(e^{rx}\)</span> only multiplies it by <span class="math-inline">\(r\)</span>. Almost every linear system in physics is attacked by some version of these two moves.</p></section>
 <h2 id="sec-8-summary-table">Summary Table</h2>
+<p>e̊newcommand1.5</p>
 <div class="table-wrap"><table><tr><td><strong>Type</strong></td><td><strong>Form</strong></td><td><strong>Method</strong></td></tr><tr><td>Separable</td><td><span class="math-inline">\(\dfrac{dy}{dx} = g(x)h(y)\)</span></td><td>Separate and integrate: <span class="math-inline">\(\int \dfrac{dy}{h} = \int g\,dx\)</span>.</td></tr><tr><td>Linear (1st order)</td><td><span class="math-inline">\(y&#x27; + P(x)y = Q(x)\)</span></td><td>Integrating factor <span class="math-inline">\(\mu = e^{\int P\,dx}\)</span>.</td></tr><tr><td>Bernoulli</td><td><span class="math-inline">\(y&#x27; + P y = Q\,y^n\)</span></td><td>Substitute <span class="math-inline">\(z = y^{1-n}\)</span> to linearise.</td></tr><tr><td>Exact</td><td><span class="math-inline">\(M\,dx + N\,dy = 0\)</span>, <span class="math-inline">\(M_y = N_x\)</span></td><td>Find <span class="math-inline">\(U\)</span> with <span class="math-inline">\(U_x=M\)</span>, <span class="math-inline">\(U_y=N\)</span>; solution <span class="math-inline">\(U=C\)</span>.</td></tr><tr><td>Non-exact</td><td><span class="math-inline">\(M\,dx + N\,dy = 0\)</span>, <span class="math-inline">\(M_y \neq N_x\)</span></td><td>Integrating factor <span class="math-inline">\(\mu(x)\)</span> or <span class="math-inline">\(\mu(y)\)</span>.</td></tr><tr><td>Homogeneous (2nd, const.)</td><td><span class="math-inline">\(ay&#x27;&#x27;+by&#x27;+cy = 0\)</span></td><td>Roots of <span class="math-inline">\(ar^2+br+c=0\)</span>; three cases.</td></tr><tr><td>  distinct real <span class="math-inline">\(r_1,r_2\)</span></td><td></td><td><span class="math-inline">\(y = C_1 e^{r_1 x} + C_2 e^{r_2 x}\)</span>.</td></tr><tr><td>  repeated root <span class="math-inline">\(r\)</span></td><td></td><td><span class="math-inline">\(y = (C_1 + C_2 x)e^{rx}\)</span>.</td></tr><tr><td>  complex <span class="math-inline">\(\alpha\pm i\beta\)</span></td><td></td><td><span class="math-inline">\(y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</span>.</td></tr><tr><td>Nonhomogeneous (2nd)</td><td><span class="math-inline">\(ay&#x27;&#x27;+by&#x27;+cy = f(x)\)</span></td><td><span class="math-inline">\(y = y_h + y_p\)</span>; undetermined coefficients for <span class="math-inline">\(y_p\)</span>.</td></tr></table></div>
 <h2 id="sec-8-for-the-interested-reader">For the Interested Reader</h2>
 <p>Differential equations is a subject where the mechanics of solving can hide the point, which is that an equation relating a quantity to its rate of change already contains the system's whole future. The first item below is the best short antidote to losing sight of that. Everything listed is free.</p>

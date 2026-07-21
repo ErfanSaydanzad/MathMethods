@@ -149,7 +149,7 @@ a:hover { text-decoration-thickness: 0.12em; }
 /* ----------------------------------------------------------------- home -- */
 
 /* Same shell width as .layout, so the page does not jump between views. */
-.home, .toc-page {
+.home, .toc-page, .projects-page, .project {
   width: min(1240px, calc(100% - 40px));
   margin: 0 auto;
 }
@@ -223,6 +223,78 @@ a:hover { text-decoration-thickness: 0.12em; }
   line-height: 1.25;
   font-weight: 400;
 }
+
+/* ------------------------------------------------------------- projects -- */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+}
+.project-card:hover { border-color: var(--accent); background: var(--accent-soft); }
+.project-card strong {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  line-height: 1.25;
+  font-weight: 400;
+}
+.project-card-author {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.project-card-abstract { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
+
+.project-head { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.project-kicker {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.project-head h1 { font-family: var(--serif); font-weight: 600; margin: 0 0 8px; }
+.project-author { color: var(--muted); font-family: var(--sans); margin: 0 0 14px; }
+.project-abstract { color: var(--ink-soft); line-height: 1.6; }
+
+.figure.animation img { border: 1px solid var(--line); border-radius: 4px; }
+
+pre.code {
+  background: var(--accent-soft, #f2f6fe);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.project-back { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); }
+.muted { color: var(--muted); }
+
+.download-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.download-link:hover { background: var(--accent); color: #fff; }
 
 /* -------------------------------------------------------- chapter shell -- */
 

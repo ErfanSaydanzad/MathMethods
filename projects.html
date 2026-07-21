@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Mathematical Methods in the Physical Sciences</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEnvironments: true,
+        tags: 'ams',
+        // The PDF numbers equations within the chapter (\numberwithin
+        // {equation}{chapter}), so "1.8" is the eighth equation of
+        // chapter 1. MathJax counts from 1 on every page, which would have
+        // shown that same equation as "8". Prefixing the chapter number
+        // keeps a reference valid against either version.
+        tagformat: {
+          number: function (n) { return ''  + n; }
+        },
+        macros: {
+          pdv: ['{\\frac{\\partial #1}{\\partial #2}}', 2],
+          dv: ['{\\frac{d #1}{d #2}}', 2],
+          abs: ['{\\left|#1\\right|}', 1],
+          norm: ['{\\left\\|#1\\right\\|}', 1],
+          curl: '{\\vec{\\nabla}\\times}',
+          div: '{\\vec{\\nabla}\\cdot}',
+          grad: '{\\vec{\\nabla}}',
+          sech: '{\\operatorname{sech}}',
+          csch: '{\\operatorname{csch}}',
+          coth: '{\\operatorname{coth}}',
+          circnum: ['{\\boxed{#1}}', 1],
+          vb: ['{\\mathbf{#1}}', 1],
+          eval: ['{\\left.#1\\right|}', 1],
+          dd: '{\\,d}'
+        }
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script defer src="assets/js/main.js"></script>
+
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">M</span>
+    <span>Mathematical Methods in the Physical Sciences</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="toc.html">Contents</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+</header>
+<main class="projects-page content" id="main">
+  <header class="simple-header">
+    <p>PHYS 3260</p>
+    <h1>Projects</h1>
+  </header>
+  <section class="content">
+  <h2>The assignment</h2>
+  <p>Choose a problem in physics or engineering that interests you, solve it using
+  the mathematical methods from this course, and visualise the result. Then write it
+  up as a short report. The strongest reports are published here, on the course site,
+  for future students to learn from.</p>
+
+  <h2>What to submit</h2>
+  <p>Send a single <code>.zip</code> file containing:</p>
+  <ul>
+    <li><strong>report.tex</strong> --- your write-up in LaTeX. It should have a
+    title, state the problem and the concepts it uses, work out the mathematics, and
+    present your results. Start from the example below.</li>
+    <li><strong>a Python script</strong> that generates and visualises your data
+    (for example, <code>simulate.py</code>).</li>
+    <li><strong>a figures/ folder</strong> with the plots (PNG) and, if you have one,
+    an animation (GIF) your script produced.</li>
+  </ul>
+  <p>Your <code>report.tex</code> must compile to a PDF on its own, and it should use
+  only standard constructs (sections, equations, figures, lists) plus the two helper
+  commands <code>\projectinfo</code> and <code>\webanimation</code> shown in the
+  template, so it also renders correctly on this website.</p>
+
+  <h2>A worked example</h2>
+  <p>The project below is a complete, publishable example. Read it to see the
+  expected depth: a clear question, the mathematics worked out, the code that
+  produces the visualisation, and results tied back to the course.</p>
+  <p><a class="download-link" href="projects/schrodinger-barrier-example.zip">Download the example submission (.zip)</a> --- the exact bundle to model yours on: report.tex, simulate.py, and a figures/ folder.</p>
+</section>
+  <section class="home-grid" aria-label="Projects">
+<a class="project-card" href="projects/schrodinger-barrier/index.html">
+  <strong>Quantum Tunnelling of a Wave Packet through a Rectangular Barrier</strong>
+  <span class="project-card-author">A. Student   (PHYS 3260, Mathematical Physics)</span>
+  <span class="project-card-abstract">A Gaussian wave packet is evolved in one dimension through a rectangular
+   potential barrier by numerically solving the time-dependent Schrödinger
+   equation with the split-step Fourier method. Even though the packet's mean
+   energy lies <em>below</em> the barrier, part of it tunnels through: the
+   simulation gives a reflection probability <span class="math-inline">\(R=0.70\)</span> and a transmission
+   probability <span class="math-inline">\(T=0.30\)</span>, with <span class="math-inline">\(R+T=1\)</span> confirming that probability is conserved.
+   The measured transmission agrees with the analytic barrier-transmission
+   coefficient. The method is built entirely from tools developed in this
+   course: complex exponentials (Ch. 2), the Fourier transform (Ch. 7), and the
+   viewpoint of the Schrödinger equation as a partial differential equation
+   (Ch. 10). This report provides a detailed derivation of the numerical
+   method, discusses convergence and error, and shows how the split-step
+   Fourier algorithm is a direct application of course material.</span>
+</a>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>&copy; 2026 Erfan Saydanzad. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

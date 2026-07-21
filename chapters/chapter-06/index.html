@@ -53,6 +53,7 @@
   <nav class="top-nav" aria-label="Primary">
     <a href="../../index.html">Home</a>
     <a href="../../toc.html">Contents</a>
+    <a href="../../projects.html">Projects</a>
   </nav>
 </header>
 <main class="layout" id="main">
@@ -683,14 +684,14 @@
 	\end{equation}</div></section>
 <h3 id="sec-6-useful-vector-identities">Useful Vector Identities</h3>
 <section class="callout theorem"><header>Theorem - Common Vector Identities</header><ol><li><p><span class="math-inline">\(\vec{\nabla}\cdot(\vec{\nabla}\times\vec{A}) = 0.\)</span> <em>Physical meaning:</em> This identity states that the <strong>divergence of a curl is always zero</strong>. In physical terms, a <strong>rotational (circulating)</strong> field such as a magnetic field has no net source or sink. For example, <span class="math-inline">\(\vec{\nabla}\cdot\vec{B}=0\)</span> in Maxwell’s equations expresses that there are no magnetic monopoles.</p>
-</li><li><p><span class="math-inline">\(\vec{\nabla}\times(\vec{\nabla}\phi) = \vec{0}.\)</span> <em>Physical meaning:</em> This states that the <strong>curl of a gradient is always zero</strong>. It means that any field derived from a scalar potential (such as the electrostatic field <span class="math-inline">\(\vec{E} = -\vec{\nabla}V\)</span>) is <strong>irrotational</strong>—it has no circulation or rotational component.</p>
-</li><li><p><span class="math-inline">\(\vec{\nabla}\cdot(\phi\vec{A})
+<p>špace6pt</p></li><li><p><span class="math-inline">\(\vec{\nabla}\times(\vec{\nabla}\phi) = \vec{0}.\)</span> <em>Physical meaning:</em> This states that the <strong>curl of a gradient is always zero</strong>. It means that any field derived from a scalar potential (such as the electrostatic field <span class="math-inline">\(\vec{E} = -\vec{\nabla}V\)</span>) is <strong>irrotational</strong>—it has no circulation or rotational component.</p>
+<p>špace6pt</p></li><li><p><span class="math-inline">\(\vec{\nabla}\cdot(\phi\vec{A})
 		= \phi\,(\vec{\nabla}\cdot\vec{A}) + \vec{\nabla}\phi\cdot\vec{A}.\)</span></p>
-</li><li><p><span class="math-inline">\(\vec{\nabla}\times(\phi\vec{A})
+<p>špace4pt</p></li><li><p><span class="math-inline">\(\vec{\nabla}\times(\phi\vec{A})
 		= \phi\,(\vec{\nabla}\times\vec{A}) + (\vec{\nabla}\phi)\times\vec{A}.\)</span></p>
-</li><li><p><span class="math-inline">\(\vec{\nabla}\cdot(\vec{A}\times\vec{B})
+<p>špace4pt</p></li><li><p><span class="math-inline">\(\vec{\nabla}\cdot(\vec{A}\times\vec{B})
 		= \vec{B}\cdot(\vec{\nabla}\times\vec{A}) - \vec{A}\cdot(\vec{\nabla}\times\vec{B}).\)</span></p>
-</li><li><p><span class="math-inline">\(\vec{\nabla}\times(\vec{\nabla}\times\vec{A})
+<p>špace4pt</p></li><li><p><span class="math-inline">\(\vec{\nabla}\times(\vec{\nabla}\times\vec{A})
 		= \vec{\nabla}(\vec{\nabla}\cdot\vec{A}) - \nabla^2\vec{A}.\)</span></p></li></ol></section>
 <h3 id="sec-6-vector-differential-operators-in-a-general-orthogonal-curvilinear-coordinate-system">Vector Differential Operators in a General Orthogonal Curvilinear Coordinate System</h3>
 <p>In many physical problems, Cartesian coordinates <span class="math-inline">\((x,y,z)\)</span> are not always the most convenient choice. We often use other coordinate systems such as cylindrical <span class="math-inline">\((\rho,\phi,z)\)</span> or spherical <span class="math-inline">\((r,\theta,\phi)\)</span>, which are examples of <strong>orthogonal curvilinear coordinates</strong>.</p>
@@ -1244,7 +1245,7 @@ W = \int_C \vec{F}\cdot d\vec{r} \quad \text{is path independent.}
 	\Phi = -W = -x^{2}y + xz^{3} + z + C&#x27;.
 	\end{equation}</div>
 <p>As a check, <span class="math-inline">\(\vec{\nabla}W = (2xy-z^{3})\hat{i} + x^{2}\hat{j} - (3xz^{2}+1)\hat{k}
-	= \vec{F}\)</span>. </p>
+	= \vec{F}\)</span>. ḩeckmark</p>
 <p><em>Step 3 — Confirm by an explicit path integral.</em> Because <span class="math-inline">\(\vec{F}\)</span> is conservative we may choose any convenient path from the origin to <span class="math-inline">\((x,y,z)\)</span>. Take three straight segments along the axes in turn, and set <span class="math-inline">\(C=0\)</span> so that <span class="math-inline">\(W(0,0,0)=0\)</span>.</p>
 <p><em>Segment 1</em>, from <span class="math-inline">\((0,0,0)\)</span> to <span class="math-inline">\((x,0,0)\)</span> with <span class="math-inline">\(y=z=0\)</span>: here <span class="math-inline">\(d\vec{r}=dx&#x27;\,\hat{i}\)</span> and <span class="math-inline">\(F_x = 2x&#x27;(0)-0^{3}=0\)</span>, so this segment contributes nothing.</p>
 <p><em>Segment 2</em>, from <span class="math-inline">\((x,0,0)\)</span> to <span class="math-inline">\((x,y,0)\)</span>: here <span class="math-inline">\(d\vec{r}=dy&#x27;\,\hat{j}\)</span> and <span class="math-inline">\(F_y = x^{2}\)</span>, which is constant along the segment, so</p>
@@ -1259,7 +1260,7 @@ W = \int_C \vec{F}\cdot d\vec{r} \quad \text{is path independent.}
 <div class="math-block">\begin{equation}
 	W(x,y,z) = 0 + x^{2}y - xz^{3} - z,
 	\end{equation}</div>
-<p>which agrees with the result of Step 2. </p></section>
+<p>which agrees with the result of Step 2. ḩeckmark</p></section>
 <h3 id="sec-6-physical-examples-of-line-integrals">Physical Examples of Line Integrals</h3>
 <p>Line integrals appear frequently in physics, where they often represent quantities such as <strong>work</strong>, <strong>circulation</strong>, or <strong>magnetic flux linkage</strong>.</p>
 <p>Below are some important physical contexts where line integrals are used.</p>
@@ -1980,7 +1981,7 @@ q_{\text{enc}} = \int_{\tau} \rho\,d\tau,
 <section class="callout remark"><header>Remark</header><p>These relations are essential in fluid dynamics, electromagnetism, and quantum mechanics. They enable transformations of differential equations, simplification of vector expressions, and conversions between integral and differential forms of physical laws.</p></section>
 <h2 id="sec-6-where-vector-analysis-is-used">Where Vector Analysis Is Used</h2>
 <p>Maxwell's equations, treated twice in this chapter, are the clearest demonstration of what vector analysis is for: four statements about <span class="math-inline">\(\vec{\nabla}\cdot\)</span> and <span class="math-inline">\(\vec{\nabla}\times\)</span> contain the whole of classical electromagnetism, including the existence of light. The same operators do similar work elsewhere.</p>
-<ul><li><p><strong>Electromagnetism.</strong> Gauss's law is a statement about divergence, Faraday's and Amp\‘ere's about curl. The integral and differential forms are connected by exactly the divergence and Stokes's theorems proved here, which is why those theorems are not an optional extra.</p></li><li><p><strong>Conservative forces and potentials.</strong> <span class="math-inline">\(\vec{\nabla}\times\vec{F}=\vec 0\)</span> is the test for whether a potential energy exists at all. Gravity and electrostatics pass; friction does not. This is what makes energy conservation usable.</p></li><li><p><strong>Fluid dynamics.</strong> The divergence of the velocity field measures whether fluid is being compressed, and its curl measures local rotation — literally the rate at which a small paddle wheel would spin, as the rigid-rotation example showed.</p></li><li><p><strong>Heat and diffusion.</strong> The Laplacian <span class="math-inline">\(\nabla^2 T\)</span> measures how much a point differs from the average of its neighbours, which is why it governs diffusion and why <span class="math-inline">\(\nabla^2 T = 0\)</span> describes steady state (Chapter 10).</p></li><li><p><strong>Curvilinear coordinates.</strong> The general expressions for gradient, divergence and curl in orthogonal coordinates let the same physics be written in whatever coordinates match the symmetry of the problem, as in Chapter 5.</p></li></ul>
+<ul><li><p><strong>Electromagnetism.</strong> Gauss's law is a statement about divergence, Faraday's and Ampère's about curl. The integral and differential forms are connected by exactly the divergence and Stokes's theorems proved here, which is why those theorems are not an optional extra.</p></li><li><p><strong>Conservative forces and potentials.</strong> <span class="math-inline">\(\vec{\nabla}\times\vec{F}=\vec 0\)</span> is the test for whether a potential energy exists at all. Gravity and electrostatics pass; friction does not. This is what makes energy conservation usable.</p></li><li><p><strong>Fluid dynamics.</strong> The divergence of the velocity field measures whether fluid is being compressed, and its curl measures local rotation — literally the rate at which a small paddle wheel would spin, as the rigid-rotation example showed.</p></li><li><p><strong>Heat and diffusion.</strong> The Laplacian <span class="math-inline">\(\nabla^2 T\)</span> measures how much a point differs from the average of its neighbours, which is why it governs diffusion and why <span class="math-inline">\(\nabla^2 T = 0\)</span> describes steady state (Chapter 10).</p></li><li><p><strong>Curvilinear coordinates.</strong> The general expressions for gradient, divergence and curl in orthogonal coordinates let the same physics be written in whatever coordinates match the symmetry of the problem, as in Chapter 5.</p></li></ul>
 <section class="callout remark"><header>Remark</header><p>One idea unifies the integral theorems of this chapter. Green's theorem, the divergence theorem and Stokes's theorem all say the same thing: <em>the accumulated derivative over a region equals the values on its boundary</em>. In one dimension this is the Fundamental Theorem of Calculus, <span class="math-inline">\(\int_a^b f&#x27;\,dt = f(b)-f(a)\)</span>. Each theorem here is that statement in a higher dimension, with the derivative replaced by a divergence or a curl, and the endpoints by a closed curve or a closed surface.</p></section>
 <h2 id="sec-6-for-the-interested-reader">For the Interested Reader</h2>
 <p>Vector analysis is where the geometry and the algebra can easily come apart: it is possible to compute a curl correctly for a whole course without ever picturing what it measures. The first item below is the strongest remedy for that. Everything listed is free.</p>

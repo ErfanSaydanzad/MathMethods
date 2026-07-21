@@ -53,6 +53,7 @@
   <nav class="top-nav" aria-label="Primary">
     <a href="../../index.html">Home</a>
     <a href="../../toc.html">Contents</a>
+    <a href="../../projects.html">Projects</a>
   </nav>
 </header>
 <main class="layout" id="main">
@@ -171,7 +172,7 @@
       <p>Chapter 3</p>
       <h1>Linear Algebra</h1>
     </header>
-    <p>[1]   (char)  #1;  </p>
+    <p>i̧rcnum[1]   (char) ̱series #1;  </p>
 <h2 id="sec-3-linear-equations">Linear Equations</h2>
 <p>Many problems in physics, engineering, and applied mathematics reduce to solving <strong>systems of linear equations</strong>: examples include Kirchhoff’s circuit laws, equilibrium conditions in mechanics, and eigenvalue problems in quantum mechanics.</p>
 <section class="callout definition"><header>Definition - Linear Equation</header><p>A <strong>linear equation</strong> in the variables <span class="math-inline">\(x_1, x_2, \dots, x_n\)</span> is an equation of the form</p>
@@ -217,7 +218,7 @@
 <h3 id="sec-3-row-echelon-form-ref-and-reduced-row-echelon-form-rref">Row Echelon Form (REF) and Reduced Row Echelon Form (RREF)</h3>
 <section class="callout definition"><header>Definition - Row Echelon Form (REF)</header><p>A matrix is in <strong>row echelon form</strong> if:</p>
 <ol><li><p>all nonzero rows appear above any rows consisting entirely of zeros;</p></li><li><p>in each nonzero row, the first nonzero entry (called the <strong>leading entry</strong> or <strong>pivot</strong>) is to the right of the leading entry in the row above;</p></li><li><p>all entries <em>below</em> each leading entry are zero.</p></li></ol>
-<p><strong>Important:</strong> In REF, pivots <span class="underline">do not need</span> to be <span class="math-inline">\(1\)</span>.</p>
+<p><strong>Important:</strong> In REF, pivots n̆derlinedo not need to be <span class="math-inline">\(1\)</span>.</p>
 <div class="math-block">\begin{equation}
 	\begin{bmatrix}
 		2 &amp; 3 &amp; 1 &amp; 1 \\
@@ -227,6 +228,7 @@
 	\end{bmatrix}
 	\qquad\Rightarrow\quad \checkmark\ \text{REF} \ (\text{pivots are not required to be } 1)
 	\end{equation}</div></section>
+<p>špace0.5em</p>
 <section class="callout definition"><header>Definition - Reduced Row Echelon Form (RREF)</header><p>A matrix is in <strong>reduced row echelon form</strong> if:</p>
 <ol><li><p>it is already in REF;</p></li><li><p>each leading entry is <span class="math-inline">\(1\)</span>;</p></li><li><p>each leading <span class="math-inline">\(1\)</span> is the <em>only</em> nonzero entry in its column (including all entries above the pivot must be zero).</p></li></ol>
 <p><strong>Examples of RREF:</strong></p>
@@ -589,6 +591,7 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 \vec{a} - \vec{b}= \vec{a} + (-\vec{b}) = (a_x-b_x)\hat{i} + (a_y-b_y)\hat{j} + (a_z-b_z)\hat{k}.
 \end{equation}</div>
 <p>Geometrically, vector addition corresponds to placing the tail of <span class="math-inline">\(\vec{b}\)</span> at the head of <span class="math-inline">\(\vec{a}\)</span> (the parallelogram rule). Subtraction corresponds to adding <span class="math-inline">\(\vec{a}+(-\vec{b})\)</span>.</p>
+<p>i̱gskip</p>
 <p><strong>Adding more than two vectors:</strong> If we have <span class="math-inline">\(\vec{a}, \vec{b}, \vec{c}, \dots\)</span>, then</p>
 <div class="math-block">\begin{equation}
 \vec{a} + \vec{b} + \vec{c} + \cdots
@@ -597,6 +600,7 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 + (a_z+b_z+c_z+\cdots)\hat{k}.
 \end{equation}</div>
 <p>In words: <em>to add several vectors, add their components along each axis separately.</em></p>
+<p>i̱gskip</p>
 <p><strong>Geometric picture:</strong></p>
 <ul><li><p>To add multiple vectors, place the tail of each vector at the head of the previous one (“tip-to-tail method”). The final vector goes from the start of the first to the tip of the last.</p></li><li><p>Subtracting a vector means adding its opposite. For example,</p>
 <div class="math-block">\begin{equation}
@@ -645,7 +649,7 @@ a = \sqrt{a_x^2 + a_y^2 + a_z^2}.
 <div class="math-block">\begin{equation}
 \vec{a}\cdot\vec{b} = a_x b_x + a_y b_y + a_z b_z.
 \end{equation}</div>
-<p> <strong>Conclusion:</strong> The component definition</p>
+<p>i̱gskip <strong>Conclusion:</strong> The component definition</p>
 <div class="math-block">\begin{equation}
 \boxed{\;\vec{a}\cdot\vec{b} = a_x b_x + a_y b_y + a_z b_z\;}
 \end{equation}</div>
@@ -1543,7 +1547,8 @@ AI = IA = A \quad \text{for any square matrix } A.
 	\end{equation}</div></section>
 <h3 id="sec-3-special-matrices-real-vs-complex">Special Matrices: Real vs Complex</h3>
 <p>It is useful to distinguish between <strong>real</strong> and <strong>complex</strong> matrices, because many important classes of matrices in the real case (such as symmetric and orthogonal) have natural generalizations in the complex case (Hermitian and unitary). This way, we can see clearly how the theory for real matrices extends to complex matrices.</p>
-<div class="centered"><div class="table-wrap"><table><tr><td><strong>Real matrices</strong></td><td><strong>Complex matrices</strong></td></tr><tr><td>–</td><td><span class="math-inline">\(A = \bar{A}\)</span>   (all entries real)</td></tr><tr><td>–</td><td><span class="math-inline">\(\bar{A} = -A\)</span>   (Purely imaginary)</td></tr><tr><td><span class="math-inline">\(A = A^T\)</span>  (Symmetric)</td><td><span class="math-inline">\(A = A^\dagger\)</span>  (Hermitian)</td></tr><tr><td><span class="math-inline">\(A = -A^T\)</span>  (Anti-symmetric)</td><td><span class="math-inline">\(A = -A^\dagger\)</span>  (Anti-Hermitian)</td></tr><tr><td><span class="math-inline">\(A^{-1} = A^T\)</span>  (Orthogonal)</td><td><span class="math-inline">\(A^{-1} = A^\dagger\)</span>  (Unitary)</td></tr><tr><td>–</td><td><span class="math-inline">\(AA^\dagger = A^\dagger A\)</span>  (Normal)</td></tr></table></div></div>
+<div class="centered"><p>e̊newcommand1.4 o̊wcolors2gray!10white</p>
+<div class="table-wrap"><table><tr><td><strong>Real matrices</strong></td><td><strong>Complex matrices</strong></td></tr><tr><td>–</td><td><span class="math-inline">\(A = \bar{A}\)</span>   (all entries real)</td></tr><tr><td>–</td><td><span class="math-inline">\(\bar{A} = -A\)</span>   (Purely imaginary)</td></tr><tr><td><span class="math-inline">\(A = A^T\)</span>  (Symmetric)</td><td><span class="math-inline">\(A = A^\dagger\)</span>  (Hermitian)</td></tr><tr><td><span class="math-inline">\(A = -A^T\)</span>  (Anti-symmetric)</td><td><span class="math-inline">\(A = -A^\dagger\)</span>  (Anti-Hermitian)</td></tr><tr><td><span class="math-inline">\(A^{-1} = A^T\)</span>  (Orthogonal)</td><td><span class="math-inline">\(A^{-1} = A^\dagger\)</span>  (Unitary)</td></tr><tr><td>–</td><td><span class="math-inline">\(AA^\dagger = A^\dagger A\)</span>  (Normal)</td></tr></table></div></div>
 <section class="callout remark"><header>Remark</header><p>The correspondence is clear:</p>
 <div class="math-block">\begin{equation}
 	\text{Symmetric} \;\leftrightarrow\; \text{Hermitian}, \quad
@@ -1560,7 +1565,8 @@ AI = IA = A \quad \text{for any square matrix } A.
 <div class="math-block">\begin{equation}
 	\{A, A^\dagger\} = AA^\dagger + A^\dagger A = I + I = 2I.
 	\end{equation}</div></section>
-<div class="centered"><div class="table-wrap"><table><tr><td><strong>Type</strong></td><td><strong>Definition</strong></td><td><strong>Example (<span class="math-inline">\(2\times 2\)</span>)</strong></td></tr><tr><td>Real</td><td><span class="math-inline">\(A = \bar{A}\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; -1 \\ 0 &amp; 3 \end{array}\right]\)</span></td></tr><tr><td>Symmetric</td><td><span class="math-inline">\(A = A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; 5 \\ 5 &amp; -1 \end{array}\right]\)</span></td></tr><tr><td>Anti-symmetric</td><td><span class="math-inline">\(A = -A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 0 &amp; -3 \\ 3 &amp; 0 \end{array}\right]\)</span></td></tr><tr><td>Orthogonal</td><td><span class="math-inline">\(A^{-1} = A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 0 &amp; -1 \\ 1 &amp; 0 \end{array}\right]\)</span></td></tr><tr><td>Purely imaginary</td><td><span class="math-inline">\(\bar{A} = -A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} i &amp; 0 \\ 0 &amp; -i \end{array}\right]\)</span></td></tr><tr><td>Hermitian</td><td><span class="math-inline">\(A^\dagger = A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; 1+i \\ 1-i &amp; 3 \end{array}\right]\)</span></td></tr><tr><td>Anti-Hermitian</td><td><span class="math-inline">\(A^\dagger = -A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} i &amp; 2 \\ -2 &amp; -i \end{array}\right]\)</span></td></tr><tr><td>Unitary</td><td><span class="math-inline">\(A^{-1} = A^\dagger\)</span></td><td><span class="math-inline">\(\tfrac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 &amp; i \\ i &amp; 1 \end{array}\right]\)</span></td></tr><tr><td>Normal</td><td><span class="math-inline">\(AA^\dagger = A^\dagger A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 1 &amp; 1 \\ 0 &amp; 1 \end{array}\right]\)</span></td></tr></table></div></div>
+<div class="centered"><p>e̊newcommand1.6 o̊wcolors2gray!10white</p>
+<div class="table-wrap"><table><tr><td><strong>Type</strong></td><td><strong>Definition</strong></td><td><strong>Example (<span class="math-inline">\(2\times 2\)</span>)</strong></td></tr><tr><td>Real</td><td><span class="math-inline">\(A = \bar{A}\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; -1 \\ 0 &amp; 3 \end{array}\right]\)</span></td></tr><tr><td>Symmetric</td><td><span class="math-inline">\(A = A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; 5 \\ 5 &amp; -1 \end{array}\right]\)</span></td></tr><tr><td>Anti-symmetric</td><td><span class="math-inline">\(A = -A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 0 &amp; -3 \\ 3 &amp; 0 \end{array}\right]\)</span></td></tr><tr><td>Orthogonal</td><td><span class="math-inline">\(A^{-1} = A^T\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 0 &amp; -1 \\ 1 &amp; 0 \end{array}\right]\)</span></td></tr><tr><td>Purely imaginary</td><td><span class="math-inline">\(\bar{A} = -A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} i &amp; 0 \\ 0 &amp; -i \end{array}\right]\)</span></td></tr><tr><td>Hermitian</td><td><span class="math-inline">\(A^\dagger = A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 2 &amp; 1+i \\ 1-i &amp; 3 \end{array}\right]\)</span></td></tr><tr><td>Anti-Hermitian</td><td><span class="math-inline">\(A^\dagger = -A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} i &amp; 2 \\ -2 &amp; -i \end{array}\right]\)</span></td></tr><tr><td>Unitary</td><td><span class="math-inline">\(A^{-1} = A^\dagger\)</span></td><td><span class="math-inline">\(\tfrac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 &amp; i \\ i &amp; 1 \end{array}\right]\)</span></td></tr><tr><td>Normal</td><td><span class="math-inline">\(AA^\dagger = A^\dagger A\)</span></td><td><span class="math-inline">\(\left[\begin{array}{cc} 1 &amp; 1 \\ 0 &amp; 1 \end{array}\right]\)</span></td></tr></table></div></div>
 <h3 id="sec-3-functions-of-matrices">Functions of Matrices</h3>
 <p>We can extend the notion of a function of a number to a function of a matrix. In general, a function <span class="math-inline">\(f(A)\)</span> of a matrix is defined by the <strong>Taylor (Maclaurin) series expansion</strong> of <span class="math-inline">\(f(x)\)</span>, with the variable <span class="math-inline">\(x\)</span> replaced by the matrix <span class="math-inline">\(A\)</span>.</p>
 <p>The Maclaurin series of a function <span class="math-inline">\(f(x)\)</span> is</p>
@@ -2274,7 +2280,7 @@ D = \begin{pmatrix}
 <p>Thus, the eigenspace corresponding to <span class="math-inline">\(\lambda=-3\)</span> is two-dimensional.</p></section>
 <section class="callout remark"><header>Remark</header><p>Degeneracy often arises in physics due to symmetries (e.g., rotational invariance). In such cases, the set of eigenvectors corresponding to a degenerate eigenvalue spans a subspace, and any linear combination of them is also an eigenvector.</p></section>
 <h3 id="sec-3-application-diagonalization-vibrations-of-a-linear-triatomic-molecule">Application Diagonalization: Vibrations of a Linear Triatomic Molecule</h3>
-<p>Consider a linear triatomic molecule with three atoms connected by springs (see Figure <a href="../chapter-03/index.html#chapter-03-fig-8">reference</a>). The outer atoms each have mass <span class="math-inline">\(m\)</span>, and the central atom has mass <span class="math-inline">\(M\)</span>. The spring constant is <span class="math-inline">\(k\)</span>.</p>
+<p>Consider a linear triatomic molecule with three atoms connected by springs (see Figure e̊ffig:triatomic). The outer atoms each have mass <span class="math-inline">\(m\)</span>, and the central atom has mass <span class="math-inline">\(M\)</span>. The spring constant is <span class="math-inline">\(k\)</span>.</p>
 <figure id="chapter-03-fig-8" class="figure"><img src="assets/img/linearTriatomicMolecul.png" alt="Model of a linear triatomic molecule with masses $m, M, m$ connected by springs." loading="lazy" style="--figure-width: 60%;"><figcaption>Model of a linear triatomic molecule with masses <span class="math-inline">\(m, M, m\)</span> connected by springs.</figcaption></figure>
 <p>Let the displacements from equilibrium be denoted by <span class="math-inline">\(x, y, z\)</span> for the left, middle, and right masses respectively. We are interested in finding the <strong>normal modes of vibration</strong> and the corresponding frequencies.</p>
 <h3 id="sec-3-potential-energy-and-equations-of-motion">Potential Energy and Equations of Motion</h3>
@@ -2585,6 +2591,7 @@ f_n(x) = \cos(nx), \; \sin(nx), \qquad n=1,2,3,\dots
 <ul><li><p><strong>Normal modes.</strong> A system of coupled oscillators has equations of motion <span class="math-inline">\(\ddot{\vec x} = -A\vec x\)</span>. Diagonalising <span class="math-inline">\(A\)</span> finds coordinates in which the oscillators decouple; the eigenvalues are the squared frequencies and the eigenvectors are the patterns of motion. This is exactly the linear triatomic molecule worked through earlier in this chapter, and it recurs in Chapters 8 and 12.</p></li><li><p><strong>Rigid-body rotation.</strong> The moment of inertia is a symmetric matrix, not a number. Its eigenvectors are the principal axes, about which a body spins without wobbling, and its eigenvalues are the principal moments.</p></li><li><p><strong>Quantum mechanics.</strong> States are vectors, observables are Hermitian matrices, measured values are eigenvalues, and the bra–ket notation of the last section is the standard language. That measured quantities are real is precisely the statement that Hermitian matrices have real eigenvalues.</p></li><li><p><strong>Circuits and networks.</strong> Kirchhoff's laws for a network with <span class="math-inline">\(n\)</span> loops are <span class="math-inline">\(n\)</span> simultaneous linear equations, solved by exactly the Gauss–Jordan row reduction of this chapter, or by Cramer's rule.</p></li><li><p><strong>Coordinate changes.</strong> Rotations and reflections are orthogonal matrices. That they preserve lengths and angles is the single condition <span class="math-inline">\(R^{T}R = I\)</span>.</p></li></ul>
 <section class="callout remark"><header>Remark</header><p>Notice how often the same two ideas did the work in this chapter. First, a matrix is not a table of numbers but a <em>linear transformation</em>, and the numbers only appear once a basis is chosen. Second, the natural basis for a problem is usually the eigenvector basis, in which the transformation stops mixing coordinates and simply stretches each axis. Almost every application above is an instance of choosing that better basis.</p></section>
 <h2 id="sec-3-summary-table">Summary Table</h2>
+<p>e̊newcommand1.4</p>
 <div class="table-wrap"><table><tr><td><strong>Object</strong></td><td><strong>Definition</strong></td><td><strong>What it is for</strong></td></tr><tr><td>Augmented matrix</td><td><span class="math-inline">\([M \mid \vec b]\)</span></td><td>Row reduce to solve <span class="math-inline">\(M\vec x = \vec b\)</span>.</td></tr><tr><td>RREF</td><td>Pivots <span class="math-inline">\(=1\)</span>, zeros above and below</td><td>Reads off the solution set directly.</td></tr><tr><td>Determinant</td><td><span class="math-inline">\(\det M = \sum_j (-1)^{1+j} m_{1j}\det M^{(1j)}\)</span></td><td><span class="math-inline">\(\det M \neq 0 \iff M\)</span> invertible.</td></tr><tr><td>Inverse</td><td><span class="math-inline">\(M M^{-1} = I\)</span></td><td>Solves <span class="math-inline">\(\vec x = M^{-1}\vec b\)</span>.</td></tr><tr><td>Dot product</td><td><span class="math-inline">\(\vec a \cdot \vec b = ab\cos\theta = \sum_i a_ib_i\)</span></td><td>Projection, work, orthogonality test.</td></tr><tr><td>Cross product</td><td><span class="math-inline">\(|\vec a \times \vec b| = ab\sin\theta\)</span></td><td>Area, torque, angular momentum.</td></tr><tr><td>Transpose</td><td><span class="math-inline">\((M^{T})_{ij} = M_{ji}\)</span></td><td>Symmetric if <span class="math-inline">\(M^{T}=M\)</span>.</td></tr><tr><td>Hermitian conjugate</td><td><span class="math-inline">\(M^{\dagger} = (M^{*})^{T}\)</span></td><td>Hermitian if <span class="math-inline">\(M^{\dagger}=M\)</span>; real eigenvalues.</td></tr><tr><td>Orthogonal matrix</td><td><span class="math-inline">\(R^{T}R = I\)</span></td><td>Rotations and reflections; preserves length.</td></tr><tr><td>Unitary matrix</td><td><span class="math-inline">\(U^{\dagger}U = I\)</span></td><td>The complex analogue; preserves probability.</td></tr><tr><td>Eigenvalue problem</td><td><span class="math-inline">\(M\vec x = \lambda \vec x\)</span>, <span class="math-inline">\(\det(M-\lambda I)=0\)</span></td><td>Normal modes, principal axes, observables.</td></tr><tr><td>Diagonalisation</td><td><span class="math-inline">\(C^{-1}MC = D\)</span>, columns of <span class="math-inline">\(C\)</span> are eigenvectors</td><td>Decouples the problem.</td></tr><tr><td>Linear independence</td><td>Only the trivial combination gives <span class="math-inline">\(\vec 0\)</span></td><td>Tested by <span class="math-inline">\(\det\)</span>, or the Wronskian for functions.</td></tr></table></div>
 <h2 id="sec-3-for-the-interested-reader">For the Interested Reader</h2>
 <p>If the manipulations in this chapter felt mechanical — row reduce, expand a determinant, solve a characteristic polynomial — the resources below are worth your time, because they explain what those manipulations <em>mean</em>. Everything listed is free.</p>
