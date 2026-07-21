@@ -62,7 +62,11 @@
     <div class="home-meta">Erfan Saydanzad · Kennesaw State University</div>
   </section>
   <section class="home-grid" aria-label="Chapters">
-    <a class="chapter-card" href="chapters/chapter-01/index.html">
+    <a class="chapter-card" href="chapters/chapter-00/index.html">
+  <span>Chapter 0</span>
+  <strong>Math Review for Calculus-Based Physics</strong>
+</a>
+<a class="chapter-card" href="chapters/chapter-01/index.html">
   <span>Chapter 1</span>
   <strong>Infinite Series and Power Series</strong>
 </a>
@@ -104,7 +108,7 @@
 </a>
   </section>
   <section class="overview content">
-    <p>Why These Methods Matter  Why These Methods MatterWhy These Methods Matter</p>
+    <h2 id="why-these-methods-matter">Why These Methods Matter</h2>
 <p>Mathematics is the language of physics. From Newton's laws to Schr\"odinger's equation, every major physical theory is stated mathematically, and a physical idea is only as sharp as the mathematics used to express it. The methods in these notes are not a detour on the way to physics; they are how physics is done.</p>
 <p>Rather than meet those methods one at a time and wonder where each is going, it helps to see the destination first. The three areas below are ones you already know something about. Each raises a mathematical question, and each question is answered by a chapter of these notes. The same handful of tools keeps reappearing: series to approximate, linear algebra to handle many coupled quantities at once, and differential equations to describe change.</p>
 <section class="callout context"><header>1. Classical Mechanics</header><p>Mechanics begins with Newton's second law, which is a second-order ordinary differential equation:</p>
@@ -121,8 +125,8 @@
 <section class="callout context"><header>2. Electromagnetism</header><p>Maxwell's equations describe how electric and magnetic fields behave in materials:</p>
 <div class="math-block">\[
 	\begin{aligned}
-		&amp;\operatorname{div} \vec{D} = \rho_f, \quad &amp;&amp;\operatorname{div} \vec{B} = 0 \\
-		&amp;\operatorname{curl} \vec{E} = -\frac{\partial \vec{B}}{\partial t}, \quad &amp;&amp;\operatorname{curl} \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t}
+		&amp;\vec{\nabla}\cdot \vec{D} = \rho_f, \quad &amp;&amp;\vec{\nabla}\cdot \vec{B} = 0 \\
+		&amp;\vec{\nabla}\times \vec{E} = -\frac{\partial \vec{B}}{\partial t}, \quad &amp;&amp;\vec{\nabla}\times \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t}
 	\end{aligned}
 	\]</div>
 <p>They are written in the language of vector calculus, so learning that language is a prerequisite for reading them at all.</p>
@@ -142,8 +146,8 @@
 <p> Read across the three boxes and the pattern is hard to miss: the same few chapters keep being called on. That is the argument for studying these methods together rather than picking them up piecemeal. When a technique appears later in the notes and its purpose is not obvious, it is worth returning to this page to see which physical question it was meant to answer.</p>
   </section>
   <section class="preface content">
-    <p>Preface </p>
-<h2 id="sec-0-about-these-notes">About These Notes</h2>
+    <h2 id="preface">Preface</h2>
+<h2 id="sec--1-about-these-notes">About These Notes</h2>
 <p>Mathematics is the language through which we learn to understand nature. By mastering this language, we become able to describe physical systems, construct models, make predictions, and, in many cases, guide or control their behavior. For this reason, mathematical methods are not only technical tools; they are an essential part of how physicists think about the physical world.</p>
 <p>These lecture notes were developed for PHYS 3260: Mathematical Physics at Kennesaw State University. The purpose of the course is to introduce some of the most important mathematical methods used in physics, while keeping physical meaning at the center of the discussion. The goal is not simply to learn formulas, but to understand why a method is useful, when it should be applied, and what it tells us about a physical system. Although the course is intended primarily for physics students, many of these methods are also useful for students in engineering and other quantitative fields.</p>
 <p>We begin with infinite series, power series, and Taylor expansions because approximation is one of the central ideas of physical modeling. Exact solutions are often unavailable, and series provide a systematic way to represent complicated functions in forms that are easier to analyze and use. The course then turns to complex numbers, which are indispensable in many areas of physics. In some subjects, such as quantum mechanics, they are part of the structure of the theory itself; in others, they provide a natural and elegant way to describe oscillations, waves, and exponential behavior, and they often simplify the solution of differential equations.</p>
